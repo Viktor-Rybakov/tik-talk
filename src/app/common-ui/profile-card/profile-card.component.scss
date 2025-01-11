@@ -49,10 +49,11 @@
   align-items: center;
 }
 
-.profile-card__tags {
+.profile-card__skills {
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
+  max-width: 200px;
   padding: 0;
   margin: 0;
   list-style: none;
@@ -60,10 +61,6 @@
   &:not(:empty) {
     margin-right: 32px;
   }
-}
-
-.profile-card__tag {
-
 }
 
 .profile-card__actions {

@@ -1,6 +1,12 @@
 @use "app/styles/fonts";
 @use "app/styles/components";
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 :root {
   --dark-color: #000000;
   --light-color: #FFFFFF;
