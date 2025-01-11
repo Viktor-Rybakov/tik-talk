@@ -1,7 +1,11 @@
 .profile-card {
   display: grid;
-  grid-template-columns: 232px 1fr 200px 232px;
+  grid-template-columns: 232px 1fr max-content;
+  align-items: center;
   gap: 32px;
+  padding: 32px 24px;
+  background-color: var(--dark-color);
+  border: 1px solid var(--light-color);
 }
 
 .profile-card__user {
@@ -17,20 +21,32 @@
   height: 70px;
   grid-row: span 2;
   border-radius: 50%;
+  overflow: hidden;
 }
 
 .profile-card__name {
   align-self: end;
   margin: 0;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 24px;
 }
 
 .profile-card__username {
   align-self: start;
   margin: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
 }
 
 .profile-card__description {
   margin: 0;
+}
+
+.profile-card__container {
+  display: flex;
+  align-items: center;
 }
 
 .profile-card__tags {
@@ -40,8 +56,18 @@
   padding: 0;
   margin: 0;
   list-style: none;
+
+  &:not(:empty) {
+    margin-right: 32px;
+  }
 }
 
 .profile-card__tag {
 
+}
+
+.profile-card__actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
