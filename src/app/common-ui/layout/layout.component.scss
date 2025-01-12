@@ -1,0 +1,9 @@
+:host {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  min-height: 100dvh;
+}
+
+.layout__content {
+  padding: 24px;
+}

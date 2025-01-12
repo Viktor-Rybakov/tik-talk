@@ -1,4 +1,6 @@
 @use "app/styles/fonts";
+@use "app/styles/headers";
+@use "app/styles/margins";
 @use "app/styles/components";
 
 *,
@@ -13,11 +15,6 @@
   --primary-color: #AE7AFF;
 }
 
-html {
-  display: flex;
-  min-height: 100%;
-}
-
 body {
   margin: 0;
   font-family: "JetBrains Mono", sans-serif;
@@ -30,6 +27,12 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
 }
 
 

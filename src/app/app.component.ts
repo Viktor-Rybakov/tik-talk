@@ -1,27 +1,14 @@
-import { Component, inject } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-
-import { ProfileCardComponent } from './common-ui/profile-card/profile-card.component';
-import { ProfileRestService } from './data/services/profile-rest.service';
-import { type Profile } from './data/interfaces/profile.iterface';
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [ProfileCardComponent],
+  imports: [
+    RouterOutlet
+  ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
-  providers: [ProfileRestService],
+  styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  private _profileRestService = inject(ProfileRestService);
 
-  profiles: Profile[] = [];
-
-  constructor() {
-    this._profileRestService.getProfiles$().pipe(takeUntilDestroyed()).subscribe({
-      next: (profiles) => {
-        this.profiles = profiles;
-      }
-    });
-  }
 }
