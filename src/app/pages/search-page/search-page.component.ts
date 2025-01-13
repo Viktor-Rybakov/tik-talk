@@ -1,8 +1,9 @@
 import { Component, inject } from '@angular/core';
+import { catchError } from 'rxjs';
+
 import { ProfileCardComponent } from '../../common-ui/profile-card/profile-card.component';
 import { ProfileRestService } from '../../data/services/profile-rest.service';
 import type { Profile } from '../../data/interfaces/profile.iterface';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-search-page',
@@ -19,7 +20,11 @@ export class SearchPageComponent {
   profiles: Profile[] = [];
 
   constructor() {
-    this._profileRestService.getProfiles$().pipe(takeUntilDestroyed()).subscribe({
+    this._profileRestService.getProfiles$().pipe(
+      catchError(() => {
+        throw new Error('ProfileRestService error');
+      })
+    ).subscribe({
       next: (profiles) => {
         this.profiles = profiles;
       }

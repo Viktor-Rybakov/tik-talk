@@ -1,4 +1,8 @@
-<form class="login-page__form">
+<form
+  class="login-page__form"
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()"
+>
   <h1 class="h1 mb60">{{ 'T_LOGIN_PAGE.TITLE' | translate }}</h1>
 
   <label class="control-label mb16">
@@ -7,6 +11,8 @@
     <input
       class="control-input"
       type="text"
+      formControlName="username"
+      autocomplete="username"
       [placeholder]="'T_LOGIN_PAGE.FORM.LOGIN.PLACEHOLDER' | translate"
     >
   </label>
@@ -16,12 +22,14 @@
 
     <input
       class="control-input"
-      type="text"
+      type="password"
+      formControlName="password"
+      autocomplete="current-password"
       [placeholder]="'T_LOGIN_PAGE.FORM.PASSWORD.PLACEHOLDER' | translate"
     >
   </label>
 
-  <button class="btn">{{ 'T_ACTION.LOGIN' | translate }}</button>
+  <button class="btn" type="submit">{{ 'T_ACTION.LOGIN' | translate }}</button>
 </form>
 
 <img
