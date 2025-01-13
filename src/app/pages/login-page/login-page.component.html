@@ -1,25 +1,33 @@
 <form class="login-page__form">
-  <h1 class="h1 mb60">Вход</h1>
+  <h1 class="h1 mb60">{{ 'T_LOGIN_PAGE.TITLE' | translate }}</h1>
 
   <label class="control-label mb16">
-    <span>Telegram username</span>
+    <span>{{ 'T_LOGIN_PAGE.FORM.LOGIN.LABEL' | translate }}</span>
 
-    <input class="control-input" type="text" placeholder="Введите логин">
+    <input
+      class="control-input"
+      type="text"
+      [placeholder]="'T_LOGIN_PAGE.FORM.LOGIN.PLACEHOLDER' | translate"
+    >
   </label>
 
   <label class="control-label mb32">
-    <span>Пароль</span>
+    <span>{{ 'T_LOGIN_PAGE.FORM.PASSWORD.LABEL' | translate }}</span>
 
-    <input class="control-input" type="text" placeholder="Введите пароль">
+    <input
+      class="control-input"
+      type="text"
+      [placeholder]="'T_LOGIN_PAGE.FORM.PASSWORD.PLACEHOLDER' | translate"
+    >
   </label>
 
-  <button class="btn">Войти</button>
+  <button class="btn">{{ 'T_ACTION.LOGIN' | translate }}</button>
 </form>
 
 <img
   class="login-page__logo"
   src="/assets/svg/logo-big.svg"
-  alt="Tik-Talk logo"
   width="440"
   height="432"
+  [alt]="'T_LOGIN_PAGE.LOGO' | translate"
 >
