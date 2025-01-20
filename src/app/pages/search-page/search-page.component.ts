@@ -12,7 +12,6 @@ import type { Profile } from '../../data/interfaces/profile.iterface';
   ],
   templateUrl: './search-page.component.html',
   styleUrl: './search-page.component.scss',
-  providers: [ProfileRestService]
 })
 export class SearchPageComponent {
   private _profileRestService = inject(ProfileRestService);
