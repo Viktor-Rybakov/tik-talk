@@ -7,7 +7,7 @@ import { type Profile } from '../interfaces/profile.iterface';
 const ApiPrefix: string = 'https://icherniakov.ru/yt-course/';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProfileRestService {
   private _http = inject(HttpClient);
@@ -17,6 +17,6 @@ export class ProfileRestService {
   }
 
   getMe$(): Observable<Profile> {
-    return this._http.get<Profile>(`${ApiPrefix}account/me`)
+    return this._http.get<Profile>(`${ApiPrefix}account/me`);
   }
 }

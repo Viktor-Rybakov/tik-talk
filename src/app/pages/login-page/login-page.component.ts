@@ -8,12 +8,9 @@ import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-login-page',
-  imports: [
-    TranslatePipe,
-    ReactiveFormsModule
-  ],
+  imports: [TranslatePipe, ReactiveFormsModule],
   templateUrl: './login-page.component.html',
-  styleUrl: './login-page.component.scss'
+  styleUrl: './login-page.component.scss',
 })
 export class LoginPageComponent {
   private _authService = inject(AuthService);
@@ -29,7 +26,8 @@ export class LoginPageComponent {
       const { username, password } = this.form.value;
 
       if (username && password) {
-        this._authService.login$({ username, password })
+        this._authService
+          .login$({ username, password })
           .pipe(
             catchError(() => {
               throw new Error('Login error');
@@ -39,7 +37,7 @@ export class LoginPageComponent {
             next: () => {
               this._router.navigate(['']);
             },
-          })
+          });
       }
     }
   }

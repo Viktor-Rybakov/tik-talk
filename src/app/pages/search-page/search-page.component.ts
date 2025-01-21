@@ -7,9 +7,7 @@ import type { Profile } from '../../data/interfaces/profile.iterface';
 
 @Component({
   selector: 'app-search-page',
-  imports: [
-    ProfileCardComponent
-  ],
+  imports: [ProfileCardComponent],
   templateUrl: './search-page.component.html',
   styleUrl: './search-page.component.scss',
 })
@@ -19,14 +17,17 @@ export class SearchPageComponent {
   profiles: Profile[] = [];
 
   constructor() {
-    this._profileRestService.getProfiles$().pipe(
-      catchError(() => {
-        throw new Error('ProfileRestService error');
-      })
-    ).subscribe({
-      next: (profiles) => {
-        this.profiles = profiles;
-      }
-    });
+    this._profileRestService
+      .getProfiles$()
+      .pipe(
+        catchError(() => {
+          throw new Error('ProfileRestService error');
+        })
+      )
+      .subscribe({
+        next: (profiles) => {
+          this.profiles = profiles;
+        },
+      });
   }
 }

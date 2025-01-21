@@ -9,7 +9,7 @@ import { type Auth, type TokenResponse } from './auth.interface';
 const ApiPrefix: string = 'https://icherniakov.ru/yt-course/auth/';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   private _http = inject(HttpClient);
@@ -31,23 +31,21 @@ export class AuthService {
     fd.append('username', payload.username);
     fd.append('password', payload.password);
 
-    return this._http.post<TokenResponse>(`${ApiPrefix}token`, fd)
-      .pipe(
-        tap((response) => this._saveTokens(response))
-      );
+    return this._http.post<TokenResponse>(`${ApiPrefix}token`, fd).pipe(tap((response) => this._saveTokens(response)));
   }
 
   refreshAuthToken$() {
-    return this._http.post<TokenResponse>(`${ApiPrefix}refresh`, {
-      refresh_token: this.refreshToken,
-    })
+    return this._http
+      .post<TokenResponse>(`${ApiPrefix}refresh`, {
+        refresh_token: this.refreshToken,
+      })
       .pipe(
         tap((response) => this._saveTokens(response)),
         catchError((err) => {
           this._logout();
           return throwError(() => err);
         })
-      )
+      );
   }
 
   private _logout() {

@@ -19,7 +19,7 @@ export const authTokenInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown
   }
 
   return next(addToken(req, token)).pipe(
-    catchError(error => {
+    catchError((error) => {
       if (error.status === 403) {
         return refreshAndProceed$(authService, req, next);
       }
@@ -27,28 +27,23 @@ export const authTokenInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown
       return throwError(() => error);
     })
   );
-}
+};
 
-const refreshAndProceed$ = (
-  authService: AuthService,
-  req: HttpRequest<unknown>,
-  next: HttpHandlerFn
-) => {
+const refreshAndProceed$ = (authService: AuthService, req: HttpRequest<unknown>, next: HttpHandlerFn) => {
   if (!isRefreshing) {
     isRefreshing = true;
 
-    return authService.refreshAuthToken$()
-      .pipe(
-        switchMap((response) => {
-          isRefreshing = false;
+    return authService.refreshAuthToken$().pipe(
+      switchMap((response) => {
+        isRefreshing = false;
 
-          if (authService.token == null) {
-            throw new Error('Auth token expected');
-          }
+        if (authService.token == null) {
+          throw new Error('Auth token expected');
+        }
 
-          return next(addToken(req, authService.token));
-        })
-      )
+        return next(addToken(req, authService.token));
+      })
+    );
   }
 
   if (authService.token == null) {
@@ -56,12 +51,12 @@ const refreshAndProceed$ = (
   }
 
   return next(addToken(req, authService.token));
-}
+};
 
 const addToken = (req: HttpRequest<unknown>, token: string) => {
   return req.clone({
     setHeaders: {
       Authorization: `Bearer ${token}`,
-    }
+    },
   });
-}
+};

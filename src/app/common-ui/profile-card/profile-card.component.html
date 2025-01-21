@@ -4,7 +4,7 @@
       class="profile-card__avatar"
       [src]="profile.avatarUrl | imgUrl"
       [alt]="profile.username"
-    >
+    />
     <h3 class="profile-card__name">{{ profile.firstName }} {{ profile.lastName }}</h3>
     <p class="profile-card__username">{{ profile.username }}</p>
   </div>
@@ -23,7 +23,12 @@
     }
 
     <div class="profile-card__actions">
-      <button class="btn" type="button">{{ 'T_ACTION.SUBSCRIBE' | translate }}</button>
+      <button
+        class="btn"
+        type="button"
+      >
+        {{ 'T_ACTION.SUBSCRIBE' | translate }}
+      </button>
     </div>
   </div>
 </article>

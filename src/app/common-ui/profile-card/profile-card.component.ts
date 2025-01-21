@@ -8,7 +8,7 @@ import { ImgUrlPipe } from '../../helpers/pipes/img-url.pipe';
   selector: 'app-profile-card',
   imports: [ImgUrlPipe, TranslatePipe],
   templateUrl: './profile-card.component.html',
-  styleUrl: './profile-card.component.scss'
+  styleUrl: './profile-card.component.scss',
 })
 export class ProfileCardComponent {
   @Input({ required: true }) profile!: Profile;

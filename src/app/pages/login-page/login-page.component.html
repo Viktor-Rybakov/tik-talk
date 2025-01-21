@@ -14,7 +14,7 @@
       formControlName="username"
       autocomplete="username"
       [placeholder]="'T_LOGIN_PAGE.FORM.LOGIN.PLACEHOLDER' | translate"
-    >
+    />
   </label>
 
   <label class="control-label mb32">
@@ -26,10 +26,15 @@
       formControlName="password"
       autocomplete="current-password"
       [placeholder]="'T_LOGIN_PAGE.FORM.PASSWORD.PLACEHOLDER' | translate"
-    >
+    />
   </label>
 
-  <button class="btn" type="submit">{{ 'T_ACTION.LOGIN' | translate }}</button>
+  <button
+    class="btn"
+    type="submit"
+  >
+    {{ 'T_ACTION.LOGIN' | translate }}
+  </button>
 </form>
 
 <img
@@ -38,4 +43,4 @@
   width="440"
   height="432"
   [alt]="'T_LOGIN_PAGE.LOGO' | translate"
->
+/>

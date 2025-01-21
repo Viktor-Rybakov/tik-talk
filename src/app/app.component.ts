@@ -6,16 +6,12 @@ import translationsRU from '../../public/assets/i18n/ru.json';
 
 @Component({
   selector: 'app-root',
-  imports: [
-    RouterOutlet
-  ],
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  constructor(
-    private _translate: TranslateService
-  ) {
+  constructor(private _translate: TranslateService) {
     this._translate.setTranslation('ru', translationsRU);
     this._translate.setDefaultLang('ru');
   }
