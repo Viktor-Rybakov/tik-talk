@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { catchError } from 'rxjs';
@@ -15,6 +15,8 @@ import { AuthService } from '../../auth/auth.service';
 export class LoginPageComponent {
   private _authService = inject(AuthService);
   private _router = inject(Router);
+
+  isPasswordVisible = signal<boolean>(false);
 
   form = new FormGroup({
     username: new FormControl<string>('', { nonNullable: true, validators: [Validators.required] }),
@@ -40,5 +42,9 @@ export class LoginPageComponent {
           });
       }
     }
+  }
+
+  togglePasswordVisible() {
+    this.isPasswordVisible.set(!this.isPasswordVisible());
   }
 }

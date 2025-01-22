@@ -28,20 +28,59 @@
   border: 1px solid var(--dark-color);
   border-radius: 2px;
   cursor: pointer;
+  transition: opacity 0.3s;
+
+  &:hover {
+    opacity: 0.8;
+  }
 }
 
-.control-label {
+.svg-icon {
+  display: block;
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.control {
   display: flex;
   flex-direction: column;
   gap: 4px;
+}
+
+.control__label {
   color: var(--light-color);
   font-size: 12px;
   font-weight: 700;
   line-height: 16px;
 }
 
-.control-input {
-  padding: 12px 52px 12px 20px;
+.control__wrapper {
+  display: grid;
+  grid-template-columns: 1fr 52px;
+  align-items: center;
+
+  .control__input {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    padding: 12px 52px 12px 20px;
+  }
+
+  .control__button {
+    grid-column: 2;
+    grid-row: 1;
+    z-index: 1;
+  }
+
+  .control__icon {
+    grid-column: 2;
+    grid-row: 1;
+    z-index: 1;
+  }
+}
+
+.control__input {
+  padding: 12px 20px;
   color: var(--light-color);
   font-family: inherit;
   font-size: 14px;
@@ -50,4 +89,46 @@
   background-color: var(--dark-color);
   border: 1px solid currentColor;
   border-radius: 2px;
+
+  &:focus-visible {
+    outline: 2px solid var(--primary-color);
+  }
+}
+
+.control__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: center;
+  width: 32px;
+  height: 32px;
+  padding: 4px;
+  color: var(--light-color);
+  opacity: 0.75;
+  background: none;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+
+  &--active {
+    color: var(--primary-color);
+  }
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &:focus-visible {
+    opacity: 1;
+    outline: 1px solid var(--primary-color);
+  }
+}
+
+.control__icon {
+  display: block;
+  justify-self: center;
+  width: 20px;
+  height: 20px;
+  color: var(--light-color);
+  opacity: 0.75;
 }

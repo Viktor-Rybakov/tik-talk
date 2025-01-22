@@ -5,29 +5,71 @@
 >
   <h1 class="h1 mb60">{{ 'T_LOGIN_PAGE.TITLE' | translate }}</h1>
 
-  <label class="control-label mb16">
-    <span>{{ 'T_LOGIN_PAGE.FORM.LOGIN.LABEL' | translate }}</span>
+  <div class="control mb16">
+    <label
+      class="control__label"
+      for="username"
+    >
+      {{ 'T_LOGIN_PAGE.FORM.LOGIN.LABEL' | translate }}
+    </label>
 
-    <input
-      class="control-input"
-      type="text"
-      formControlName="username"
-      autocomplete="username"
-      [placeholder]="'T_LOGIN_PAGE.FORM.LOGIN.PLACEHOLDER' | translate"
-    />
-  </label>
+    <div class="control__wrapper">
+      <input
+        class="control__input"
+        id="username"
+        type="text"
+        formControlName="username"
+        autocomplete="username"
+        [placeholder]="'T_LOGIN_PAGE.FORM.LOGIN.PLACEHOLDER' | translate"
+      />
 
-  <label class="control-label mb32">
-    <span>{{ 'T_LOGIN_PAGE.FORM.PASSWORD.LABEL' | translate }}</span>
+      <svg
+        class="control__icon svg-icon"
+        width="20"
+        height="20"
+        aria-hidden="true"
+      >
+        <use href="/assets/svg/icons.svg#telegram" />
+      </svg>
+    </div>
+  </div>
 
-    <input
-      class="control-input"
-      type="password"
-      formControlName="password"
-      autocomplete="current-password"
-      [placeholder]="'T_LOGIN_PAGE.FORM.PASSWORD.PLACEHOLDER' | translate"
-    />
-  </label>
+  <div class="control mb32">
+    <label
+      class="control__label"
+      for="current-password"
+    >
+      {{ 'T_LOGIN_PAGE.FORM.PASSWORD.LABEL' | translate }}
+    </label>
+
+    <div class="control__wrapper">
+      <input
+        class="control__input"
+        id="current-password"
+        [type]="isPasswordVisible() ? 'text' : 'password'"
+        formControlName="password"
+        autocomplete="current-password"
+        [placeholder]="'T_LOGIN_PAGE.FORM.PASSWORD.PLACEHOLDER' | translate"
+      />
+
+      <button
+        class="control__button"
+        [class.control__button--active]="isPasswordVisible()"
+        type="button"
+        [title]="'T_LOGIN_PAGE.FORM.PASSWORD.' + (isPasswordVisible() ? 'HIDE_PASSWORD' : 'SHOW_PASSWORD') | translate"
+        (click)="togglePasswordVisible()"
+      >
+        <svg
+          class="svg-icon"
+          width="20"
+          height="20"
+          aria-hidden="true"
+        >
+          <use href="/assets/svg/icons.svg#eye" />
+        </svg>
+      </button>
+    </div>
+  </div>
 
   <button
     class="btn"

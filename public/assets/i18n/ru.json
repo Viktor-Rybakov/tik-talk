@@ -12,7 +12,9 @@
       },
       "PASSWORD": {
         "LABEL": "Пароль",
-        "PLACEHOLDER": "Введите пароль"
+        "PLACEHOLDER": "Введите пароль",
+        "SHOW_PASSWORD": "Показать пароль",
+        "HIDE_PASSWORD": "Скрыть пароль"
       }
     },
     "LOGO": "Логотип Tik-Talk"
