@@ -12,11 +12,11 @@ const ApiPrefix: string = 'https://icherniakov.ru/yt-course/';
 export class ProfileRestService {
   private _http = inject(HttpClient);
 
-  getProfiles$(): Observable<Profile[]> {
+  getProfiles(): Observable<Profile[]> {
     return this._http.get<Profile[]>(`${ApiPrefix}account/test_accounts`);
   }
 
-  getMe$(): Observable<Profile> {
+  getMe(): Observable<Profile> {
     return this._http.get<Profile>(`${ApiPrefix}account/me`);
   }
 }

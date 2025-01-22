@@ -26,7 +26,7 @@ export class AuthService {
     return !!this.token;
   }
 
-  login$(payload: Auth) {
+  login(payload: Auth) {
     const fd = new FormData();
     fd.append('username', payload.username);
     fd.append('password', payload.password);
@@ -34,7 +34,7 @@ export class AuthService {
     return this._http.post<TokenResponse>(`${ApiPrefix}token`, fd).pipe(tap((response) => this._saveTokens(response)));
   }
 
-  refreshAuthToken$() {
+  refreshAuthToken() {
     return this._http
       .post<TokenResponse>(`${ApiPrefix}refresh`, {
         refresh_token: this.refreshToken,

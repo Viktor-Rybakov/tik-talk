@@ -27,7 +27,7 @@ export class LoginPageComponent {
 
       if (username && password) {
         this._authService
-          .login$({ username, password })
+          .login({ username, password })
           .pipe(
             catchError(() => {
               throw new Error('Login error');

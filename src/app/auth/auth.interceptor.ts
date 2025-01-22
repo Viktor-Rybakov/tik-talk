@@ -15,13 +15,13 @@ export const authTokenInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown
   }
 
   if (isRefreshing) {
-    return refreshAndProceed$(authService, req, next);
+    return refreshAndProceed(authService, req, next);
   }
 
   return next(addToken(req, token)).pipe(
     catchError((error) => {
       if (error.status === 403) {
-        return refreshAndProceed$(authService, req, next);
+        return refreshAndProceed(authService, req, next);
       }
 
       return throwError(() => error);
@@ -29,11 +29,11 @@ export const authTokenInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown
   );
 };
 
-const refreshAndProceed$ = (authService: AuthService, req: HttpRequest<unknown>, next: HttpHandlerFn) => {
+const refreshAndProceed = (authService: AuthService, req: HttpRequest<unknown>, next: HttpHandlerFn) => {
   if (!isRefreshing) {
     isRefreshing = true;
 
-    return authService.refreshAuthToken$().pipe(
+    return authService.refreshAuthToken().pipe(
       switchMap((response) => {
         isRefreshing = false;
 

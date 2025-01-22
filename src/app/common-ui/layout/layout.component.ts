@@ -14,7 +14,7 @@ export class LayoutComponent implements OnInit {
   private _profileService = inject(ProfileRestService);
 
   ngOnInit() {
-    this._profileService.getMe$().subscribe({
+    this._profileService.getMe().subscribe({
       next: (val) => console.log(val),
     });
   }

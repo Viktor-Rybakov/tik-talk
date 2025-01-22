@@ -18,7 +18,7 @@ export class SearchPageComponent {
 
   constructor() {
     this._profileRestService
-      .getProfiles$()
+      .getProfiles()
       .pipe(
         catchError(() => {
           throw new Error('ProfileRestService error');
