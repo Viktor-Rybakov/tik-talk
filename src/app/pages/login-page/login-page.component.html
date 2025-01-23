@@ -24,13 +24,9 @@
       />
 
       <svg
-        class="control__icon svg-icon"
-        width="20"
-        height="20"
-        aria-hidden="true"
-      >
-        <use href="/assets/svg/icons.svg#telegram" />
-      </svg>
+        class="control__icon"
+        icon="telegram"
+      ></svg>
     </div>
   </div>
 
@@ -59,14 +55,7 @@
         [title]="'T_LOGIN_PAGE.FORM.PASSWORD.' + (isPasswordVisible() ? 'HIDE_PASSWORD' : 'SHOW_PASSWORD') | translate"
         (click)="togglePasswordVisible()"
       >
-        <svg
-          class="svg-icon"
-          width="20"
-          height="20"
-          aria-hidden="true"
-        >
-          <use href="/assets/svg/icons.svg#eye" />
-        </svg>
+        <svg icon="eye"></svg>
       </button>
     </div>
   </div>
