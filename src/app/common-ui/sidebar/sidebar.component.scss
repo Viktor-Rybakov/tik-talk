@@ -1,4 +1,55 @@
 :host {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   background-color: var(--dark-color);
+}
+
+.sidebar__logo {
+  display: block;
+  width: 60px;
+  margin-right: 28px;
+  margin-left: 28px;
+
+}
+
+.sidebar__menu {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0 12px;
+  list-style: none;
+}
+
+.sidebar__menu-link {
+  display: grid;
+  grid-template-columns: 16px 1fr max-content;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+  color: var(--light-color);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 24px;
+  border-radius: 2px;
+
+  &--active {
+    color: var(--primary-color);
+    background-color: var(--hover-color);
+  }
+
+  &:hover {
+    color: var(--primary-color);
+    background-color: var(--hover-color);
+  }
+
+  &:focus-visible {
+    color: var(--primary-color);
+    background-color: var(--hover-color);
+    outline: 2px solid var(--primary-color);
+  }
 }
