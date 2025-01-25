@@ -1,9 +1,15 @@
 :host {
   display: grid;
   grid-template-columns: 300px 1fr;
-  min-height: 100dvh;
+  height: 100dvh;
+}
+
+.layout__sidebar {
+  min-height: 400px;
 }
 
 .layout__content {
+  min-height: 400px;
   padding: 24px;
+  overflow-y: auto;
 }
