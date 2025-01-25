@@ -22,6 +22,7 @@ export class AuthService {
   get isAuth(): boolean {
     if (!this.token) {
       this.token = this._cookieService.get('token');
+      this.refreshToken = this._cookieService.get('refreshToken');
     }
     return !!this.token;
   }
