@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
+
 import { SvgIconComponent } from '../svg-icon/svg-icon.component';
 
 @Component({
@@ -13,7 +14,7 @@ export class SidebarComponent {
   menu: { name: string; link: string; icon: string }[] = [
     {
       name: 'MY_PAGE',
-      link: 'profile',
+      link: '',
       icon: 'home',
     },
     {
@@ -23,7 +24,7 @@ export class SidebarComponent {
     },
     {
       name: 'SEARCH',
-      link: '/',
+      link: 'search',
       icon: 'search',
     },
   ];
