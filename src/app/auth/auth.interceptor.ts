@@ -34,7 +34,7 @@ const refreshAndProceed = (authService: AuthService, req: HttpRequest<unknown>, 
     isRefreshing = true;
 
     return authService.refreshAuthToken().pipe(
-      switchMap((response) => {
+      switchMap(() => {
         isRefreshing = false;
 
         if (authService.token == null) {
