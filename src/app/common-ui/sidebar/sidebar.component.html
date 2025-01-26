@@ -19,3 +19,28 @@
     </li>
   }
 </ul>
+
+<article class="sidebar__subscribers">
+  <h3 class="sidebar__subscribers-title">
+    {{ 'SIDEBAR.SUBSCRIBERS.TITLE' | translate }}
+  </h3>
+
+  <ul class="sidebar__subscribers-list">
+    @for (subscriber of subscribers$ | async; track subscriber.id) {
+      <li>
+        <app-subscriber-card [profile]="subscriber" />
+      </li>
+    }
+  </ul>
+
+  <a
+    class="sidebar__subscribers-all-link"
+    [routerLink]="['subscribers']"
+  >
+    <span>{{ 'SIDEBAR.SUBSCRIBERS.ALL_SUBSCRIBERS' | translate }}</span>
+    <svg
+      class="sidebar__subscribers-all-link-icon"
+      icon="arrow"
+    ></svg>
+  </a>
+</article>

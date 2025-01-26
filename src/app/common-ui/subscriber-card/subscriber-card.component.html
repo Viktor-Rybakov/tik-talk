@@ -1,0 +1,9 @@
+<img
+  class="subscriber-card__avatar"
+  [src]="profile.avatarUrl | avatarUrl"
+  [alt]="profile.username"
+/>
+
+<p class="subscriber-card__name">
+  {{ profile.firstName }} {{ profile.lastName }}
+</p>

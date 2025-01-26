@@ -1,0 +1,22 @@
+:host {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  gap: 12px;
+  align-items: center;
+  padding: 8px 0;
+}
+
+.subscriber-card__avatar {
+  display: block;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.subscriber-card__name {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 24px;
+}

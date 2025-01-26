@@ -24,6 +24,10 @@
       "MY_PAGE": "Моя страница",
       "CHATS": "Чаты",
       "SEARCH": "Поиск"
+    },
+    "SUBSCRIBERS" : {
+      "TITLE": "Подписчики",
+      "ALL_SUBSCRIBERS": "Все подписчики"
     }
   }
 }
