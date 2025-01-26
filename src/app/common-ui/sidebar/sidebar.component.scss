@@ -97,11 +97,58 @@
 
   &:focus-visible {
     color: var(--light-color);
-    outline: 1px solid var(--primary-color);
+    outline: 2px solid var(--primary-color);
   }
 }
 
 .sidebar__subscribers-all-link-icon {
   width: 16px;
   height: 16px;
+}
+
+.sidebar__footer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: auto 12px 0;
+  padding: 4px 16px;
+  background-color: var(--hover-color);
+  border-radius: 2px;
+}
+
+.sidebar__me-avatar {
+  display: block;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.sidebar__me-name {
+  flex-grow: 1;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 24px;
+  color: var(--primary-color);
+}
+
+.sidebar__settings-link {
+  display: flex;
+  width: 32px;
+  height: 32px;
+  padding: 4px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+
+  &:focus-visible {
+    outline: 2px solid var(--primary-color);
+  }
+}
+
+.sidebar__settings-icon {
+  width: 16px;
+  height: 16px;
+  color: var(--primary-color);
 }

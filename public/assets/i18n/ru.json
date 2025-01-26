@@ -28,6 +28,7 @@
     "SUBSCRIBERS" : {
       "TITLE": "Подписчики",
       "ALL_SUBSCRIBERS": "Все подписчики"
-    }
+    },
+    "SETTINGS": "Настройки"
   }
 }

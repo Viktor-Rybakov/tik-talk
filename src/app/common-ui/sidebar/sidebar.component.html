@@ -47,3 +47,26 @@
     ></svg>
   </a>
 </article>
+
+@if (me(); as me) {
+  <footer class="sidebar__footer">
+    <img
+      class="sidebar__me-avatar"
+      [src]="me.avatarUrl | avatarUrl"
+      [alt]="me.username"
+    />
+
+    <p class="sidebar__me-name">{{ me.username }}</p>
+
+    <a
+      class="sidebar__settings-link"
+      [routerLink]="['settings']"
+      [title]="'SIDEBAR.SETTINGS' | translate"
+    >
+      <svg
+        class="sidebar__settings-icon"
+        icon="settings"
+      ></svg>
+    </a>
+  </footer>
+}
