@@ -3,12 +3,12 @@ import { Pipe, PipeTransform } from '@angular/core';
 const Prefix: string = 'https://icherniakov.ru/yt-course/';
 
 @Pipe({
-  name: 'imgUrl',
+  name: 'avatarUrl',
 })
-export class ImgUrlPipe implements PipeTransform {
-  transform(value: string | null): string | null {
+export class AvatarUrlPipe implements PipeTransform {
+  transform(value: string | null): string {
     if (!value) {
-      return null;
+      return '/assets/svg/avatar-default.svg';
     }
     return `${Prefix}${value}`;
   }
