@@ -5,8 +5,8 @@
 />
 
 <ul class="sidebar__menu">
-  @for(menuItem of menu; track menuItem.name) {
-    <li class="sidebar__menu-item">
+  @for (menuItem of menu; track menuItem.name) {
+    <li>
       <a
         class="sidebar__menu-link"
         routerLinkActive="sidebar__menu-link--active"
@@ -14,7 +14,7 @@
         [routerLinkActiveOptions]="{ exact: true }"
       >
         <svg [icon]="menuItem.icon"></svg>
-        <span>{{ ('T_MENU.' + menuItem.name) | translate }}</span>
+        <span>{{ 'SIDEBAR.MENU.' + menuItem.name | translate }}</span>
       </a>
     </li>
   }

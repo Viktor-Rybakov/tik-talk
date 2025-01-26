@@ -1,9 +1,9 @@
 {
-  "T_ACTION": {
+  "ACTION": {
     "LOGIN": "Войти",
     "SUBSCRIBE": "Подписаться"
   },
-  "T_LOGIN_PAGE": {
+  "LOGIN_PAGE": {
     "TITLE": "Вход",
     "FORM": {
       "LOGIN": {
@@ -19,9 +19,11 @@
     },
     "LOGO": "Логотип Tik-Talk"
   },
-  "T_MENU": {
-    "MY_PAGE": "Моя страница",
-    "CHATS": "Чаты",
-    "SEARCH": "Поиск"
+  "SIDEBAR": {
+    "MENU": {
+      "MY_PAGE": "Моя страница",
+      "CHATS": "Чаты",
+      "SEARCH": "Поиск"
+    }
   }
 }

@@ -3,14 +3,14 @@
   [formGroup]="form"
   (ngSubmit)="onSubmit()"
 >
-  <h1 class="h1 mb60">{{ 'T_LOGIN_PAGE.TITLE' | translate }}</h1>
+  <h1 class="h1 mb60">{{ 'LOGIN_PAGE.TITLE' | translate }}</h1>
 
   <div class="control mb16">
     <label
       class="control__label"
       for="username"
     >
-      {{ 'T_LOGIN_PAGE.FORM.LOGIN.LABEL' | translate }}
+      {{ 'LOGIN_PAGE.FORM.LOGIN.LABEL' | translate }}
     </label>
 
     <div class="control__wrapper">
@@ -20,7 +20,7 @@
         type="text"
         formControlName="username"
         autocomplete="username"
-        [placeholder]="'T_LOGIN_PAGE.FORM.LOGIN.PLACEHOLDER' | translate"
+        [placeholder]="'LOGIN_PAGE.FORM.LOGIN.PLACEHOLDER' | translate"
       />
 
       <svg
@@ -35,7 +35,7 @@
       class="control__label"
       for="current-password"
     >
-      {{ 'T_LOGIN_PAGE.FORM.PASSWORD.LABEL' | translate }}
+      {{ 'LOGIN_PAGE.FORM.PASSWORD.LABEL' | translate }}
     </label>
 
     <div class="control__wrapper">
@@ -45,14 +45,14 @@
         [type]="isPasswordVisible() ? 'text' : 'password'"
         formControlName="password"
         autocomplete="current-password"
-        [placeholder]="'T_LOGIN_PAGE.FORM.PASSWORD.PLACEHOLDER' | translate"
+        [placeholder]="'LOGIN_PAGE.FORM.PASSWORD.PLACEHOLDER' | translate"
       />
 
       <button
         class="control__button"
         [class.control__button--active]="isPasswordVisible()"
         type="button"
-        [title]="'T_LOGIN_PAGE.FORM.PASSWORD.' + (isPasswordVisible() ? 'HIDE_PASSWORD' : 'SHOW_PASSWORD') | translate"
+        [title]="'LOGIN_PAGE.FORM.PASSWORD.' + (isPasswordVisible() ? 'HIDE_PASSWORD' : 'SHOW_PASSWORD') | translate"
         (click)="togglePasswordVisible()"
       >
         <svg icon="eye"></svg>
@@ -64,7 +64,7 @@
     class="btn"
     type="submit"
   >
-    {{ 'T_ACTION.LOGIN' | translate }}
+    {{ 'ACTION.LOGIN' | translate }}
   </button>
 </form>
 
@@ -73,5 +73,5 @@
   src="/assets/svg/logo-big.svg"
   width="440"
   height="432"
-  [alt]="'T_LOGIN_PAGE.LOGO' | translate"
+  [alt]="'LOGIN_PAGE.LOGO' | translate"
 />
