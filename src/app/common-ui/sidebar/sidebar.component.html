@@ -10,10 +10,13 @@
       <a
         class="sidebar__menu-link"
         routerLinkActive="sidebar__menu-link--active"
-        [routerLink]="menuItem.link"
+        [routerLink]="[menuItem.link]"
         [routerLinkActiveOptions]="{ exact: true }"
       >
-        <svg [icon]="menuItem.icon"></svg>
+        <svg
+          class="sidebar__menu-icon"
+          [icon]="menuItem.icon"
+        ></svg>
         <span>{{ 'SIDEBAR.MENU.' + menuItem.name | translate }}</span>
       </a>
     </li>
