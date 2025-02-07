@@ -1,6 +1,6 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 
 import { type Profile } from '../interfaces/profile.iterface';
 import { type Pageable } from '../interfaces/pageable.interface';
@@ -33,5 +33,9 @@ export class ProfileRestService {
 
   getSubscribers(): Observable<Pageable<Profile>> {
     return this._http.get<Pageable<Profile>>(`${ApiPrefix}account/subscribers/`);
+  }
+
+  getSubscribersShortList(amount: number = 3): Observable<Profile[]> {
+    return this.getSubscribers().pipe(map((response) => response.items.slice(0, amount)));
   }
 }

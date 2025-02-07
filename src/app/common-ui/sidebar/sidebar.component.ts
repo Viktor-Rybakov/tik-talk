@@ -47,9 +47,7 @@ export class SidebarComponent {
     },
   ];
 
-  subscribers$: Observable<Profile[]> = this.profileRestService
-    .getSubscribers()
-    .pipe(map((response) => response.items.slice(0, 3)));
+  subscribers$: Observable<Profile[]> = this.profileRestService.getSubscribersShortList();
 
   constructor() {
     firstValueFrom(this.profileRestService.getMe());
