@@ -10,7 +10,7 @@
       <a
         class="sidebar__menu-link"
         routerLinkActive="sidebar__menu-link--active"
-        [routerLink]="[menuItem.link]"
+        [routerLink]="menuItem.link"
         [routerLinkActiveOptions]="{ exact: true }"
       >
         <svg
@@ -38,7 +38,7 @@
 
   <a
     class="sidebar__subscribers-all-link"
-    [routerLink]="['subscribers']"
+    [routerLink]="['/', 'subscribers']"
   >
     <span>{{ 'SIDEBAR.SUBSCRIBERS.ALL_SUBSCRIBERS' | translate }}</span>
     <svg
@@ -60,7 +60,7 @@
 
     <a
       class="sidebar__settings-link"
-      [routerLink]="['settings']"
+      [routerLink]="['/', 'settings']"
       [title]="'SIDEBAR.SETTINGS' | translate"
     >
       <svg

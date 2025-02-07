@@ -38,7 +38,7 @@ export class LoginPageComponent {
           )
           .subscribe({
             next: () => {
-              this._router.navigate(['']);
+              this._router.navigate(['/', 'profile', 'me']);
             },
           });
       }

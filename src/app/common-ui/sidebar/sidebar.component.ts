@@ -29,20 +29,20 @@ export class SidebarComponent {
 
   me = this.profileRestService.me;
 
-  menu: { name: string; link: string; icon: string }[] = [
+  menu: { name: string; link: string[]; icon: string }[] = [
     {
       name: 'MY_PAGE',
-      link: '',
+      link: ['/', 'profile', 'me'],
       icon: 'home',
     },
     {
       name: 'CHATS',
-      link: 'chats',
+      link: ['/', 'chats'],
       icon: 'chats',
     },
     {
       name: 'SEARCH',
-      link: 'search',
+      link: ['/', 'search'],
       icon: 'search',
     },
   ];
