@@ -15,7 +15,7 @@
     @if (profile.stack.length > 0) {
       <ul class="profile-card__skills">
         @for (skill of profile.stack; track skill) {
-          <li class="profile-card__skill-item">
+          <li>
             <span class="skill-tag">{{ skill }}</span>
           </li>
         }
