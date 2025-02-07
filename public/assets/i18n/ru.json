@@ -1,7 +1,8 @@
 {
   "ACTION": {
     "LOGIN": "Войти",
-    "SUBSCRIBE": "Подписаться"
+    "SUBSCRIBE": "Подписаться",
+    "EDIT": "Редактировать"
   },
   "LOGIN_PAGE": {
     "TITLE": "Вход",

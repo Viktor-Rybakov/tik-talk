@@ -27,6 +27,10 @@ export class ProfileRestService {
     );
   }
 
+  getAccount(id: string): Observable<Profile> {
+    return this._http.get<Profile>(`${ApiPrefix}account/${id}`);
+  }
+
   getSubscribers(): Observable<Pageable<Profile>> {
     return this._http.get<Pageable<Profile>>(`${ApiPrefix}account/subscribers/`);
   }

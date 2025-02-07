@@ -1,1 +1,16 @@
-<p>profile-page works!</p>
+@if (profile$ | async; as profile) {
+  <div class="profile-page__header">
+    <app-profile-header [profile]="profile" />
+  </div>
+
+  <a
+    class="btn profile-page__edit-btn"
+    [routerLink]="['/', 'settings']"
+  >
+    <span>{{ 'ACTION.EDIT' | translate }}</span>
+    <svg
+      class="profile-page__edit-icon"
+      icon="settings"
+    ></svg>
+  </a>
+}

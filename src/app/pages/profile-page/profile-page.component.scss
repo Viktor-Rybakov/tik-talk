@@ -1,0 +1,25 @@
+:host {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  row-gap: 64px;
+}
+
+.profile-page__header {
+  container-name: profile-header;
+  container-type: inline-size;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.profile-page__edit-btn {
+  align-self: center;
+  justify-self: start;
+  margin-left: 24px;
+}
+
+.profile-page__edit-icon {
+  width: 16px;
+  height: 16px;
+}
