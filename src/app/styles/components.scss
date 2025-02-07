@@ -17,6 +17,10 @@
 }
 
 .btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   height: 44px;
   padding: 10px 20px;
   background-color: var(--primary-color);
@@ -25,6 +29,7 @@
   font-size: 14px;
   font-weight: 700;
   line-height: 24px;
+  text-decoration: none;
   border: 1px solid var(--dark-color);
   border-radius: 2px;
   cursor: pointer;
