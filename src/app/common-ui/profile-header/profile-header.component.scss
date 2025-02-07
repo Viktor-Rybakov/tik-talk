@@ -1,0 +1,51 @@
+:host {
+  display: grid;
+  grid-template-columns: 70px 1fr;
+  align-items: center;
+  gap: 4px 24px;
+}
+
+.profile-header__avatar {
+  display: block;
+  width: 112px;
+  height: 112px;
+  grid-row: span 2;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.profile-header__name {
+  align-self: end;
+  margin: 0;
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 32px;
+}
+
+.profile-header__username {
+  align-self: start;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+}
+
+@container profile-header (min-width: 800px) {
+  :host {
+    grid-template-columns: 140px max-content max-content;
+  }
+
+  .profile-header__avatar {
+    grid-row: span 1;
+    width: 140px;
+    height: 140px;
+  }
+
+  .profile-header__name {
+    align-self: center;
+  }
+
+  .profile-header__username {
+    align-self: center;
+  }
+}

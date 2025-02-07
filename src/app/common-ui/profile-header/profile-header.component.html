@@ -1,0 +1,7 @@
+<img
+  class="profile-header__avatar"
+  [src]="profile.avatarUrl | avatarUrl"
+  [alt]="profile.username"
+/>
+<h3 class="profile-header__name">{{ profile.firstName }} {{ profile.lastName }}</h3>
+<p class="profile-header__username">{{ profile.username }}</p>
