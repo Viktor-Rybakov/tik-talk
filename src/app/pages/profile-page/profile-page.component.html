@@ -1,16 +1,86 @@
 @if (profile$ | async; as profile) {
-  <div class="profile-page__header">
+  <header class="profile-page__header">
     <app-profile-header [profile]="profile" />
-  </div>
+  </header>
 
-  <a
-    class="btn profile-page__edit-btn"
-    [routerLink]="['/', 'settings']"
-  >
-    <span>{{ 'ACTION.EDIT' | translate }}</span>
-    <svg
-      class="profile-page__edit-icon"
-      icon="settings"
-    ></svg>
-  </a>
+  @if (isMe) {
+    <a
+      class="btn profile-page__edit-btn"
+      [routerLink]="['/', 'settings']"
+    >
+      <span>{{ 'ACTION.EDIT' | translate }}</span>
+      <svg
+        class="profile-page__edit-icon"
+        icon="settings"
+      ></svg>
+    </a>
+  }
+
+  <main class="profile-page__posts">
+    <app-post-feed />
+  </main>
+
+  <aside class="profile-page__sidebar">
+    <article class="profile-page__sidebar-container">
+      <h2 class="profile-page__sidebar-title">
+        <span>Подписчики</span>
+
+        <span class="profile-page__subscribers-count">
+          {{ profile.subscribersAmount }}
+        </span>
+      </h2>
+
+      <div class="profile-page__subscribers-wrapper">
+        @if (subscribers$ | async; as subscribers) {
+          <ul class="profile-page__subscribers">
+            @for (subscriber of subscribers; track subscriber.id) {
+              <li>
+                <a
+                  class="profile-page__subscriber-link"
+                  [routerLink]="['/', 'profile', subscriber.id]"
+                >
+                  <img
+                    class="profile-page__subscriber-avatar"
+                    [src]="subscriber.avatarUrl | avatarUrl"
+                    [alt]="subscriber.firstName + ' ' + subscriber.lastName"
+                    [title]="subscriber.firstName + ' ' + subscriber.lastName"
+                  />
+                </a>
+              </li>
+            }
+          </ul>
+        }
+
+        <a
+          class="profile-page__add-subscriber-link"
+          [routerLink]="['/', 'search']"
+        >
+          <span class="profile-page__add-subscriber-icon"></span>
+        </a>
+      </div>
+    </article>
+
+    @if (profile.stack.length > 0) {
+      <article class="profile-page__sidebar-container">
+        <h2 class="profile-page__sidebar-title">Навыки</h2>
+
+        <ul class="profile-page__skills">
+          @for (skill of profile.stack; track skill) {
+            <li>
+              <span class="skill-tag">{{ skill }}</span>
+            </li>
+          }
+        </ul>
+      </article>
+    }
+
+    @if (profile.description) {
+      <article class="profile-page__sidebar-container">
+        <h2 class="profile-page__sidebar-title">О себе</h2>
+        <p class="profile-page__profile-description">
+          {{ profile.description }}
+        </p>
+      </article>
+    }
+  </aside>
 }

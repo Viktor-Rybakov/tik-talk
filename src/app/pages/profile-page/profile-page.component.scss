@@ -1,12 +1,16 @@
 :host {
   display: grid;
   grid-template-columns: 1fr 340px;
+  grid-template-areas:
+    "header edit-button"
+    "posts sidebar";
   row-gap: 64px;
 }
 
 .profile-page__header {
   container-name: profile-header;
   container-type: inline-size;
+  grid-area: header;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -14,6 +18,7 @@
 }
 
 .profile-page__edit-btn {
+  grid-area: edit-button;
   align-self: center;
   justify-self: start;
   margin-left: 24px;
@@ -22,4 +27,145 @@
 .profile-page__edit-icon {
   width: 16px;
   height: 16px;
+}
+
+.profile-page__posts {
+  grid-area: posts;
+}
+
+.profile-page__sidebar {
+  grid-area: sidebar;
+  padding-right: 24px;
+  padding-left: 24px;
+}
+
+.profile-page__sidebar-container {
+  &:not(:last-of-type) {
+    margin-bottom: 32px;
+  }
+}
+
+.profile-page__sidebar-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 24px;
+}
+
+.profile-page__subscribers-count {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 6px;
+  color: var(--dark-color);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px;
+  background-color: var(--primary-green-color);
+}
+
+.profile-page__subscribers-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.profile-page__subscribers {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.profile-page__subscriber-link {
+  display: block;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  overflow: hidden;
+
+  &:hover,
+  &:focus-visible {
+    outline: 4px solid var(--primary-color);
+  }
+}
+
+.profile-page__subscriber-avatar {
+  display: block;
+  width: 36px;
+  height: 36px;
+}
+
+.profile-page__add-subscriber-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+
+  &:hover,
+  &:focus-visible {
+    outline: 4px solid var(--primary-color);
+  }
+}
+
+.profile-page__add-subscriber-icon {
+  position: relative;
+  display: block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: var(--light-color);
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    display: block;
+    width: 2px;
+    height: 8px;
+    background-color: var(--dark-color);
+  }
+
+  &::before {
+    transform: translateX(-50%) translateY(-50%) rotate(90deg);
+  }
+
+  &::after {
+    transform: translateX(-50%) translateY(-50%);
+  }
+}
+
+.profile-page__skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  max-width: 200px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  &:not(:empty) {
+    margin-right: 32px;
+  }
+}
+
+.profile-page__skill-item {
+}
+
+.profile-page__profile-description {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
 }
