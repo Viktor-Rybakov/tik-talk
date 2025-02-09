@@ -1,52 +1,56 @@
-<img
-  class="sidebar__logo"
-  src="/assets/svg/logo-small.svg"
-  alt="Tik-talk"
-/>
+<header class="sidebar__header">
+  <img
+    class="sidebar__logo"
+    src="/assets/svg/logo-small.svg"
+    alt="Tik-talk"
+  />
 
-<ul class="sidebar__menu">
-  @for (menuItem of menu; track menuItem.name) {
-    <li>
-      <a
-        class="sidebar__menu-link"
-        routerLinkActive="sidebar__menu-link--active"
-        [routerLink]="menuItem.link"
-        [routerLinkActiveOptions]="{ exact: true }"
-      >
-        <svg
-          class="sidebar__menu-icon"
-          [icon]="menuItem.icon"
-        ></svg>
-        <span>{{ 'SIDEBAR.MENU.' + menuItem.name | translate }}</span>
-      </a>
-    </li>
-  }
-</ul>
+  <nav>
+    <ul class="sidebar__menu">
+      @for (menuItem of menu; track menuItem.name) {
+        <li>
+          <a
+            class="sidebar__menu-link"
+            routerLinkActive="sidebar__menu-link--active"
+            [routerLink]="menuItem.link"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            <svg
+              class="sidebar__menu-icon"
+              [icon]="menuItem.icon"
+            ></svg>
+            <span>{{ 'SIDEBAR.MENU.' + menuItem.name | translate }}</span>
+          </a>
+        </li>
+      }
+    </ul>
+  </nav>
 
-<article class="sidebar__subscribers">
-  <h3 class="sidebar__subscribers-title">
-    {{ 'SIDEBAR.SUBSCRIBERS.TITLE' | translate }}
-  </h3>
+  <article class="sidebar__subscribers">
+    <h3 class="sidebar__subscribers-title">
+      {{ 'SIDEBAR.SUBSCRIBERS.TITLE' | translate }}
+    </h3>
 
-  <ul class="sidebar__subscribers-list">
-    @for (subscriber of subscribers$ | async; track subscriber.id) {
-      <li>
-        <app-subscriber-card [profile]="subscriber" />
-      </li>
-    }
-  </ul>
+    <ul class="sidebar__subscribers-list">
+      @for (subscriber of subscribers$ | async; track subscriber.id) {
+        <li>
+          <app-subscriber-card [profile]="subscriber" />
+        </li>
+      }
+    </ul>
 
-  <a
-    class="sidebar__subscribers-all-link"
-    [routerLink]="['/', 'subscribers']"
-  >
-    <span>{{ 'SIDEBAR.SUBSCRIBERS.ALL_SUBSCRIBERS' | translate }}</span>
-    <svg
-      class="sidebar__subscribers-all-link-icon"
-      icon="arrow"
-    ></svg>
-  </a>
-</article>
+    <a
+      class="sidebar__subscribers-all-link"
+      [routerLink]="['/', 'subscribers']"
+    >
+      <span>{{ 'SIDEBAR.SUBSCRIBERS.ALL_SUBSCRIBERS' | translate }}</span>
+      <svg
+        class="sidebar__subscribers-all-link-icon"
+        icon="arrow"
+      ></svg>
+    </a>
+  </article>
+</header>
 
 @if (me(); as me) {
   <footer class="sidebar__footer">

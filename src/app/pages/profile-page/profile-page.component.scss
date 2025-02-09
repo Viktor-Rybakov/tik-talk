@@ -3,7 +3,7 @@
   grid-template-columns: 1fr 340px;
   grid-template-areas:
     "header edit-button"
-    "posts sidebar";
+    "feed info";
   row-gap: 64px;
 }
 
@@ -29,23 +29,23 @@
   height: 16px;
 }
 
-.profile-page__posts {
-  grid-area: posts;
+.profile-page__feed {
+  grid-area: feed;
 }
 
-.profile-page__sidebar {
-  grid-area: sidebar;
+.profile-page__info-wrapper {
+  grid-area: info;
   padding-right: 24px;
   padding-left: 24px;
 }
 
-.profile-page__sidebar-container {
+.profile-page__info {
   &:not(:last-of-type) {
     margin-bottom: 32px;
   }
 }
 
-.profile-page__sidebar-title {
+.profile-page__info-title {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -158,9 +158,6 @@
   &:not(:empty) {
     margin-right: 32px;
   }
-}
-
-.profile-page__skill-item {
 }
 
 .profile-page__profile-description {

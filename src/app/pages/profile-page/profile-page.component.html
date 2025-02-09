@@ -16,19 +16,22 @@
     </a>
   }
 
-  <main class="profile-page__posts">
+  <section class="profile-page__feed">
+    <h2 class="visually-hidden">Список постов</h2>
     <app-post-feed />
-  </main>
+  </section>
 
-  <aside class="profile-page__sidebar">
-    <article class="profile-page__sidebar-container">
-      <h2 class="profile-page__sidebar-title">
+  <section class="profile-page__info-wrapper">
+    <h2 class="visually-hidden">Информация о пользователе</h2>
+
+    <article class="profile-page__info">
+      <h3 class="profile-page__info-title">
         <span>Подписчики</span>
 
         <span class="profile-page__subscribers-count">
           {{ profile.subscribersAmount }}
         </span>
-      </h2>
+      </h3>
 
       <div class="profile-page__subscribers-wrapper">
         @if (subscribers$ | async; as subscribers) {
@@ -61,8 +64,8 @@
     </article>
 
     @if (profile.stack.length > 0) {
-      <article class="profile-page__sidebar-container">
-        <h2 class="profile-page__sidebar-title">Навыки</h2>
+      <article class="profile-page__info">
+        <h3 class="profile-page__info-title">Навыки</h3>
 
         <ul class="profile-page__skills">
           @for (skill of profile.stack; track skill) {
@@ -75,12 +78,12 @@
     }
 
     @if (profile.description) {
-      <article class="profile-page__sidebar-container">
-        <h2 class="profile-page__sidebar-title">О себе</h2>
+      <article class="profile-page__info">
+        <h3 class="profile-page__info-title">О себе</h3>
         <p class="profile-page__profile-description">
           {{ profile.description }}
         </p>
       </article>
     }
-  </aside>
+  </section>
 }
