@@ -20,7 +20,6 @@ import { PostFeedComponent } from './post-feed/post-feed.component';
     SvgIconComponent,
     TranslatePipe,
     AvatarUrlPipe,
-    JsonPipe,
     PostFeedComponent,
   ],
   templateUrl: './profile-page.component.html',

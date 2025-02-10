@@ -1,0 +1,19 @@
+:host {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 48px;
+}
+
+.profile-form {
+  display: grid;
+  gap: 20px;
+  padding: 32px;
+  background-color: var(--dark-color);
+  border: 1px solid var(--light-color);
+}
+
+.two-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}

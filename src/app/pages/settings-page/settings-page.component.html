@@ -1,0 +1,100 @@
+<div></div>
+
+<form
+  class="profile-form"
+  [formGroup]="form"
+>
+  <div class="two-columns">
+    <div class="control">
+      <label
+        class="control__label"
+        for="firstName"
+      >
+        Имя
+      </label>
+
+      <input
+        class="control__input control__input--underlined"
+        id="firstName"
+        type="text"
+        formControlName="firstName"
+        placeholder="Иван"
+      />
+    </div>
+
+    <div class="control">
+      <label
+        class="control__label"
+        for="lastName"
+      >
+        Фамилия
+      </label>
+
+      <input
+        class="control__input control__input--underlined"
+        id="lastName"
+        type="text"
+        formControlName="lastName"
+        placeholder="Иванов"
+      />
+    </div>
+  </div>
+
+  <div class="control">
+    <label
+      class="control__label"
+      for="username"
+    >
+      Telegram username
+    </label>
+
+    <input
+      class="control__input control__input--underlined"
+      id="username"
+      type="text"
+      formControlName="username"
+    />
+  </div>
+
+  <div class="control">
+    <label
+      class="control__label"
+      for="description"
+    >
+      О себе
+    </label>
+
+    <textarea
+      class="control__input control__input--underlined"
+      id="description"
+      type="text"
+      rows="5"
+      formControlName="description"
+    ></textarea>
+  </div>
+
+  <div class="control">
+    <label
+      class="control__label"
+      for="stack"
+    >
+      Навыки
+    </label>
+
+    <input
+      class="control__input control__input--underlined"
+      id="stack"
+      type="text"
+      formControlName="stack"
+    />
+  </div>
+
+  <div class="profile-form__controls">
+    <button
+      class="btn"
+      (click)="onSave()"
+    >
+      Сохранить
+    </button>
+  </div>
+</form>

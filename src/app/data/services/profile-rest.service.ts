@@ -38,4 +38,8 @@ export class ProfileRestService {
   getSubscribersShortList(amount: number = 3): Observable<Profile[]> {
     return this.getSubscribers().pipe(map((response) => response.items.slice(0, amount)));
   }
+
+  patchProfile(profile: Partial<Profile>) {
+    return this._http.patch<Profile>(`${ApiPrefix}account/me`, profile);
+  }
 }
