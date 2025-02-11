@@ -5,89 +5,59 @@
   [formGroup]="form"
 >
   <div class="two-columns">
-    <div class="control">
-      <label
-        class="control__label"
-        for="firstName"
-      >
-        Имя
-      </label>
+    <label class="control">
+      <span class="control__label">Имя</span>
 
       <input
         class="control__input control__input--underlined"
-        id="firstName"
         type="text"
         formControlName="firstName"
         placeholder="Иван"
       />
-    </div>
+    </label>
 
-    <div class="control">
-      <label
-        class="control__label"
-        for="lastName"
-      >
-        Фамилия
-      </label>
+    <label class="control">
+      <span class="control__label">Фамилия</span>
 
       <input
         class="control__input control__input--underlined"
-        id="lastName"
         type="text"
         formControlName="lastName"
         placeholder="Иванов"
       />
-    </div>
+    </label>
   </div>
 
-  <div class="control">
-    <label
-      class="control__label"
-      for="username"
-    >
-      Telegram username
-    </label>
+  <label class="control">
+    <span class="control__label">Telegram username</span>
 
     <input
       class="control__input control__input--underlined"
-      id="username"
       type="text"
       formControlName="username"
     />
-  </div>
+  </label>
 
-  <div class="control">
-    <label
-      class="control__label"
-      for="description"
-    >
-      О себе
-    </label>
+  <label class="control">
+    <span class="control__label">О себе</span>
 
     <textarea
       class="control__input control__input--underlined"
-      id="description"
       type="text"
-      rows="5"
+      rows="4"
       formControlName="description"
     ></textarea>
-  </div>
+  </label>
 
-  <div class="control">
-    <label
-      class="control__label"
-      for="stack"
-    >
-      Навыки
-    </label>
+  <label class="control">
+    <span class="control__label">Навыки</span>
 
     <input
       class="control__input control__input--underlined"
-      id="stack"
       type="text"
       formControlName="stack"
     />
-  </div>
+  </label>
 
   <div class="profile-form__controls">
     <button

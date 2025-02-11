@@ -1,24 +1,21 @@
+@use "app/styles/layers";
 @use "app/styles/fonts";
-@use "app/styles/headers";
+@use "app/styles/reset";
 @use "app/styles/margins";
 @use "app/styles/components";
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
 :root {
-  --dark-color: #000000;
-  --light-color: #ffffff;
-  --primary-color: #ae7aff;
-  --hover-color: rgba(22, 22, 22, 1);
-  --primary-green-color: #98e9ab;
+  --dark-color: hsla(0, 0%, 0%, 1);
+  --dark-active-color: hsla(0, 0%, 9%, 1);
+  --light-color: hsla(0, 0%, 100%, 1);
+  --light-color-075: hsla(0, 0%, 100%, 0.75);
+  --primary-color: hsla(263, 100%, 74%, 1);
+  --primary-green-color: hsla(134, 65%, 75%, 1);
+  --primary-red-color: hsla(0, 65%, 75%, 1);
 }
 
 body {
-  margin: 0;
+  min-height: 100dvh;
   font-family: "JetBrains Mono", sans-serif;
   font-size: 12px;
   font-weight: 500;
@@ -29,21 +26,4 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-  object-fit: contain;
-}
-
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  overflow: hidden;
-  border: none;
-  clip: rect(0 0 0 0);
 }

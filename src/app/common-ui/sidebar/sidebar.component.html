@@ -27,9 +27,9 @@
   </nav>
 
   <article class="sidebar__subscribers">
-    <h3 class="sidebar__subscribers-title">Подписчики</h3>
+    <h3 class="sidebar__subscribers-title mb20">Подписчики</h3>
 
-    <ul class="sidebar__subscribers-list">
+    <ul class="sidebar__subscribers-list mb20">
       @for (subscriber of subscribers$ | async; track subscriber.id) {
         <li>
           <app-subscriber-card [profile]="subscriber" />
