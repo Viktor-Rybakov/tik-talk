@@ -3,14 +3,14 @@
   [formGroup]="form"
   (ngSubmit)="onSubmit()"
 >
-  <h1 class="h1 mb60">{{ 'LOGIN_PAGE.TITLE' | translate }}</h1>
+  <h1 class="h1 mb60">Вход</h1>
 
   <div class="control mb16">
     <label
       class="control__label control__label--bold"
       for="username"
     >
-      {{ 'LOGIN_PAGE.FORM.LOGIN.LABEL' | translate }}
+      Telegram username
     </label>
 
     <div class="control__wrapper">
@@ -20,7 +20,7 @@
         type="text"
         formControlName="username"
         autocomplete="username"
-        [placeholder]="'LOGIN_PAGE.FORM.LOGIN.PLACEHOLDER' | translate"
+        placeholder="Введите логин"
       />
 
       <svg
@@ -35,7 +35,7 @@
       class="control__label control__label--bold"
       for="current-password"
     >
-      {{ 'LOGIN_PAGE.FORM.PASSWORD.LABEL' | translate }}
+      Пароль
     </label>
 
     <div class="control__wrapper">
@@ -45,14 +45,14 @@
         [type]="isPasswordVisible() ? 'text' : 'password'"
         formControlName="password"
         autocomplete="current-password"
-        [placeholder]="'LOGIN_PAGE.FORM.PASSWORD.PLACEHOLDER' | translate"
+        placeholder="Введите пароль"
       />
 
       <button
         class="control__button"
         [class.control__button--active]="isPasswordVisible()"
         type="button"
-        [title]="'LOGIN_PAGE.FORM.PASSWORD.' + (isPasswordVisible() ? 'HIDE_PASSWORD' : 'SHOW_PASSWORD') | translate"
+        [title]="isPasswordVisible() ? 'Скрыть пароль' : 'Показать пароль'"
         (click)="togglePasswordVisible()"
       >
         <svg icon="eye"></svg>
@@ -64,7 +64,7 @@
     class="btn"
     type="submit"
   >
-    {{ 'ACTION.LOGIN' | translate }}
+    Войти
   </button>
 </form>
 
@@ -73,5 +73,5 @@
   src="/assets/svg/logo-big.svg"
   width="440"
   height="432"
-  [alt]="'LOGIN_PAGE.LOGO' | translate"
+  alt="Логотип Tik-Talk"
 />

@@ -1,7 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { TranslatePipe } from '@ngx-translate/core';
 import { firstValueFrom, map, Observable } from 'rxjs';
 
 import { SvgIconComponent } from '../svg-icon/svg-icon.component';
@@ -14,7 +13,6 @@ import { AvatarUrlPipe } from '../../helpers/pipes/avatar-url.pipe';
   selector: 'app-sidebar',
   imports: [
     RouterLink,
-    TranslatePipe,
     SvgIconComponent,
     RouterLinkActive,
     SubscriberCardComponent,
@@ -31,17 +29,17 @@ export class SidebarComponent {
 
   menu: { name: string; link: string[]; icon: string }[] = [
     {
-      name: 'MY_PAGE',
+      name: 'Моя страница',
       link: ['/', 'profile', 'me'],
       icon: 'home',
     },
     {
-      name: 'CHATS',
+      name: 'Чаты',
       link: ['/', 'chats'],
       icon: 'chats',
     },
     {
-      name: 'SEARCH',
+      name: 'Поиск',
       link: ['/', 'search'],
       icon: 'search',
     },

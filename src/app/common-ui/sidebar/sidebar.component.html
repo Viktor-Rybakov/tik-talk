@@ -19,7 +19,7 @@
               class="sidebar__menu-icon"
               [icon]="menuItem.icon"
             ></svg>
-            <span>{{ 'SIDEBAR.MENU.' + menuItem.name | translate }}</span>
+            <span>{{ menuItem.name }}</span>
           </a>
         </li>
       }
@@ -27,9 +27,7 @@
   </nav>
 
   <article class="sidebar__subscribers">
-    <h3 class="sidebar__subscribers-title">
-      {{ 'SIDEBAR.SUBSCRIBERS.TITLE' | translate }}
-    </h3>
+    <h3 class="sidebar__subscribers-title">Подписчики</h3>
 
     <ul class="sidebar__subscribers-list">
       @for (subscriber of subscribers$ | async; track subscriber.id) {
@@ -43,7 +41,7 @@
       class="sidebar__subscribers-all-link"
       [routerLink]="['/', 'subscribers']"
     >
-      <span>{{ 'SIDEBAR.SUBSCRIBERS.ALL_SUBSCRIBERS' | translate }}</span>
+      <span>Все подписчики</span>
       <svg
         class="sidebar__subscribers-all-link-icon"
         icon="arrow"
@@ -65,7 +63,7 @@
     <a
       class="sidebar__settings-link"
       [routerLink]="['/', 'settings']"
-      [title]="'SIDEBAR.SETTINGS' | translate"
+      title="Настройки"
     >
       <svg
         class="sidebar__settings-icon"

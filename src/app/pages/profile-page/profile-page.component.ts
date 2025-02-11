@@ -3,7 +3,6 @@ import { AsyncPipe, JsonPipe } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { switchMap, tap } from 'rxjs';
-import { TranslatePipe } from '@ngx-translate/core';
 
 import { ProfileHeaderComponent } from '../../common-ui/profile-header/profile-header.component';
 import { ProfileRestService } from '../../data/services/profile-rest.service';
@@ -18,7 +17,6 @@ import { PostFeedComponent } from './post-feed/post-feed.component';
     AsyncPipe,
     RouterLink,
     SvgIconComponent,
-    TranslatePipe,
     AvatarUrlPipe,
     PostFeedComponent,
   ],

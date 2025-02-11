@@ -8,7 +8,7 @@
       class="btn profile-page__edit-btn"
       [routerLink]="['/', 'settings']"
     >
-      <span>{{ 'ACTION.EDIT' | translate }}</span>
+      <span>Редактировать</span>
       <svg
         class="profile-page__edit-icon"
         icon="settings"
@@ -41,12 +41,12 @@
                 <a
                   class="profile-page__subscriber-link"
                   [routerLink]="['/', 'profile', subscriber.id]"
+                  [title]="subscriber.firstName + ' ' + subscriber.lastName"
                 >
                   <img
                     class="profile-page__subscriber-avatar"
                     [src]="subscriber.avatarUrl | avatarUrl"
                     [alt]="subscriber.firstName + ' ' + subscriber.lastName"
-                    [title]="subscriber.firstName + ' ' + subscriber.lastName"
                   />
                 </a>
               </li>

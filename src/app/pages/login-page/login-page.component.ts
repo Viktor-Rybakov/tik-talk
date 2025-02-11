@@ -1,5 +1,4 @@
 import { Component, inject, signal } from '@angular/core';
-import { TranslatePipe } from '@ngx-translate/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { catchError } from 'rxjs';
 import { Router } from '@angular/router';
@@ -9,7 +8,7 @@ import { SvgIconComponent } from '../../common-ui/svg-icon/svg-icon.component';
 
 @Component({
   selector: 'app-login-page',
-  imports: [TranslatePipe, ReactiveFormsModule, SvgIconComponent],
+  imports: [ReactiveFormsModule, SvgIconComponent],
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.scss',
 })
