@@ -8,7 +8,7 @@ const Prefix: string = 'https://icherniakov.ru/yt-course/';
 export class AvatarUrlPipe implements PipeTransform {
   transform(value: string | null): string {
     if (!value) {
-      return '/assets/svg/avatar-default.svg';
+      return '/assets/svg/avatar-placeholder.svg';
     }
     return `${Prefix}${value}`;
   }
