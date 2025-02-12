@@ -2,14 +2,36 @@
   display: grid;
   grid-template-columns: 380px 1fr;
   gap: 48px;
+  min-height: 100%;
 }
 
-.profile-form {
-  display: grid;
-  gap: 20px;
+.setting-page__form-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  justify-content: space-between;
   padding: 32px;
   background-color: var(--dark-color);
   border: 1px solid var(--light-color);
+}
+
+.setting-page__form {
+  display: grid;
+  gap: 20px;
+  align-content: start;
+}
+
+.profile-form__controls-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+}
+
+.profile-form__controls {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 .two-columns {

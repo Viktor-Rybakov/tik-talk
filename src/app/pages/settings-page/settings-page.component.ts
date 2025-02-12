@@ -31,6 +31,12 @@ export class SettingsPageComponent {
     });
   }
 
+  onDelete() {}
+
+  onLogout() {}
+
+  onCancel() {}
+
   onSave() {
     this.form.markAllAsTouched();
     this.form.updateValueAndValidity();
