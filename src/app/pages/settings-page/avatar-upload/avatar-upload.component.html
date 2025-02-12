@@ -1,0 +1,26 @@
+<label class="control">
+  <span class="control__label">Аватарка</span>
+
+  <div class="avatar-upload mt4">
+    <img
+      class="avatar-upload__img"
+      [src]="preview()"
+      alt="Аватарка"
+    />
+
+    <div class="avatar-upload__dropzone">
+      <p class="avatar-upload__dropzone-description">
+        <svg class="avatar-upload__dropzone-icon" icon="cloud"></svg>
+        <span
+          >Перетащите изображение или Загрузите <br />
+          (разрешение до 5,000 x 5,000 px)
+        </span>
+      </p>
+      <input
+        class="visually-hidden"
+        type="file"
+        (change)="fileBrowserHandler($event)"
+      />
+    </div>
+  </div>
+</label>

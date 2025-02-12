@@ -1,19 +1,21 @@
 import { Component, effect, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ProfileRestService } from '../../data/services/profile-rest.service';
 import { firstValueFrom } from 'rxjs';
+
+import { ProfileRestService } from '../../data/services/profile-rest.service';
+import { AvatarUploadComponent } from './avatar-upload/avatar-upload.component';
 
 @Component({
   selector: 'app-settings-page',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, AvatarUploadComponent],
   templateUrl: './settings-page.component.html',
   styleUrl: './settings-page.component.scss',
 })
 export class SettingsPageComponent {
-  bg = inject(FormBuilder);
+  fb = inject(FormBuilder);
   profileService = inject(ProfileRestService);
 
-  form = this.bg.group({
+  form = this.fb.group({
     firstName: ['', Validators.required],
     lastName: ['', Validators.required],
     username: [{ value: '', disabled: true }, Validators.required],
