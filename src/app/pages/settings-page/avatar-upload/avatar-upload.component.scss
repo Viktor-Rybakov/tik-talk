@@ -20,9 +20,14 @@
   padding: 16px;
   border: 1px dashed var(--border-color);
   border-radius: 2px;
+  cursor: pointer;
 
   &:focus-within,
   &:hover {
+    --border-color: var(--primary-color);
+  }
+
+  &.file-over {
     --border-color: var(--primary-color);
   }
 }

@@ -42,4 +42,10 @@ export class ProfileRestService {
   patchProfile(profile: Partial<Profile>) {
     return this._http.patch<Profile>(`${ApiPrefix}account/me`, profile);
   }
+
+  uploadImage(file: File) {
+    const fd = new FormData();
+    fd.append('image', file);
+    return this._http.post<Profile>(`${ApiPrefix}account/upload_image`, fd);
+  }
 }

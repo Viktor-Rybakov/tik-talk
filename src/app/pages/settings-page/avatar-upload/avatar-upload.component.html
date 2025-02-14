@@ -6,11 +6,19 @@
       class="avatar-upload__img"
       [src]="preview()"
       alt="Аватарка"
+      (click)="onImgClick($event)"
     />
 
-    <div class="avatar-upload__dropzone">
+    <div
+      class="avatar-upload__dropzone"
+      dnd
+      (fileDropped)="onFileDropped($event)"
+    >
       <p class="avatar-upload__dropzone-description">
-        <svg class="avatar-upload__dropzone-icon" icon="cloud"></svg>
+        <svg
+          class="avatar-upload__dropzone-icon"
+          icon="cloud"
+        ></svg>
         <span
           >Перетащите изображение или Загрузите <br />
           (разрешение до 5,000 x 5,000 px)
