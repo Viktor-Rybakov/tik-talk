@@ -14,9 +14,12 @@ export class ProfileRestService {
   private _http = inject(HttpClient);
 
   me = signal<Profile | null>(null);
+  filteredProfiles = signal<Profile[]>([]);
 
-  getProfiles(): Observable<Profile[]> {
-    return this._http.get<Profile[]>(`${ApiPrefix}account/test_accounts`);
+  getFilteredProfiles(params: Record<string, any>): Observable<Pageable<Profile>> {
+    return this._http
+      .get<Pageable<Profile>>(`${ApiPrefix}account/accounts`, { params })
+      .pipe(tap((response) => this.filteredProfiles.set(response.items)));
   }
 
   getMe(): Observable<Profile> {

@@ -1,0 +1,34 @@
+<form
+  class="profile-filters"
+  [formGroup]="searchForm"
+>
+  <label class="control">
+    <span class="control__label">Имя</span>
+
+    <input
+      class="control__input control__input--underlined"
+      type="text"
+      formControlName="firstName"
+    />
+  </label>
+
+  <label class="control">
+    <span class="control__label">Фамилия</span>
+
+    <input
+      class="control__input control__input--underlined"
+      type="text"
+      formControlName="lastName"
+    />
+  </label>
+
+  <label class="control">
+    <span class="control__label">Навыки</span>
+
+    <input
+      class="control__input control__input--underlined"
+      type="text"
+      formControlName="stack"
+    />
+  </label>
+</form>

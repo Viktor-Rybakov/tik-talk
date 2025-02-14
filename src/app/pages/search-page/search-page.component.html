@@ -1,5 +1,7 @@
+<app-profile-filters class="mb20" />
+
 <ul class="search-page__profiles">
-  @for (profile of profiles; track profile.id) {
+  @for (profile of profiles(); track profile.id) {
     <li class="search-page__profile-item">
       <app-profile-card [profile]="profile" />
     </li>
