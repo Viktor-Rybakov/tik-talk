@@ -1,12 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { firstValueFrom, map, Observable } from 'rxjs';
+import { firstValueFrom, Observable } from 'rxjs';
 
 import { SvgIconComponent } from '../svg-icon/svg-icon.component';
 import { SubscriberCardComponent } from '../subscriber-card/subscriber-card.component';
 import { type Profile } from '../../data/interfaces/profile.iterface';
-import { ProfileRestService } from '../../data/services/profile-rest.service';
+import { ProfileService } from '../../data/services/profile.service';
 import { AvatarUrlPipe } from '../../helpers/pipes/avatar-url.pipe';
 
 @Component({
@@ -23,9 +23,9 @@ import { AvatarUrlPipe } from '../../helpers/pipes/avatar-url.pipe';
   styleUrl: './sidebar.component.scss',
 })
 export class SidebarComponent {
-  private profileRestService = inject(ProfileRestService);
+  private _profileService = inject(ProfileService);
 
-  me = this.profileRestService.me;
+  me = this._profileService.me;
 
   menu: { name: string; link: string[]; icon: string }[] = [
     {
@@ -45,9 +45,9 @@ export class SidebarComponent {
     },
   ];
 
-  subscribers$: Observable<Profile[]> = this.profileRestService.getSubscribersShortList();
+  subscribers$: Observable<Profile[]> = this._profileService.getSubscribersShortList();
 
   constructor() {
-    firstValueFrom(this.profileRestService.getMe());
+    firstValueFrom(this._profileService.getMe());
   }
 }

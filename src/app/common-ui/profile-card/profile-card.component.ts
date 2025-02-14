@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { Profile } from '../../data/interfaces/profile.iterface';
+import { type Profile } from '../../data/interfaces/profile.iterface';
 import { AvatarUrlPipe } from '../../helpers/pipes/avatar-url.pipe';
 
 @Component({

@@ -2,7 +2,7 @@ import { Component, effect, inject, ViewChild } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
 
-import { ProfileRestService } from '../../data/services/profile-rest.service';
+import { ProfileService } from '../../data/services/profile.service';
 import { AvatarUploadComponent } from './avatar-upload/avatar-upload.component';
 
 @Component({
@@ -12,12 +12,12 @@ import { AvatarUploadComponent } from './avatar-upload/avatar-upload.component';
   styleUrl: './settings-page.component.scss',
 })
 export class SettingsPageComponent {
-  fb = inject(FormBuilder);
-  profileService = inject(ProfileRestService);
+  private _fb = inject(FormBuilder);
+  private _profileService = inject(ProfileService);
 
   @ViewChild(AvatarUploadComponent, { static: true }) avatarUpload!: AvatarUploadComponent;
 
-  form = this.fb.group({
+  form = this._fb.group({
     firstName: ['', Validators.required],
     lastName: ['', Validators.required],
     username: [{ value: '', disabled: true }, Validators.required],
@@ -29,8 +29,8 @@ export class SettingsPageComponent {
     effect(() => {
       // @ts-ignore
       this.form.patchValue({
-        ...this.profileService.me(),
-        stack: this.mergeStack(this.profileService.me()?.stack),
+        ...this._profileService.me(),
+        stack: this.mergeStack(this._profileService.me()?.stack),
       });
     });
   }
@@ -50,7 +50,7 @@ export class SettingsPageComponent {
     }
 
     if (this.avatarUpload.file) {
-      firstValueFrom(this.profileService.uploadImage(this.avatarUpload.file));
+      firstValueFrom(this._profileService.uploadImage(this.avatarUpload.file));
     }
 
     firstValueFrom(

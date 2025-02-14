@@ -3,7 +3,7 @@ import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { debounceTime, startWith, switchMap } from 'rxjs';
 
-import { ProfileRestService } from '../../../data/services/profile-rest.service';
+import { ProfileService } from '../../../data/services/profile.service';
 
 @Component({
   selector: 'app-profile-filters',
@@ -12,10 +12,10 @@ import { ProfileRestService } from '../../../data/services/profile-rest.service'
   styleUrl: './profile-filters.component.scss',
 })
 export class ProfileFiltersComponent {
-  private fb = inject(FormBuilder);
-  private profileService = inject(ProfileRestService);
+  private _fb = inject(FormBuilder);
+  private _profileService = inject(ProfileService);
 
-  searchForm = this.fb.group({
+  searchForm = this._fb.group({
     firstName: [''],
     lastName: [''],
     stack: [''],
@@ -27,7 +27,7 @@ export class ProfileFiltersComponent {
         startWith({}),
         debounceTime(300),
         switchMap((formValue) => {
-          return this.profileService.getFilteredProfiles(formValue);
+          return this._profileService.getFilteredProfiles(formValue);
         }),
         takeUntilDestroyed()
       )

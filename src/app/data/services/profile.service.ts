@@ -10,7 +10,7 @@ const ApiPrefix: string = 'https://icherniakov.ru/yt-course/';
 @Injectable({
   providedIn: 'root',
 })
-export class ProfileRestService {
+export class ProfileService {
   private _http = inject(HttpClient);
 
   me = signal<Profile | null>(null);

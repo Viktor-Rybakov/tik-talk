@@ -1,9 +1,7 @@
 import { Component, inject } from '@angular/core';
-import { catchError } from 'rxjs';
 
 import { ProfileCardComponent } from '../../common-ui/profile-card/profile-card.component';
-import { ProfileRestService } from '../../data/services/profile-rest.service';
-import type { Profile } from '../../data/interfaces/profile.iterface';
+import { ProfileService } from '../../data/services/profile.service';
 import { ProfileFiltersComponent } from './profile-filters/profile-filters.component';
 
 @Component({
@@ -13,6 +11,6 @@ import { ProfileFiltersComponent } from './profile-filters/profile-filters.compo
   styleUrl: './search-page.component.scss',
 })
 export class SearchPageComponent {
-  private _profileRestService = inject(ProfileRestService);
-  profiles = this._profileRestService.filteredProfiles;
+  private _profileService = inject(ProfileService);
+  profiles = this._profileService.filteredProfiles;
 }

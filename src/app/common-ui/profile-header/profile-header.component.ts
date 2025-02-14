@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
+
 import { AvatarUrlPipe } from '../../helpers/pipes/avatar-url.pipe';
-import { Profile } from '../../data/interfaces/profile.iterface';
+import { type Profile } from '../../data/interfaces/profile.iterface';
 
 @Component({
   selector: 'app-profile-header',
