@@ -3,7 +3,7 @@ import { AsyncPipe } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { firstValueFrom, Observable } from 'rxjs';
 
-import { SvgIconComponent } from '../svg-icon/svg-icon.component';
+import { type IconType, SvgIconComponent } from '../svg-icon/svg-icon.component';
 import { SubscriberCardComponent } from '../subscriber-card/subscriber-card.component';
 import { type Profile } from '../../data/interfaces/profile.iterface';
 import { ProfileService } from '../../data/services/profile.service';
@@ -27,7 +27,7 @@ export class SidebarComponent {
 
   me = this._profileService.me;
 
-  menu: { name: string; link: string[]; icon: string }[] = [
+  menu: { name: string; link: string[]; icon: IconType }[] = [
     {
       name: 'Моя страница',
       link: ['/', 'profile', 'me'],

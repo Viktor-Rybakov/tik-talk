@@ -1,6 +1,6 @@
 import { Component, HostBinding, Input } from '@angular/core';
 
-type iconType =
+export type IconType =
   | 'eye'
   | 'telegram'
   | 'home'
@@ -29,7 +29,7 @@ type iconType =
   styleUrl: 'svg-icon.component.scss',
 })
 export class SvgIconComponent {
-  @Input({ required: true }) icon!: iconType;
+  @Input({ required: true }) icon!: IconType;
 
   @HostBinding('attr.aria-hidden') ariaHidden: boolean = true;
 
