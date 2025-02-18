@@ -1,1 +1,24 @@
-<p>post-input works!</p>
+<app-avatar class="size32" />
+
+<label class="control">
+  <span class="visually-hidden">{{ isComment ? 'Текст комментария' : 'Текст поста' }}</span>
+  <input
+    class="control__input control__input--without-border"
+    type="text"
+    [placeholder]="isComment ? 'Напишите комментарий' : 'Напишите что-нибудь'"
+  />
+</label>
+
+<div class="post-input__buttons">
+  <button
+    class="btn btn--icon"
+    type="button"
+    title="Отправить"
+  >
+    <svg
+      class="size16"
+      icon="send"
+    ></svg>
+    <span class="visually-hidden">Отправить</span>
+  </button>
+</div>
