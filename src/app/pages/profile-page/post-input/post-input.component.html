@@ -1,11 +1,18 @@
-<app-avatar class="size32" />
+@if (profile(); as profile) {
+  <app-avatar
+    class="size32"
+    [avatarUrl]="profile.avatarUrl"
+    [avatarAlt]="profile.username"
+  />
+}
 
 <label class="control">
   <span class="visually-hidden">{{ isComment ? 'Текст комментария' : 'Текст поста' }}</span>
   <textarea
     class="post-input__textarea control__input control__input--without-border"
-    [placeholder]="isComment ? 'Напишите комментарий' : 'Напишите что-нибудь'"
     rows="1"
+    [placeholder]="isComment ? 'Напишите комментарий' : 'Напишите что-нибудь'"
+    [(ngModel)]="inputText"
     (input)="onTextInput($event)"
   ></textarea>
 </label>
@@ -15,6 +22,7 @@
     class="btn btn--icon"
     type="button"
     title="Отправить"
+    (click)="onCreate()"
   >
     <svg
       class="size16"
