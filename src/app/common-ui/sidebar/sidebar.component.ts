@@ -5,7 +5,7 @@ import { firstValueFrom, Observable } from 'rxjs';
 
 import { type IconType, SvgIconComponent } from '../svg-icon/svg-icon.component';
 import { SubscriberCardComponent } from '../subscriber-card/subscriber-card.component';
-import { type Profile } from '../../data/interfaces/profile.iterface';
+import { type Profile } from '../../data/interfaces/profile.interface';
 import { ProfileService } from '../../data/services/profile.service';
 import { AvatarComponent } from '../avatar/avatar.component';
 
