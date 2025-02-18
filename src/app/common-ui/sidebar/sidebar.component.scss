@@ -57,11 +57,6 @@
   }
 }
 
-.sidebar__menu-icon {
-  width: 16px;
-  height: 16px;
-}
-
 .sidebar__subscribers {
   padding-right: 28px;
   padding-left: 28px;
@@ -95,11 +90,6 @@
     color: var(--light-color);
     outline: 2px solid var(--primary-color);
   }
-}
-
-.sidebar__subscribers-all-link-icon {
-  width: 16px;
-  height: 16px;
 }
 
 .sidebar__footer {
@@ -142,7 +132,5 @@
 }
 
 .sidebar__settings-icon {
-  width: 16px;
-  height: 16px;
   color: var(--primary-color);
 }
