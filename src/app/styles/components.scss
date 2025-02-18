@@ -85,10 +85,14 @@
     .control__input {
       grid-column: 1 / -1;
       grid-row: 1;
-      padding: 12px 52px 12px 20px;
+      padding-right: 52px;
 
       &--underlined {
-        padding: 12px 32px 12px 0;
+        padding-right: 32px;
+      }
+
+      &--without-border {
+        padding-right: 32px;
       }
     }
 
@@ -123,6 +127,11 @@
       border-top-color: transparent;
       border-right-color: transparent;
       border-left-color: transparent;
+    }
+
+    &--without-border {
+      --border-color: transparent;
+      padding: 12px 0;
     }
 
     &::placeholder {
