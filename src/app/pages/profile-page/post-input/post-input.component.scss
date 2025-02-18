@@ -13,6 +13,11 @@
   }
 }
 
+.post-input__textarea {
+  min-height: unset;
+  resize: none;
+}
+
 .post-input__buttons {
   display: flex;
   align-items: center;

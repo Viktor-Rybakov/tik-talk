@@ -2,11 +2,12 @@
 
 <label class="control">
   <span class="visually-hidden">{{ isComment ? 'Текст комментария' : 'Текст поста' }}</span>
-  <input
-    class="control__input control__input--without-border"
-    type="text"
+  <textarea
+    class="post-input__textarea control__input control__input--without-border"
     [placeholder]="isComment ? 'Напишите комментарий' : 'Напишите что-нибудь'"
-  />
+    rows="1"
+    (input)="onTextInput($event)"
+  ></textarea>
 </label>
 
 <div class="post-input__buttons">
