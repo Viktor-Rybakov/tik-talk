@@ -24,15 +24,15 @@ import { AvatarComponent } from '../../common-ui/avatar/avatar.component';
   styleUrl: './profile-page.component.scss',
 })
 export class ProfilePageComponent {
-  private _profileService = inject(ProfileService);
-  private _route = inject(ActivatedRoute);
+  #profileService = inject(ProfileService);
+  #route = inject(ActivatedRoute);
 
   isMe: boolean = false;
 
-  me$ = toObservable(this._profileService.me);
-  subscribers$ = this._profileService.getSubscribersShortList(6);
+  me$ = toObservable(this.#profileService.me);
+  subscribers$ = this.#profileService.getSubscribersShortList(6);
 
-  profile$ = this._route.params.pipe(
+  profile$ = this.#route.params.pipe(
     tap(({ id }) => {
       this.isMe = id === 'me';
     }),
@@ -41,7 +41,7 @@ export class ProfilePageComponent {
         return this.me$;
       }
 
-      return this._profileService.getAccount(id);
+      return this.#profileService.getAccount(id);
     })
   );
 }

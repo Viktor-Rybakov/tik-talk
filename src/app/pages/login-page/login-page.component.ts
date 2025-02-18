@@ -13,8 +13,8 @@ import { SvgIconComponent } from '../../common-ui/svg-icon/svg-icon.component';
   styleUrl: './login-page.component.scss',
 })
 export class LoginPageComponent {
-  private _authService = inject(AuthService);
-  private _router = inject(Router);
+  #authService = inject(AuthService);
+  #router = inject(Router);
 
   isPasswordVisible = signal<boolean>(false);
 
@@ -28,7 +28,7 @@ export class LoginPageComponent {
       const { username, password } = this.form.value;
 
       if (username && password) {
-        this._authService
+        this.#authService
           .login({ username, password })
           .pipe(
             catchError(() => {
@@ -37,7 +37,7 @@ export class LoginPageComponent {
           )
           .subscribe({
             next: () => {
-              this._router.navigate(['/', 'profile', 'me']);
+              this.#router.navigate(['/', 'profile', 'me']);
             },
           });
       }

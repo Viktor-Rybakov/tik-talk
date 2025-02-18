@@ -12,17 +12,17 @@ const ApiPrefix: string = 'https://icherniakov.ru/yt-course/auth/';
   providedIn: 'root',
 })
 export class AuthService {
-  private _http = inject(HttpClient);
-  private _cookieService = inject(CookieService);
-  private _router = inject(Router);
+  #http = inject(HttpClient);
+  #cookieService = inject(CookieService);
+  #router = inject(Router);
 
   token: string | null = null;
   refreshToken: string | null = null;
 
   get isAuth(): boolean {
     if (!this.token) {
-      this.token = this._cookieService.get('token');
-      this.refreshToken = this._cookieService.get('refreshToken');
+      this.token = this.#cookieService.get('token');
+      this.refreshToken = this.#cookieService.get('refreshToken');
     }
     return !!this.token;
   }
@@ -32,34 +32,34 @@ export class AuthService {
     fd.append('username', payload.username);
     fd.append('password', payload.password);
 
-    return this._http.post<TokenResponse>(`${ApiPrefix}token`, fd).pipe(tap((response) => this._saveTokens(response)));
+    return this.#http.post<TokenResponse>(`${ApiPrefix}token`, fd).pipe(tap((response) => this.#saveTokens(response)));
   }
 
   refreshAuthToken() {
-    return this._http
+    return this.#http
       .post<TokenResponse>(`${ApiPrefix}refresh`, {
         refresh_token: this.refreshToken,
       })
       .pipe(
-        tap((response) => this._saveTokens(response)),
+        tap((response) => this.#saveTokens(response)),
         catchError((err) => {
-          this._logout();
+          this.#logout();
           return throwError(() => err);
         })
       );
   }
 
-  private _logout() {
-    this._cookieService.deleteAll();
+  #logout() {
+    this.#cookieService.deleteAll();
     this.token = null;
     this.refreshToken = null;
-    this._router.navigate(['login']);
+    this.#router.navigate(['login']);
   }
 
-  private _saveTokens(response: TokenResponse) {
+  #saveTokens(response: TokenResponse) {
     this.token = response.access_token;
     this.refreshToken = response.refresh_token;
-    this._cookieService.set('token', this.token);
-    this._cookieService.set('refreshToken', this.refreshToken);
+    this.#cookieService.set('token', this.token);
+    this.#cookieService.set('refreshToken', this.refreshToken);
   }
 }

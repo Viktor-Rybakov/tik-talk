@@ -23,9 +23,9 @@ import { AvatarComponent } from '../avatar/avatar.component';
   styleUrl: './sidebar.component.scss',
 })
 export class SidebarComponent {
-  private _profileService = inject(ProfileService);
+  #profileService = inject(ProfileService);
 
-  me = this._profileService.me;
+  me = this.#profileService.me;
 
   menu: { name: string; link: string[]; icon: IconType }[] = [
     {
@@ -45,9 +45,9 @@ export class SidebarComponent {
     },
   ];
 
-  subscribers$: Observable<Profile[]> = this._profileService.getSubscribersShortList();
+  subscribers$: Observable<Profile[]> = this.#profileService.getSubscribersShortList();
 
   constructor() {
-    firstValueFrom(this._profileService.getMe());
+    firstValueFrom(this.#profileService.getMe());
   }
 }

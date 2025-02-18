@@ -12,10 +12,10 @@ import { ProfileService } from '../../../data/services/profile.service';
   styleUrl: './profile-filters.component.scss',
 })
 export class ProfileFiltersComponent {
-  private _fb = inject(FormBuilder);
-  private _profileService = inject(ProfileService);
+  #fb = inject(FormBuilder);
+  #profileService = inject(ProfileService);
 
-  searchForm = this._fb.group({
+  searchForm = this.#fb.group({
     firstName: [''],
     lastName: [''],
     stack: [''],
@@ -27,7 +27,7 @@ export class ProfileFiltersComponent {
         startWith({}),
         debounceTime(300),
         switchMap((formValue) => {
-          return this._profileService.getFilteredProfiles(formValue);
+          return this.#profileService.getFilteredProfiles(formValue);
         }),
         takeUntilDestroyed()
       )

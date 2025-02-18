@@ -12,12 +12,12 @@ import { AvatarUploadComponent } from './avatar-upload/avatar-upload.component';
   styleUrl: './settings-page.component.scss',
 })
 export class SettingsPageComponent {
-  private _fb = inject(FormBuilder);
-  private _profileService = inject(ProfileService);
+  #fb = inject(FormBuilder);
+  #profileService = inject(ProfileService);
 
   @ViewChild(AvatarUploadComponent, { static: true }) avatarUpload!: AvatarUploadComponent;
 
-  form = this._fb.group({
+  form = this.#fb.group({
     firstName: ['', Validators.required],
     lastName: ['', Validators.required],
     username: [{ value: '', disabled: true }, Validators.required],
@@ -29,8 +29,8 @@ export class SettingsPageComponent {
     effect(() => {
       // @ts-ignore
       this.form.patchValue({
-        ...this._profileService.me(),
-        stack: this.mergeStack(this._profileService.me()?.stack),
+        ...this.#profileService.me(),
+        stack: this.mergeStack(this.#profileService.me()?.stack),
       });
     });
   }
@@ -50,7 +50,7 @@ export class SettingsPageComponent {
     }
 
     if (this.avatarUpload.file) {
-      firstValueFrom(this._profileService.uploadImage(this.avatarUpload.file));
+      firstValueFrom(this.#profileService.uploadImage(this.avatarUpload.file));
     }
 
     firstValueFrom(

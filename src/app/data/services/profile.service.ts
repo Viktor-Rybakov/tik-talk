@@ -11,19 +11,19 @@ const ApiPrefix: string = 'https://icherniakov.ru/yt-course/';
   providedIn: 'root',
 })
 export class ProfileService {
-  private _http = inject(HttpClient);
+  #http = inject(HttpClient);
 
   me = signal<Profile | null>(null);
   filteredProfiles = signal<Profile[]>([]);
 
   getFilteredProfiles(params: Record<string, any>): Observable<Pageable<Profile>> {
-    return this._http
+    return this.#http
       .get<Pageable<Profile>>(`${ApiPrefix}account/accounts`, { params })
       .pipe(tap((response) => this.filteredProfiles.set(response.items)));
   }
 
   getMe(): Observable<Profile> {
-    return this._http.get<Profile>(`${ApiPrefix}account/me`).pipe(
+    return this.#http.get<Profile>(`${ApiPrefix}account/me`).pipe(
       tap((response) => {
         this.me.set(response);
       })
@@ -31,11 +31,11 @@ export class ProfileService {
   }
 
   getAccount(id: string): Observable<Profile> {
-    return this._http.get<Profile>(`${ApiPrefix}account/${id}`);
+    return this.#http.get<Profile>(`${ApiPrefix}account/${id}`);
   }
 
   getSubscribers(): Observable<Pageable<Profile>> {
-    return this._http.get<Pageable<Profile>>(`${ApiPrefix}account/subscribers/`);
+    return this.#http.get<Pageable<Profile>>(`${ApiPrefix}account/subscribers/`);
   }
 
   getSubscribersShortList(amount: number = 3): Observable<Profile[]> {
@@ -43,12 +43,12 @@ export class ProfileService {
   }
 
   patchProfile(profile: Partial<Profile>) {
-    return this._http.patch<Profile>(`${ApiPrefix}account/me`, profile);
+    return this.#http.patch<Profile>(`${ApiPrefix}account/me`, profile);
   }
 
   uploadImage(file: File) {
     const fd = new FormData();
     fd.append('image', file);
-    return this._http.post<Profile>(`${ApiPrefix}account/upload_image`, fd);
+    return this.#http.post<Profile>(`${ApiPrefix}account/upload_image`, fd);
   }
 }
