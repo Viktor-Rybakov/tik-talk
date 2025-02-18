@@ -1,5 +1,27 @@
 import { Component, HostBinding, Input } from '@angular/core';
 
+type iconType =
+  | 'eye'
+  | 'telegram'
+  | 'home'
+  | 'chats'
+  | 'search'
+  | 'arrow'
+  | 'trash'
+  | 'logout'
+  | 'comments'
+  | 'like'
+  | 'smile'
+  | 'send'
+  | 'kebab'
+  | 'settings'
+  | 'close'
+  | 'cloud'
+  | 'filter'
+  | 'subscribe'
+  | 'share'
+  | 'added';
+
 @Component({
   selector: 'svg[icon]',
   imports: [],
@@ -7,7 +29,7 @@ import { Component, HostBinding, Input } from '@angular/core';
   styleUrl: 'svg-icon.component.scss',
 })
 export class SvgIconComponent {
-  @Input({ required: true }) icon!: string;
+  @Input({ required: true }) icon!: iconType;
 
   @HostBinding('attr.aria-hidden') ariaHidden: boolean = true;
 
