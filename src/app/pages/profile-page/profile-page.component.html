@@ -43,10 +43,10 @@
                   [routerLink]="['/', 'profile', subscriber.id]"
                   [title]="subscriber.firstName + ' ' + subscriber.lastName"
                 >
-                  <img
-                    class="profile-page__subscriber-avatar"
-                    [src]="subscriber.avatarUrl | avatarUrl"
-                    [alt]="subscriber.firstName + ' ' + subscriber.lastName"
+                  <app-avatar
+                    class="size36"
+                    [avatarUrl]="subscriber.avatarUrl"
+                    [avatarAlt]="subscriber.firstName + ' ' + subscriber.lastName"
                   />
                 </a>
               </li>

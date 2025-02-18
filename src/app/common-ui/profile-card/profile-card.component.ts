@@ -1,11 +1,11 @@
 import { Component, Input } from '@angular/core';
 
 import { type Profile } from '../../data/interfaces/profile.iterface';
-import { AvatarUrlPipe } from '../../helpers/pipes/avatar-url.pipe';
+import { AvatarComponent } from '../avatar/avatar.component';
 
 @Component({
   selector: 'app-profile-card',
-  imports: [AvatarUrlPipe],
+  imports: [AvatarComponent],
   templateUrl: './profile-card.component.html',
   styleUrl: './profile-card.component.scss',
 })

@@ -7,8 +7,8 @@ import { switchMap, tap } from 'rxjs';
 import { ProfileHeaderComponent } from '../../common-ui/profile-header/profile-header.component';
 import { ProfileService } from '../../data/services/profile.service';
 import { SvgIconComponent } from '../../common-ui/svg-icon/svg-icon.component';
-import { AvatarUrlPipe } from '../../helpers/pipes/avatar-url.pipe';
 import { PostFeedComponent } from './post-feed/post-feed.component';
+import { AvatarComponent } from '../../common-ui/avatar/avatar.component';
 
 @Component({
   selector: 'app-profile-page',
@@ -17,8 +17,8 @@ import { PostFeedComponent } from './post-feed/post-feed.component';
     AsyncPipe,
     RouterLink,
     SvgIconComponent,
-    AvatarUrlPipe,
     PostFeedComponent,
+    AvatarComponent,
   ],
   templateUrl: './profile-page.component.html',
   styleUrl: './profile-page.component.scss',

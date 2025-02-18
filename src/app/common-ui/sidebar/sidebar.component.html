@@ -52,10 +52,10 @@
 
 @if (me(); as me) {
   <footer class="sidebar__footer">
-    <img
-      class="sidebar__me-avatar"
-      [src]="me.avatarUrl | avatarUrl"
-      [alt]="me.username"
+    <app-avatar
+      class="size32"
+      [avatarUrl]="me.avatarUrl"
+      [avatarAlt]="me.username"
     />
 
     <p class="sidebar__me-name">{{ me.username }}</p>

@@ -7,7 +7,7 @@ import { SvgIconComponent } from '../svg-icon/svg-icon.component';
 import { SubscriberCardComponent } from '../subscriber-card/subscriber-card.component';
 import { type Profile } from '../../data/interfaces/profile.iterface';
 import { ProfileService } from '../../data/services/profile.service';
-import { AvatarUrlPipe } from '../../helpers/pipes/avatar-url.pipe';
+import { AvatarComponent } from '../avatar/avatar.component';
 
 @Component({
   selector: 'app-sidebar',
@@ -17,7 +17,7 @@ import { AvatarUrlPipe } from '../../helpers/pipes/avatar-url.pipe';
     RouterLinkActive,
     SubscriberCardComponent,
     AsyncPipe,
-    AvatarUrlPipe,
+    AvatarComponent,
   ],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss',

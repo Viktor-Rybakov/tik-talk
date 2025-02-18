@@ -6,12 +6,9 @@
 }
 
 .profile-header__avatar {
+  --avatar-size: 112px;
   display: block;
-  width: 112px;
-  height: 112px;
-  aspect-ratio: 1;
   grid-row: span 2;
-  border-radius: 50%;
 }
 
 .profile-header__name {
@@ -34,9 +31,8 @@
   }
 
   .profile-header__avatar {
+    --avatar-size: 140px;
     grid-row: span 1;
-    width: 140px;
-    height: 140px;
   }
 
   .profile-header__name {
