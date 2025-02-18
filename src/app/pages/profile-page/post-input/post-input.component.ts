@@ -1,4 +1,4 @@
-import { booleanAttribute, Component, HostBinding, Input } from '@angular/core';
+import { booleanAttribute, Component, HostBinding, inject, Input, Renderer2 } from '@angular/core';
 
 import { AvatarComponent } from '../../../common-ui/avatar/avatar.component';
 import { SvgIconComponent } from '../../../common-ui/svg-icon/svg-icon.component';
@@ -10,7 +10,15 @@ import { SvgIconComponent } from '../../../common-ui/svg-icon/svg-icon.component
   styleUrl: './post-input.component.scss',
 })
 export class PostInputComponent {
+  r2 = inject(Renderer2);
+
   @HostBinding('class.comment')
   @Input({ alias: 'comment', transform: booleanAttribute })
   isComment: boolean = false;
+
+  onTextInput(event: Event) {
+    const textarea = event.target as HTMLTextAreaElement;
+    this.r2.setStyle(textarea, 'height', 'auto');
+    this.r2.setStyle(textarea, 'height', (textarea.scrollHeight + 2) + 'px');
+  }
 }
