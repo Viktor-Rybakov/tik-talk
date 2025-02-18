@@ -47,6 +47,11 @@
     cursor: pointer;
     transition: opacity 0.3s;
 
+    &--icon {
+      padding: 10px;
+      aspect-ratio: 1;
+    }
+
     &:hover {
       opacity: 0.8;
     }
