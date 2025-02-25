@@ -1,3 +1,13 @@
-<app-post-input />
+<app-post-input class="post-feed__input" />
 
-<app-post />
+@if (posts(); as posts) {
+  @if (posts.length) {
+    <ul class="post-feed__list">
+      @for (post of posts; track post.id) {
+        <li>
+          <app-post [post]="post" />
+        </li>
+      }
+    </ul>
+  }
+}

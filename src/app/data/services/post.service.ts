@@ -1,8 +1,8 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { map, Observable, switchMap, tap } from 'rxjs';
 
-import { type Post, type PostCreateDto } from '../interfaces/post.interface';
+import { type CommentCreateDto, type Post, type PostComment, type PostCreateDto } from '../interfaces/post.interface';
 
 const ApiPrefix: string = 'https://icherniakov.ru/yt-course/';
 
@@ -12,7 +12,37 @@ const ApiPrefix: string = 'https://icherniakov.ru/yt-course/';
 export class PostService {
   #http = inject(HttpClient);
 
-  createPost(payload: PostCreateDto): Observable<Post> {
+  posts = signal<Post[]>([]);
+
+  createPost(payload: PostCreateDto) {
     return this.#http.post<Post>(`${ApiPrefix}post/`, payload);
+  }
+
+  getPosts(): Observable<Post[]> {
+    return this.#http.get<Post[]>(`${ApiPrefix}post/`).pipe(
+      tap((response: Post[]) => {
+        this.posts.set(response);
+      })
+    );
+  }
+
+  getCommentsByPostId(postId: number): Observable<PostComment[]> {
+    return this.#http.get<Post>(`${ApiPrefix}post/${postId}`).pipe(
+      map((response: Post) => response.comments),
+    )
+  }
+
+  createPostAndUpdateFeed(payload: PostCreateDto) {
+    return this.createPost(payload).pipe(
+      switchMap(() => this.getPosts()),
+    );
+  }
+
+  createComment(payload: CommentCreateDto) {
+    return this.#http.post<Comment>(`${ApiPrefix}comment/`, payload);
+  }
+
+  createCommentAndUpdateFeed(payload: CommentCreateDto) {
+    return this.createComment(payload);
   }
 }
