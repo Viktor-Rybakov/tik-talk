@@ -1,0 +1,14 @@
+:host {
+  display: block;
+  overflow-y: auto;
+}
+
+.post-feed__input {
+  margin-bottom: 16px;
+}
+
+.post-feed__list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}

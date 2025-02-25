@@ -1,1 +1,60 @@
-<p>post works!</p>
+@if (post(); as post) {
+  <article class="post">
+    <app-avatar
+      class="post__avatar size32"
+      [avatarUrl]="post.author.avatarUrl"
+      [avatarAlt]="post.author.username"
+    />
+
+    <div class="post__body">
+      <div class="post__header-container">
+        <header class="post__header">
+          <p class="post__username">{{ post.author.firstName }} {{ post.author.lastName }}</p>
+
+          <time
+            class="post__time"
+            [attr.datetime]="post.createdAt"
+          >
+            {{ post.createdAt | date: 'dd.MM.YYYY' }}
+          </time>
+
+          <p class="post__content">{{ post.content }}</p>
+        </header>
+      </div>
+
+      <div class="post__info">
+        <p class="post__comments-count">
+          <svg
+            class="size16"
+            icon="comments"
+          ></svg>
+          <span>{{ comments().length }}</span>
+        </p>
+
+        <p class="post__likes-count">
+          <svg
+            class="size16"
+            icon="like"
+          ></svg>
+          <span>{{ post.likes }}</span>
+        </p>
+      </div>
+
+      @if (comments().length) {
+        <ul class="post__comments">
+          @for (comment of comments(); track comment.id) {
+            <li>
+              <app-comment [comment]="comment" />
+            </li>
+          }
+        </ul>
+      }
+
+      <app-post-input
+        comment
+        [postId]="post.id"
+        (commentCreated)="onCommentCreated()"
+      />
+    </div>
+  </article>
+}

@@ -1,10 +1,10 @@
-import { booleanAttribute, Component, HostBinding, inject, Input, Renderer2 } from '@angular/core';
+import { booleanAttribute, Component, HostBinding, inject, input, Input, output, Renderer2 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
 
 import { AvatarComponent } from '../../../common-ui/avatar/avatar.component';
 import { SvgIconComponent } from '../../../common-ui/svg-icon/svg-icon.component';
-import { type PostCreateDto } from '../../../data/interfaces/post.interface';
+import { type CommentCreateDto, type Post, type PostCreateDto } from '../../../data/interfaces/post.interface';
 import { PostService } from '../../../data/services/post.service';
 import { ProfileService } from '../../../data/services/profile.service';
 
@@ -18,10 +18,16 @@ export class PostInputComponent {
   #r2 = inject(Renderer2);
   #postService = inject(PostService);
   profile = inject(ProfileService).me;
+  postId = input<number>(0);
+
+  comment = input(false, { transform: booleanAttribute });
+
+  commentCreated = output<void>();
 
   @HostBinding('class.comment')
-  @Input({ alias: 'comment', transform: booleanAttribute })
-  isComment: boolean = false;
+  get isComment(): boolean {
+    return this.comment();
+  }
 
   inputText: string = '';
 
@@ -36,13 +42,36 @@ export class PostInputComponent {
       return;
     }
 
+    if (this.isComment) {
+      this.#createNewComment();
+    } else {
+      this.#createNewPost();
+    }
+  }
+
+  #createNewComment(): void {
+    const payload: CommentCreateDto = {
+      text: this.inputText,
+      authorId: this.profile()!.id,
+      postId: this.postId(),
+    };
+
+    firstValueFrom(this.#postService.createCommentAndUpdateFeed(payload)).then(() => {
+      this.inputText = '';
+    });
+
+    this.commentCreated.emit();
+  }
+
+  #createNewPost(): void {
     const payload: PostCreateDto = {
       title: 'Новый пост',
       authorId: this.profile()!.id,
       content: this.inputText,
-      communityId: null,
     };
 
-    firstValueFrom(this.#postService.createPost(payload));
+    firstValueFrom(this.#postService.createPostAndUpdateFeed(payload)).then(() => {
+      this.inputText = '';
+    });
   }
 }

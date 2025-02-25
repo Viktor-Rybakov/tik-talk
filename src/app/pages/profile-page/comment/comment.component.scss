@@ -1,0 +1,36 @@
+:host {
+  display: grid;
+  grid-template-columns: 32px 1fr max-content;
+  grid-template-areas:
+    "avatar name time"
+    "avatar text text";
+  gap: 8px 16px;
+}
+
+.comment__avatar {
+  grid-area: avatar;
+}
+
+.comment__name {
+  grid-area: name;
+  color: var(--light-color-075);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+.comment__time {
+  grid-area: time;
+  color: var(--light-color-075);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+.comment__text {
+  grid-area: text;
+  color: var(--light-color);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+}

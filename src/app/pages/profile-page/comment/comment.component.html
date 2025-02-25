@@ -1,0 +1,18 @@
+@if (comment(); as comment) {
+  <app-avatar
+    class="comment__avatar size32"
+    [avatarUrl]="comment.author.avatarUrl"
+    [avatarAlt]="comment.author.username"
+  />
+
+  <p class="comment__name">{{ comment.author.username }}</p>
+
+  <time
+    class="comment__time"
+    [attr.datetime]="comment.createdAt"
+  >
+    {{ comment.createdAt | date: 'dd.MM.YYYY' }}
+  </time>
+
+  <p class="comment__text">{{ comment.text }}</p>
+}
