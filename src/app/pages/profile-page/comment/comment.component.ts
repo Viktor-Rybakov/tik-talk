@@ -1,8 +1,8 @@
 import { Component, input } from '@angular/core';
 import { AvatarComponent } from '../../../common-ui/avatar/avatar.component';
+import { DatePipe } from '@angular/common';
 
 import { type PostComment } from '../../../data/interfaces/post.interface';
-import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-comment',

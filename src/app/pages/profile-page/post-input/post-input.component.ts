@@ -1,11 +1,9 @@
-import { booleanAttribute, Component, HostBinding, inject, input, Input, output, Renderer2 } from '@angular/core';
+import { booleanAttribute, Component, HostBinding, inject, input, output, Renderer2 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { firstValueFrom } from 'rxjs';
 
 import { AvatarComponent } from '../../../common-ui/avatar/avatar.component';
 import { SvgIconComponent } from '../../../common-ui/svg-icon/svg-icon.component';
-import { type CommentCreateDto, type Post, type PostCreateDto } from '../../../data/interfaces/post.interface';
-import { PostService } from '../../../data/services/post.service';
+import { type CommentCreateDto, type PostCreateDto } from '../../../data/interfaces/post.interface';
 import { ProfileService } from '../../../data/services/profile.service';
 
 @Component({
@@ -16,13 +14,13 @@ import { ProfileService } from '../../../data/services/profile.service';
 })
 export class PostInputComponent {
   #r2 = inject(Renderer2);
-  #postService = inject(PostService);
   profile = inject(ProfileService).me;
-  postId = input<number>(0);
 
+  postId = input<number>(0);
   comment = input(false, { transform: booleanAttribute });
 
-  commentCreated = output<void>();
+  commentCreated = output<CommentCreateDto>();
+  postCreated = output<PostCreateDto>();
 
   @HostBinding('class.comment')
   get isComment(): boolean {
@@ -56,11 +54,8 @@ export class PostInputComponent {
       postId: this.postId(),
     };
 
-    firstValueFrom(this.#postService.createCommentAndUpdateFeed(payload)).then(() => {
-      this.inputText = '';
-    });
-
-    this.commentCreated.emit();
+    this.commentCreated.emit(payload);
+    this.inputText = '';
   }
 
   #createNewPost(): void {
@@ -70,8 +65,7 @@ export class PostInputComponent {
       content: this.inputText,
     };
 
-    firstValueFrom(this.#postService.createPostAndUpdateFeed(payload)).then(() => {
-      this.inputText = '';
-    });
+    this.postCreated.emit(payload);
+    this.inputText = '';
   }
 }
