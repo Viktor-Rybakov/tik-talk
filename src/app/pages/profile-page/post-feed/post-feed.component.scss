@@ -1,6 +1,10 @@
 :host {
   display: block;
+  padding-right: 4px;
   overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: hsla(263, 100%, 74%, 1) hsla(0, 0%, 9%, 1);
+  overscroll-behavior: contain;
 }
 
 .post-feed__input {
