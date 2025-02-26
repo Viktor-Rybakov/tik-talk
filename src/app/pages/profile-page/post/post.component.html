@@ -15,7 +15,7 @@
             class="post__time"
             [attr.datetime]="post.createdAt"
           >
-            {{ post.createdAt | date: 'dd.MM.YYYY' }}
+            {{ post.createdAt | timeAgo }}
           </time>
 
           <p class="post__content">{{ post.content }}</p>
