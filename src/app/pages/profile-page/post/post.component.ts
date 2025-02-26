@@ -1,5 +1,4 @@
 import { Component, input, output } from '@angular/core';
-import { DatePipe } from '@angular/common';
 
 import { type CommentCreateDto, type Post } from '../../../data/interfaces/post.interface';
 import { AvatarComponent } from '../../../common-ui/avatar/avatar.component';
