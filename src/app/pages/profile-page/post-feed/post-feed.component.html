@@ -8,7 +8,10 @@
     <ul class="post-feed__list">
       @for (post of posts; track post.id) {
         <li>
-          <app-post [post]="post" />
+          <app-post
+            [post]="post"
+            (commentCreated)="onCommentCreated($event)"
+          />
         </li>
       }
     </ul>

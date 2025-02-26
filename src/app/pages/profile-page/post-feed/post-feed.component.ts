@@ -4,7 +4,7 @@ import { firstValueFrom, switchMap } from 'rxjs';
 import { PostInputComponent } from '../post-input/post-input.component';
 import { PostComponent } from '../post/post.component';
 import { PostService } from '../../../data/services/post.service';
-import { PostCreateDto } from '../../../data/interfaces/post.interface';
+import { type CommentCreateDto, type PostCreateDto } from '../../../data/interfaces/post.interface';
 
 @Component({
   selector: 'app-post-feed',
@@ -22,7 +22,7 @@ export class PostFeedComponent implements AfterViewInit {
     this.#resizeFeed();
   }
 
-  posts = this.#postService.posts;
+  posts = this.#postService.posts.asReadonly();
 
   constructor() {
     firstValueFrom(this.#postService.getPosts());
@@ -34,6 +34,10 @@ export class PostFeedComponent implements AfterViewInit {
 
   onPostCreated(payload: PostCreateDto): void {
     firstValueFrom(this.#postService.createPost(payload).pipe(switchMap(() => this.#postService.getPosts())));
+  }
+
+  onCommentCreated(payload: CommentCreateDto): void {
+    firstValueFrom(this.#postService.createComment(payload).pipe(switchMap(() => this.#postService.getPosts())));
   }
 
   #resizeFeed() {

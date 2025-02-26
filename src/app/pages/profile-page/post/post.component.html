@@ -28,7 +28,7 @@
             class="size16"
             icon="comments"
           ></svg>
-          <span>{{ comments().length }}</span>
+          <span>{{ post.comments.length }}</span>
         </p>
 
         <p class="post__likes-count">
@@ -40,9 +40,9 @@
         </p>
       </div>
 
-      @if (comments().length) {
+      @if (post.comments.length) {
         <ul class="post__comments">
-          @for (comment of comments(); track comment.id) {
+          @for (comment of post.comments; track comment.id) {
             <li>
               <app-comment [comment]="comment" />
             </li>
