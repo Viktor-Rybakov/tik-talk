@@ -1,6 +1,6 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, Observable, switchMap, tap } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 
 import { type CommentCreateDto, type Post, type PostComment, type PostCreateDto } from '../interfaces/post.interface';
 
@@ -26,23 +26,13 @@ export class PostService {
     );
   }
 
-  getCommentsByPostId(postId: number): Observable<PostComment[]> {
-    return this.#http.get<Post>(`${ApiPrefix}post/${postId}`).pipe(
-      map((response: Post) => response.comments),
-    )
-  }
-
-  createPostAndUpdateFeed(payload: PostCreateDto) {
-    return this.createPost(payload).pipe(
-      switchMap(() => this.getPosts()),
-    );
-  }
-
   createComment(payload: CommentCreateDto) {
     return this.#http.post<Comment>(`${ApiPrefix}comment/`, payload);
   }
 
-  createCommentAndUpdateFeed(payload: CommentCreateDto) {
-    return this.createComment(payload);
+  getCommentsByPostId(postId: number): Observable<PostComment[]> {
+    return this.#http.get<Post>(`${ApiPrefix}post/${postId}`).pipe(
+      map((response: Post) => response.comments),
+    )
   }
 }

@@ -53,7 +53,7 @@
       <app-post-input
         comment
         [postId]="post.id"
-        (commentCreated)="onCommentCreated()"
+        (commentCreated)="onCommentCreated($event)"
       />
     </div>
   </article>

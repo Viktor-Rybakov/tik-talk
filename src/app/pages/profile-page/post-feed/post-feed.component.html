@@ -1,4 +1,7 @@
-<app-post-input class="post-feed__input" />
+<app-post-input
+  class="post-feed__input"
+  (postCreated)="onPostCreated($event)"
+/>
 
 @if (posts(); as posts) {
   @if (posts.length) {

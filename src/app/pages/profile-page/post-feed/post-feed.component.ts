@@ -1,9 +1,10 @@
 import { AfterViewInit, Component, ElementRef, HostListener, inject, Renderer2 } from '@angular/core';
-import { firstValueFrom } from 'rxjs';
+import { firstValueFrom, switchMap } from 'rxjs';
 
 import { PostInputComponent } from '../post-input/post-input.component';
 import { PostComponent } from '../post/post.component';
 import { PostService } from '../../../data/services/post.service';
+import { PostCreateDto } from '../../../data/interfaces/post.interface';
 
 @Component({
   selector: 'app-post-feed',
@@ -21,7 +22,6 @@ export class PostFeedComponent implements AfterViewInit {
     this.#resizeFeed();
   }
 
-
   posts = this.#postService.posts;
 
   constructor() {
@@ -32,9 +32,13 @@ export class PostFeedComponent implements AfterViewInit {
     this.#resizeFeed();
   }
 
+  onPostCreated(payload: PostCreateDto): void {
+    firstValueFrom(this.#postService.createPost(payload).pipe(switchMap(() => this.#postService.getPosts())));
+  }
+
   #resizeFeed() {
     const { top } = this.#hostElement.nativeElement.getBoundingClientRect();
-    const height = window.innerHeight - top - 40;
+    const height = window.innerHeight - top - 24;
     this.#r2.setStyle(this.#hostElement.nativeElement, 'height', `${height}px`);
   }
 }
