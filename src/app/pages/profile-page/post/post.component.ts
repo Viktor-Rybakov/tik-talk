@@ -6,10 +6,11 @@ import { AvatarComponent } from '../../../common-ui/avatar/avatar.component';
 import { SvgIconComponent } from '../../../common-ui/svg-icon/svg-icon.component';
 import { PostInputComponent } from '../post-input/post-input.component';
 import { CommentComponent } from '../comment/comment.component';
+import { TimeAgoPipe } from '../../../helpers/pipes/time-ago.pipe';
 
 @Component({
   selector: 'app-post',
-  imports: [AvatarComponent, DatePipe, SvgIconComponent, PostInputComponent, CommentComponent],
+  imports: [AvatarComponent, SvgIconComponent, PostInputComponent, CommentComponent, TimeAgoPipe],
   templateUrl: './post.component.html',
   styleUrl: './post.component.scss',
 })
