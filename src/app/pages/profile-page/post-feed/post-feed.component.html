@@ -1,6 +1,6 @@
 <app-post-input
   class="post-feed__input"
-  (postCreated)="onPostCreated($event)"
+  (created)="onPostCreated($event)"
 />
 
 @if (posts(); as posts) {
@@ -8,10 +8,7 @@
     <ul class="post-feed__list">
       @for (post of posts; track post.id) {
         <li>
-          <app-post
-            [post]="post"
-            (commentCreated)="onCommentCreated($event)"
-          />
+          <app-post [post]="post" />
         </li>
       }
     </ul>

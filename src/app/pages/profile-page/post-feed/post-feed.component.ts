@@ -1,11 +1,12 @@
 import { AfterViewInit, Component, ElementRef, inject, Renderer2 } from '@angular/core';
 import { debounce, firstValueFrom, fromEvent, interval, switchMap } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 import { PostInputComponent } from '../post-input/post-input.component';
 import { PostComponent } from '../post/post.component';
 import { PostService } from '../../../data/services/post.service';
-import { type CommentCreateDto, type PostCreateDto } from '../../../data/interfaces/post.interface';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { type PostCreateDto } from '../../../data/interfaces/post.interface';
+import { ProfileService } from '../../../data/services/profile.service';
 
 @Component({
   selector: 'app-post-feed',
@@ -17,6 +18,7 @@ export class PostFeedComponent implements AfterViewInit {
   #postService = inject(PostService);
   #hostElement = inject(ElementRef);
   #r2 = inject(Renderer2);
+  me = inject(ProfileService).me;
 
   posts = this.#postService.posts.asReadonly();
 
@@ -30,12 +32,14 @@ export class PostFeedComponent implements AfterViewInit {
     this.#resizeFeed();
   }
 
-  onPostCreated(payload: PostCreateDto): void {
-    firstValueFrom(this.#postService.createPost(payload).pipe(switchMap(() => this.#postService.getPosts())));
-  }
+  onPostCreated(commentText: string): void {
+    const payload: PostCreateDto = {
+      title: 'Новый пост',
+      authorId: this.me()!.id,
+      content: commentText,
+    };
 
-  onCommentCreated(payload: CommentCreateDto): void {
-    firstValueFrom(this.#postService.createComment(payload).pipe(switchMap(() => this.#postService.getPosts())));
+    firstValueFrom(this.#postService.createPost(payload).pipe(switchMap(() => this.#postService.getPosts())));
   }
 
   #resizeFeed(): void {
