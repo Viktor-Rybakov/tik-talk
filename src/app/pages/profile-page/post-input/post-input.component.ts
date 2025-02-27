@@ -3,7 +3,6 @@ import { FormsModule } from '@angular/forms';
 
 import { AvatarComponent } from '../../../common-ui/avatar/avatar.component';
 import { SvgIconComponent } from '../../../common-ui/svg-icon/svg-icon.component';
-import { type CommentCreateDto, type PostCreateDto } from '../../../data/interfaces/post.interface';
 import { ProfileService } from '../../../data/services/profile.service';
 
 @Component({
@@ -16,11 +15,9 @@ export class PostInputComponent {
   #r2 = inject(Renderer2);
   profile = inject(ProfileService).me;
 
-  postId = input<number>(0);
   comment = input(false, { transform: booleanAttribute });
 
-  commentCreated = output<CommentCreateDto>();
-  postCreated = output<PostCreateDto>();
+  created = output<string>();
 
   @HostBinding('class.comment')
   get isComment(): boolean {
@@ -36,36 +33,13 @@ export class PostInputComponent {
   }
 
   onCreate() {
-    if (this.inputText === '') {
+    const trimmedInputText: string = this.inputText.trim();
+
+    if (trimmedInputText === '') {
       return;
     }
 
-    if (this.isComment) {
-      this.#createNewComment();
-    } else {
-      this.#createNewPost();
-    }
-  }
-
-  #createNewComment(): void {
-    const payload: CommentCreateDto = {
-      text: this.inputText,
-      authorId: this.profile()!.id,
-      postId: this.postId(),
-    };
-
-    this.commentCreated.emit(payload);
-    this.inputText = '';
-  }
-
-  #createNewPost(): void {
-    const payload: PostCreateDto = {
-      title: 'Новый пост',
-      authorId: this.profile()!.id,
-      content: this.inputText,
-    };
-
-    this.postCreated.emit(payload);
+    this.created.emit(trimmedInputText);
     this.inputText = '';
   }
 }

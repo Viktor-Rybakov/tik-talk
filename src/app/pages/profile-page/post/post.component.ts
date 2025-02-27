@@ -1,11 +1,14 @@
-import { Component, input, output } from '@angular/core';
+import { Component, inject, input, OnInit, signal } from '@angular/core';
+import { firstValueFrom, switchMap } from 'rxjs';
 
-import { type CommentCreateDto, type Post } from '../../../data/interfaces/post.interface';
+import { type CommentCreateDto, type Post, type PostComment } from '../../../data/interfaces/post.interface';
 import { AvatarComponent } from '../../../common-ui/avatar/avatar.component';
 import { SvgIconComponent } from '../../../common-ui/svg-icon/svg-icon.component';
 import { PostInputComponent } from '../post-input/post-input.component';
 import { CommentComponent } from '../comment/comment.component';
 import { TimeAgoPipe } from '../../../helpers/pipes/time-ago.pipe';
+import { ProfileService } from '../../../data/services/profile.service';
+import { PostService } from '../../../data/services/post.service';
 
 @Component({
   selector: 'app-post',
@@ -13,12 +16,30 @@ import { TimeAgoPipe } from '../../../helpers/pipes/time-ago.pipe';
   templateUrl: './post.component.html',
   styleUrl: './post.component.scss',
 })
-export class PostComponent {
+export class PostComponent implements OnInit {
+  #postService = inject(PostService);
+  me = inject(ProfileService).me;
+
   post = input.required<Post>();
+  comments = signal<PostComment[]>([]);
 
-  commentCreated = output<CommentCreateDto>();
+  ngOnInit(): void {
+    this.comments.set(this.post().comments);
+  }
 
-  onCommentCreated(payload: CommentCreateDto) {
-    this.commentCreated.emit(payload);
+  async onCommentCreated(commentText: string) {
+    const payload: CommentCreateDto = {
+      text: commentText,
+      authorId: this.me()!.id,
+      postId: this.post().id,
+    };
+
+    const comments = await firstValueFrom(
+      this.#postService
+        .createComment(payload)
+        .pipe(switchMap(() => this.#postService.getCommentsByPostId(this.post().id)))
+    );
+
+    this.comments.set(comments);
   }
 }

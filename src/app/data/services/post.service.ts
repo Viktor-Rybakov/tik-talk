@@ -1,8 +1,8 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 
-import { type CommentCreateDto, type Post, type PostCreateDto } from '../interfaces/post.interface';
+import { type CommentCreateDto, type Post, type PostComment, type PostCreateDto } from '../interfaces/post.interface';
 
 const ApiPrefix: string = 'https://icherniakov.ru/yt-course/';
 
@@ -27,6 +27,12 @@ export class PostService {
   }
 
   createComment(payload: CommentCreateDto) {
-    return this.#http.post<Comment>(`${ApiPrefix}comment/`, payload);
+    return this.#http.post<PostComment>(`${ApiPrefix}comment/`, payload);
+  }
+
+  getCommentsByPostId(postId: number): Observable<PostComment[]> {
+    return this.#http.get<Post>(`${ApiPrefix}post/${postId}`).pipe(
+      map((response: Post) => response.comments),
+    )
   }
 }
