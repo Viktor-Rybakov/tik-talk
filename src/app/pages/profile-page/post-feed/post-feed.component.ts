@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, inject, Renderer2 } from '@angular/core';
-import { debounce, firstValueFrom, fromEvent, interval, switchMap } from 'rxjs';
+import { debounceTime, firstValueFrom, fromEvent, switchMap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 import { PostInputComponent } from '../post-input/post-input.component';
@@ -51,10 +51,11 @@ export class PostFeedComponent implements AfterViewInit {
   #startListenWindowResize(): void {
     fromEvent(window, 'resize')
       .pipe(
-        debounce(() => interval(100)),
+        debounceTime(50),
         takeUntilDestroyed()
       )
       .subscribe(() => {
+        console.log('+++');
         this.#resizeFeed();
       });
   }
