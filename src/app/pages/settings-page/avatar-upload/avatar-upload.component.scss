@@ -3,7 +3,7 @@
   grid-template-columns: 140px 1fr;
   gap: 32px;
   padding-bottom: 16px;
-  border-bottom: 1px solid var(--light-color);
+  border-bottom: var(--border-light);
 }
 
 .avatar-upload__img {

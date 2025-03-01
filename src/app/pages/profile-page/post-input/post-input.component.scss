@@ -5,7 +5,7 @@
   align-items: center;
   padding: 16px;
   background-color: var(--dark-color);
-  border: 1px solid var(--light-color);
+  border: var(--border-light);
   border-radius: 2px;
 
   &.comment {
