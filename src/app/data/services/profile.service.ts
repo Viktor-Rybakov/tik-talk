@@ -1,6 +1,6 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, Observable, tap } from 'rxjs';
+import { firstValueFrom, map, Observable, tap } from 'rxjs';
 
 import { type Profile } from '../interfaces/profile.interface';
 import { type Pageable } from '../interfaces/pageable.interface';
@@ -15,6 +15,10 @@ export class ProfileService {
 
   me = signal<Profile | null>(null);
   filteredProfiles = signal<Profile[]>([]);
+
+  constructor() {
+    firstValueFrom(this.getMe());
+  }
 
   getFilteredProfiles(params: Record<string, any>): Observable<Pageable<Profile>> {
     return this.#http
