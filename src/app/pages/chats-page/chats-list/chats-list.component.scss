@@ -1,0 +1,21 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 400px;
+  border-right: var(--border-light);
+}
+
+.chats-list__search-wrapper {
+  padding: 16px 20px;
+  border-bottom: var(--border-light);
+}
+
+.chats-list__list {
+  flex-grow: 1;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.chats-list__item {
+  border-bottom: var(--border-light);
+}
