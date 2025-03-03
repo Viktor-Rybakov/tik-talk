@@ -3,7 +3,7 @@
     <app-profile-header [profile]="profile" />
   </header>
 
-  @if (isMe) {
+  @if (isMyPage()) {
     <a
       class="btn profile-page__edit-btn"
       [routerLink]="['/', 'settings']"
@@ -14,6 +14,8 @@
         icon="settings"
       ></svg>
     </a>
+  } @else {
+    <button class="btn profile-page__edit-btn" (click)="sendMessage(profile.id)">Написать</button>
   }
 
   <section class="profile-page__feed">

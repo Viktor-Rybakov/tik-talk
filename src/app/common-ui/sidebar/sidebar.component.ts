@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { firstValueFrom, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { type IconType, SvgIconComponent } from '../svg-icon/svg-icon.component';
 import { SubscriberCardComponent } from '../subscriber-card/subscriber-card.component';
@@ -46,8 +46,4 @@ export class SidebarComponent {
   ];
 
   subscribers$: Observable<Profile[]> = this.#profileService.getSubscribersShortList();
-
-  constructor() {
-    firstValueFrom(this.#profileService.getMe());
-  }
 }
