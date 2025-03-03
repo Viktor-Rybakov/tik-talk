@@ -2,15 +2,15 @@ import { AfterViewInit, Component, ElementRef, inject, Renderer2 } from '@angula
 import { debounceTime, firstValueFrom, fromEvent, switchMap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
-import { PostInputComponent } from '../post-input/post-input.component';
 import { PostComponent } from '../post/post.component';
 import { PostService } from '../../../data/services/post.service';
 import { type PostCreateDto } from '../../../data/interfaces/post.interface';
 import { ProfileService } from '../../../data/services/profile.service';
+import { MessageInputComponent } from '../../../common-ui/message-input/message-input.component';
 
 @Component({
   selector: 'app-post-feed',
-  imports: [PostInputComponent, PostComponent],
+  imports: [PostComponent, MessageInputComponent],
   templateUrl: './post-feed.component.html',
   styleUrl: './post-feed.component.scss',
 })
@@ -50,10 +50,7 @@ export class PostFeedComponent implements AfterViewInit {
 
   #startListenWindowResize(): void {
     fromEvent(window, 'resize')
-      .pipe(
-        debounceTime(50),
-        takeUntilDestroyed()
-      )
+      .pipe(debounceTime(50), takeUntilDestroyed())
       .subscribe(() => {
         console.log('+++');
         this.#resizeFeed();
