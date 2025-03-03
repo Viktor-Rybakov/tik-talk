@@ -1,1 +1,26 @@
-<p>chat-button works!</p>
+@if (chat(); as chat) {
+  <app-avatar
+    class="size32"
+    [avatarUrl]="chat.userFrom.avatarUrl"
+    [avatarAlt]="chat.userFrom.username"
+  />
+
+  <div>
+    <div class="chat-button__wrapper">
+      <p class="chat-button__name">{{ chat.userFrom.firstName }} {{ chat.userFrom.lastName }}</p>
+      <time
+        class="chat-button__time"
+        [attr.datetime]="chat.createdAt"
+      >
+        {{ chat.createdAt | date: 'dd.MM.YYYY' }}
+      </time>
+    </div>
+
+    <div class="chat-button__wrapper">
+      <p class="chat-button__text">{{ chat.message ?? '...' }}</p>
+      @if (chat.unreadMessages > 0) {
+        <span class="chat-button__count">{{ chat.unreadMessages }}</span>
+      }
+    </div>
+  </div>
+}
