@@ -7,11 +7,8 @@
 
   <div>
     <div class="chat-button__wrapper">
-      <p class="chat-button__name">{{ chat.userFrom.firstName }} {{ chat.userFrom.lastName }}</p>
-      <time
-        class="chat-button__time"
-        [attr.datetime]="chat.createdAt"
-      >
+      <p>{{ chat.userFrom.firstName }} {{ chat.userFrom.lastName }}</p>
+      <time [attr.datetime]="chat.createdAt">
         {{ chat.createdAt | date: 'dd.MM.YYYY' }}
       </time>
     </div>
