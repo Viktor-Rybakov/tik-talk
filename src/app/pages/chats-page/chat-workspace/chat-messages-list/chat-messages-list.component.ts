@@ -1,28 +1,39 @@
-import { Component, inject, input } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
 import { firstValueFrom, switchMap, timer } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { DatePipe } from '@angular/common';
 
 import { ChatMessageComponent } from '../chat-message/chat-message.component';
 import { MessageInputComponent } from '../../../../common-ui/message-input/message-input.component';
 import { ChatsService } from '../../../../data/services/chats.service';
 import { type Chat } from '../../../../data/interfaces/chats.interface';
+import { TodayOrDatePipe } from '../../../../helpers/pipes/today.pipe';
 
 @Component({
   selector: 'app-chat-messages-list',
-  imports: [ChatMessageComponent, MessageInputComponent],
+  imports: [ChatMessageComponent, MessageInputComponent, TodayOrDatePipe],
   templateUrl: './chat-messages-list.component.html',
   styleUrl: './chat-messages-list.component.scss',
+  providers: [DatePipe],
 })
 export class ChatMessagesListComponent {
   #chatService = inject(ChatsService);
 
   chat = input.required<Chat>();
-  messages = this.#chatService.activeChatMessages;
+  MessagesMap = this.#chatService.activeChatMessagesMap;
+
+  messagesGroups = computed(() => {
+    return Array.from(this.MessagesMap(), ([date, messages]) => {
+      return { date, messages };
+    });
+  });
 
   async onMessageSend(messageText: string) {
-    await firstValueFrom(this.#chatService.sendMessage(this.chat().id, messageText).pipe(
-      switchMap(() => this.#chatService.getChatById(this.chat().id))
-    ));
+    await firstValueFrom(
+      this.#chatService
+        .sendMessage(this.chat().id, messageText)
+        .pipe(switchMap(() => this.#chatService.getChatById(this.chat().id)))
+    );
   }
 
   constructor() {
@@ -30,9 +41,11 @@ export class ChatMessagesListComponent {
   }
 
   #startUpdateChat() {
-    timer(60000, 20000).pipe(
-      switchMap(() => this.#chatService.getChatById(this.chat().id)),
-      takeUntilDestroyed()
-    ).subscribe();
+    timer(20000, 20000)
+      .pipe(
+        switchMap(() => this.#chatService.getChatById(this.chat().id)),
+        takeUntilDestroyed()
+      )
+      .subscribe();
   }
 }

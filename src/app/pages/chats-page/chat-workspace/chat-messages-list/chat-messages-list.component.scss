@@ -17,6 +17,19 @@
   scrollbar-gutter: stable;
 }
 
+.chat-messages-list__group-messages-date {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  padding: 6px 30px;
+  color: var(--light-color);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px;
+  background-color: var(--dark-active-color);
+}
+
 .chat-messages-list__input {
   margin: 0 20px 16px;
 }

@@ -1,10 +1,17 @@
-<ol class="chat-messages-list__list">
-  @for (message of messages(); track message.id) {
-    <li>
+<div class="chat-messages-list__list">
+  @for (group of messagesGroups(); track group.date) {
+    <time
+      class="chat-messages-list__group-messages-date"
+      [attr.datetime]="group.date"
+    >
+      {{ group.date | todayOrDate : 'dd.MM.YYYY' }}
+    </time>
+
+    @for (message of group.messages; track message.id) {
       <app-chat-message [message]="message" />
-    </li>
+    }
   }
-</ol>
+</div>
 
 <app-message-input
   class="chat-messages-list__input"
