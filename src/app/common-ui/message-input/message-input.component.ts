@@ -20,11 +20,15 @@ export class MessageInputComponent {
   created = output<string>();
 
   inputText: string = '';
+  textarea: HTMLTextAreaElement | null = null;
 
   onTextInput(event: Event) {
-    const textarea = event.target as HTMLTextAreaElement;
-    this.#r2.setStyle(textarea, 'height', 'auto');
-    this.#r2.setStyle(textarea, 'height', textarea.scrollHeight + 2 + 'px');
+    if (this.textarea === null) {
+      this.textarea = event.target as HTMLTextAreaElement;
+    }
+
+    this.#r2.setStyle(this.textarea, 'height', 'auto');
+    this.#r2.setStyle(this.textarea, 'height', this.textarea.scrollHeight + 2 + 'px');
   }
 
   onCreate() {
@@ -35,6 +39,7 @@ export class MessageInputComponent {
     }
 
     this.created.emit(trimmedInputText);
+    this.#r2.setStyle(this.textarea, 'height', 'auto');
     this.inputText = '';
   }
 }
