@@ -1,5 +1,6 @@
 import { Component, inject, input } from '@angular/core';
-import { firstValueFrom, switchMap } from 'rxjs';
+import { firstValueFrom, switchMap, timer } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 import { ChatMessageComponent } from '../chat-message/chat-message.component';
 import { MessageInputComponent } from '../../../../common-ui/message-input/message-input.component';
@@ -22,5 +23,16 @@ export class ChatMessagesListComponent {
     await firstValueFrom(this.#chatService.sendMessage(this.chat().id, messageText).pipe(
       switchMap(() => this.#chatService.getChatById(this.chat().id))
     ));
+  }
+
+  constructor() {
+    this.#startUpdateChat();
+  }
+
+  #startUpdateChat() {
+    timer(60000, 20000).pipe(
+      switchMap(() => this.#chatService.getChatById(this.chat().id)),
+      takeUntilDestroyed()
+    ).subscribe();
   }
 }
