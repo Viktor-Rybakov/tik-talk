@@ -1,1 +1,12 @@
-<app-chat-message />
+<ol class="chat-messages-list__list">
+  @for (message of messages(); track message.id) {
+    <li>
+      <app-chat-message [message]="message" />
+    </li>
+  }
+</ol>
+
+<app-message-input
+  class="chat-messages-list__input"
+  (created)="onMessageSend($event)"
+/>

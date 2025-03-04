@@ -1,1 +1,9 @@
-<p>chat-workspace-heade works!</p>
+@if (profile(); as profile) {
+  <app-avatar
+    class="size32"
+    [avatarUrl]="profile.avatarUrl"
+    [avatarAlt]="profile.username"
+  />
+
+  <p class="chat-workspace-header__name">{{ profile.firstName }} {{ profile.lastName }}</p>
+}
