@@ -1,0 +1,53 @@
+:host {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  grid-template-areas:
+    "avatar info"
+    "avatar text";
+  align-items: start;
+  gap: 8px 12px;
+}
+
+:host.my-message {
+  grid-template-columns: 1fr 32px;
+  grid-template-areas:
+    "info avatar"
+    "text avatar";
+
+  .chat-message__info {
+    flex-direction: row-reverse;
+  }
+
+  .chat-message__text {
+    justify-self: end;
+    color: var(--dark-color);
+    background-color: var(--primary-color);
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+  }
+}
+
+.chat-message__avatar {
+  grid-area: avatar;
+}
+
+.chat-message__info {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  grid-area: info;
+  gap: 4px;
+  color: var(--light-color);
+  font-weight: 700;
+}
+
+.chat-message__text {
+  grid-area: text;
+  padding: 8px 16px;
+  justify-self: start;
+  color: var(--light-color);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 21px;
+  background-color: var(--grey-color);
+  clip-path: polygon(10px 0, 100% 0, 100% 100%, 0 100%, 0 10px);
+}
