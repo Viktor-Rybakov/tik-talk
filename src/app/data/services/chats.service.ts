@@ -1,6 +1,7 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs';
+import { DateTime } from 'luxon';
 
 import { type Chat, type LastMessage, type Message, MessagesGroupByDate } from '../interfaces/chats.interface';
 import { ProfileService } from './profile.service';
@@ -59,7 +60,7 @@ export class ChatsService {
     const messagesMap = new Map<string, Message[]>();
 
     messages.forEach((message: Message) => {
-      const messageCreateDate = new Date(message.createdAt).toISOString().slice(0, 10);
+      const messageCreateDate = DateTime.fromISO(message.createdAt, { zone: 'utc' }).toFormat('dd.MM.yyyy');
 
       if (!messagesMap.has(messageCreateDate)) {
         messagesMap.set(messageCreateDate, []);
