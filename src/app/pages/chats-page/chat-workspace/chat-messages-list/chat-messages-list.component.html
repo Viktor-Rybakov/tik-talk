@@ -4,7 +4,7 @@
       class="chat-messages-list__group-messages-date"
       [attr.datetime]="group.date"
     >
-      {{ group.date | todayOrDate : 'dd.MM.YYYY' }}
+      {{ group.date | relativeDate }}
     </time>
 
     @for (message of group.messages; track message.id) {
