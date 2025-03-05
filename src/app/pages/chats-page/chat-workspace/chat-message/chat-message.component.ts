@@ -1,12 +1,12 @@
 import { Component, HostBinding, input } from '@angular/core';
-import { DatePipe } from '@angular/common';
 
 import { type Message } from '../../../../data/interfaces/chats.interface';
 import { AvatarComponent } from '../../../../common-ui/avatar/avatar.component';
+import { LocalDatePipe } from '../../../../helpers/pipes/local-date.pipe';
 
 @Component({
   selector: 'app-chat-message',
-  imports: [AvatarComponent, DatePipe],
+  imports: [AvatarComponent, LocalDatePipe],
   templateUrl: './chat-message.component.html',
   styleUrl: './chat-message.component.scss',
 })
