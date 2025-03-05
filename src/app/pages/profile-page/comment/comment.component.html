@@ -11,7 +11,7 @@
     class="comment__time"
     [attr.datetime]="comment.createdAt"
   >
-    {{ comment.createdAt | date: "d.MM.YYYY 'в' HH:MM" }}
+    {{ comment.createdAt | date: "dd.MM.YYYY 'в' HH:mm" }}
   </time>
 
   <p class="comment__text">{{ comment.text }}</p>
