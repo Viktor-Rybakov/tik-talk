@@ -1,20 +1,18 @@
 import { Component, DestroyRef, inject, input, OnInit } from '@angular/core';
 import { firstValueFrom, switchMap, timer } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { DatePipe } from '@angular/common';
 
 import { ChatMessageComponent } from '../chat-message/chat-message.component';
 import { MessageInputComponent } from '../../../../common-ui/message-input/message-input.component';
 import { ChatsService } from '../../../../data/services/chats.service';
 import { type Chat } from '../../../../data/interfaces/chats.interface';
-import { TodayOrDatePipe } from '../../../../helpers/pipes/today.pipe';
+import { RelativeDatePipe } from '../../../../helpers/pipes/relative-date.pipe';
 
 @Component({
   selector: 'app-chat-messages-list',
-  imports: [ChatMessageComponent, MessageInputComponent, TodayOrDatePipe],
+  imports: [ChatMessageComponent, MessageInputComponent, RelativeDatePipe],
   templateUrl: './chat-messages-list.component.html',
   styleUrl: './chat-messages-list.component.scss',
-  providers: [DatePipe],
 })
 export class ChatMessagesListComponent implements OnInit {
   #chatService = inject(ChatsService);
