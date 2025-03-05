@@ -1,4 +1,4 @@
-import { Component, computed, inject, input } from '@angular/core';
+import { Component, DestroyRef, inject, input, OnInit } from '@angular/core';
 import { firstValueFrom, switchMap, timer } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { DatePipe } from '@angular/common';
@@ -16,8 +16,9 @@ import { TodayOrDatePipe } from '../../../../helpers/pipes/today.pipe';
   styleUrl: './chat-messages-list.component.scss',
   providers: [DatePipe],
 })
-export class ChatMessagesListComponent {
+export class ChatMessagesListComponent implements OnInit {
   #chatService = inject(ChatsService);
+  #destroyRef = inject(DestroyRef);
 
   chat = input.required<Chat>();
 
@@ -31,15 +32,15 @@ export class ChatMessagesListComponent {
     );
   }
 
-  constructor() {
-    this.#startUpdateChat();
+  ngOnInit() {
+    this.#startUpdateChatPolling();
   }
 
-  #startUpdateChat() {
-    timer(20000, 20000)
+  #startUpdateChatPolling() {
+    timer(0, 5000)
       .pipe(
         switchMap(() => this.#chatService.getChatById(this.chat().id)),
-        takeUntilDestroyed()
+        takeUntilDestroyed(this.#destroyRef)
       )
       .subscribe();
   }
