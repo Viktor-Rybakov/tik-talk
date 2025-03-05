@@ -1,8 +1,8 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
-import { type Chat, type LastMessage, type Message } from '../interfaces/chats.interface';
 import { map } from 'rxjs';
+
+import { type Chat, type LastMessage, type Message, MessagesGroupByDate } from '../interfaces/chats.interface';
 import { ProfileService } from './profile.service';
 
 const ApiPrefix: string = 'https://icherniakov.ru/yt-course/';
@@ -14,7 +14,7 @@ export class ChatsService {
   #http = inject(HttpClient);
   me = inject(ProfileService).me;
 
-  activeChatMessagesMap = signal<Map<string, Message[]>>(new Map());
+  activeChatMessagesGroups = signal<MessagesGroupByDate[]>([]);
 
   createChat(userId: number) {
     return this.#http.post<Chat>(`${ApiPrefix}chat/${userId}`, {});
@@ -35,19 +35,8 @@ export class ChatsService {
           };
         });
 
-        const messagesMap = new Map<string, Message[]>();
-
-        patchedMessages.forEach((message: Message) => {
-          const messageCreateDate = new Date(message.createdAt).toISOString().slice(0, 10);
-
-          if (!messagesMap.has(messageCreateDate)) {
-            messagesMap.set(messageCreateDate, []);
-          }
-
-          messagesMap.get(messageCreateDate)!.push(message);
-        });
-
-        this.activeChatMessagesMap.set(messagesMap);
+        const messagesGroups: MessagesGroupByDate[] = this.#getMessagesGroupsByDate(patchedMessages);
+        this.activeChatMessagesGroups.set(messagesGroups);
 
         return {
           ...chat,
@@ -64,5 +53,23 @@ export class ChatsService {
 
   getMessageById(messageId: number) {
     return this.#http.get<Message>(`${ApiPrefix}message/${messageId}`);
+  }
+
+  #getMessagesGroupsByDate(messages: Message[]): MessagesGroupByDate[] {
+    const messagesMap = new Map<string, Message[]>();
+
+    messages.forEach((message: Message) => {
+      const messageCreateDate = new Date(message.createdAt).toISOString().slice(0, 10);
+
+      if (!messagesMap.has(messageCreateDate)) {
+        messagesMap.set(messageCreateDate, []);
+      }
+
+      messagesMap.get(messageCreateDate)!.push(message);
+    });
+
+    return Array.from(messagesMap, ([date, messages]) => {
+      return { date, messages };
+    });
   }
 }

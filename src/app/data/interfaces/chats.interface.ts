@@ -12,6 +12,11 @@ export interface Message {
   isMine?: boolean;
 }
 
+export interface MessagesGroupByDate {
+  date: string;
+  messages: Message[];
+}
+
 export interface Chat {
   id: number;
   userFirst: Profile;

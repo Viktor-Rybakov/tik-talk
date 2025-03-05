@@ -20,13 +20,8 @@ export class ChatMessagesListComponent {
   #chatService = inject(ChatsService);
 
   chat = input.required<Chat>();
-  MessagesMap = this.#chatService.activeChatMessagesMap;
 
-  messagesGroups = computed(() => {
-    return Array.from(this.MessagesMap(), ([date, messages]) => {
-      return { date, messages };
-    });
-  });
+  messagesGroups = this.#chatService.activeChatMessagesGroups;
 
   async onMessageSend(messageText: string) {
     await firstValueFrom(
