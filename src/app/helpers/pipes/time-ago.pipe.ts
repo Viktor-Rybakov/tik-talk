@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { DateTime } from 'luxon';
 
 import { getPluralForm, type PluralForms } from '../utils/pluralisation.util';
 
@@ -11,31 +12,18 @@ export class TimeAgoPipe implements PipeTransform {
       return null;
     }
 
-    const postDate = new Date(date);
-    if (!postDate) {
-      throw new Error('TimeAgoPipe: Invalid date');
-    }
+    const postLocalDate = DateTime.fromISO(date, { zone: 'utc' }).toLocal();
+    const timeDiff = postLocalDate.diffNow(['years', 'months', 'days', 'hours', 'minutes', 'milliseconds']);
 
-    const currentLocalDate = new Date();
-    const localDateOffset = currentLocalDate.getTimezoneOffset();
-    const postLocalDate = new Date(postDate.getTime() - localDateOffset * 60 * 1000);
-
-    const postLocalTime = postLocalDate.getTime();
-    const currentLocalTime = currentLocalDate.getTime();
-
-    if (postLocalTime > currentLocalTime) {
+    if (timeDiff.milliseconds > 0) {
       throw new Error('TimeAgoPipe: Date later than the current date');
     }
 
-    if (postLocalTime === currentLocalTime) {
-      return 'Сейчас';
-    }
-
-    const yearDiff = currentLocalDate.getFullYear() - postLocalDate.getFullYear();
-    const monthDiff = currentLocalDate.getMonth() - postLocalDate.getMonth();
-    const dateDiff = currentLocalDate.getDate() - postLocalDate.getDate();
-    const hoursDiff = currentLocalDate.getHours() - postLocalDate.getHours();
-    const minutesDiff = currentLocalDate.getMinutes() - postLocalDate.getMinutes();
+    const yearDiff = Math.floor(Math.abs(timeDiff.years));
+    const monthDiff = Math.floor(Math.abs(timeDiff.months));
+    const dateDiff = Math.floor(Math.abs(timeDiff.days));
+    const hoursDiff = Math.floor(Math.abs(timeDiff.hours));
+    const minutesDiff = Math.floor(Math.abs(timeDiff.minutes));
 
     if (yearDiff > 0) {
       const years: PluralForms = {
