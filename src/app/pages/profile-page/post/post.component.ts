@@ -5,14 +5,14 @@ import { type CommentCreateDto, type Post, type PostComment } from '../../../dat
 import { AvatarComponent } from '../../../common-ui/avatar/avatar.component';
 import { SvgIconComponent } from '../../../common-ui/svg-icon/svg-icon.component';
 import { CommentComponent } from '../comment/comment.component';
-import { TimeAgoPipe } from '../../../helpers/pipes/time-ago.pipe';
+import { TimeDiffToNowPipe } from '../../../helpers/pipes/time-diff-to-now.pipe';
 import { ProfileService } from '../../../data/services/profile.service';
 import { PostService } from '../../../data/services/post.service';
 import { MessageInputComponent } from '../../../common-ui/message-input/message-input.component';
 
 @Component({
   selector: 'app-post',
-  imports: [AvatarComponent, SvgIconComponent, CommentComponent, TimeAgoPipe, MessageInputComponent],
+  imports: [AvatarComponent, SvgIconComponent, CommentComponent, TimeDiffToNowPipe, MessageInputComponent],
   templateUrl: './post.component.html',
   styleUrl: './post.component.scss',
 })

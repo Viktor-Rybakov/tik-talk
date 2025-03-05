@@ -4,9 +4,9 @@ import { DateTime } from 'luxon';
 import { getPluralForm, type PluralForms } from '../utils/pluralisation.util';
 
 @Pipe({
-  name: 'timeAgo',
+  name: 'timeDiffToNow',
 })
-export class TimeAgoPipe implements PipeTransform {
+export class TimeDiffToNowPipe implements PipeTransform {
   transform(date: string | null): string | null {
     if (date == null) {
       return null;
@@ -16,7 +16,7 @@ export class TimeAgoPipe implements PipeTransform {
     const timeDiff = postLocalDate.diffNow(['years', 'months', 'days', 'hours', 'minutes', 'milliseconds']);
 
     if (timeDiff.milliseconds > 0) {
-      throw new Error('TimeAgoPipe: Date later than the current date');
+      throw new Error('TimeDiffToNowPipe: Date later than the current date');
     }
 
     const yearDiff = Math.floor(Math.abs(timeDiff.years));
