@@ -1,0 +1,82 @@
+<form
+  class="template-form"
+  #form="ngForm"
+  (ngSubmit)="onSubmit(form)"
+>
+  <label class="control">
+    <span class="control__label">firstName</span>
+    <input
+      class="control__input"
+      type="text"
+      name="firstName"
+      required
+      #firstNameControl="ngModel"
+      [(ngModel)]="person.firstName"
+    />
+
+    @if (firstNameControl.hasError('required') && firstNameControl.touched) {
+      <span>Обязательное поле!</span>
+    }
+  </label>
+
+  <label class="control">
+    <span class="control__label">lastName</span>
+    <input
+      class="control__input"
+      type="text"
+      name="lastName"
+      noReact
+      #lastNameControl="ngModel"
+      [(ngModel)]="person.lastName"
+    />
+
+    @if (lastNameControl.hasError('noReact') && lastNameControl.touched) {
+      <span>{{ lastNameControl.getError('noReact').message }}</span>
+    }
+  </label>
+
+  <label class="control">
+    <span class="control__label">street</span>
+    <input
+      class="control__input"
+      type="text"
+      name="street"
+      [(ngModel)]="person.address.street"
+    />
+  </label>
+
+  <label class="control">
+    <span class="control__label">building</span>
+    <input
+      class="control__input"
+      type="number"
+      name="building"
+      [(ngModel)]="person.address.building"
+    />
+  </label>
+
+  <label class="control">
+    <span class="control__label">hobby</span>
+    <input
+      class="control__input"
+      type="text"
+      [(ngModel)]="hobby"
+      [ngModelOptions]="{
+        standalone: true,
+      }"
+    />
+  </label>
+
+  <pre>
+    person: {{ person | json }}
+
+    hobby: {{ hobby }}
+  </pre>
+
+  <button
+    class="btn"
+    type="submit"
+  >
+    Submit
+  </button>
+</form>
