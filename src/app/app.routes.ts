@@ -7,6 +7,7 @@ import { SettingsPageComponent } from './pages/settings-page/settings-page.compo
 import { LayoutComponent } from './common-ui/layout/layout.component';
 import { canActivateAuth } from './auth/access.guard';
 import { chatsRoutes } from './pages/chats-page/chats.routes';
+import { SandboxPageComponent } from './sandbox/form-page/sandbox-page.component';
 
 export const routes: Routes = [
   {
@@ -22,4 +23,5 @@ export const routes: Routes = [
     canActivate: [canActivateAuth],
   },
   { path: 'login', component: LoginPageComponent },
+  { path: 'sandbox', component: SandboxPageComponent },
 ];
