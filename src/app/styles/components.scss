@@ -139,7 +139,7 @@
       color: var(--light-color-075);
     }
 
-    &.ng-invalid {
+    &.ng-invalid.ng-touched {
       --border-color: var(--primary-red-color);
     }
 

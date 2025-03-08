@@ -1,0 +1,36 @@
+.reactive-form {
+  display: grid;
+  gap: 20px;
+  width: 600px;
+  margin: auto;
+  padding: 20px;
+  background-color: var(--dark-color);
+  border: var(--border-light);
+}
+
+.reactive-form__title {
+  margin-bottom: 16px;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+}
+
+.reactive-form__fieldset {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.reactive-form__fieldset-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.reactive-form__fieldset-title {
+  grid-column: 1 / -1;
+  margin-bottom: 8px;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+}
