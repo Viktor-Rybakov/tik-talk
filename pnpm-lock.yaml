@@ -32,6 +32,12 @@ importers:
       '@angular/router':
         specifier: ^19.0.6
         version: 19.1.5(@angular/common@19.1.5(@angular/core@19.1.5(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1))(@angular/core@19.1.5(rxjs@7.8.1)(zone.js@0.15.0))(@angular/platform-browser@19.1.5(@angular/animations@19.1.5(@angular/core@19.1.5(rxjs@7.8.1)(zone.js@0.15.0)))(@angular/common@19.1.5(@angular/core@19.1.5(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1))(@angular/core@19.1.5(rxjs@7.8.1)(zone.js@0.15.0)))(rxjs@7.8.1)
+      '@maskito/angular':
+        specifier: ^3.3.0
+        version: 3.3.0(@angular/core@19.1.5(rxjs@7.8.1)(zone.js@0.15.0))(@angular/forms@19.1.5(@angular/common@19.1.5(@angular/core@19.1.5(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1))(@angular/core@19.1.5(rxjs@7.8.1)(zone.js@0.15.0))(@angular/platform-browser@19.1.5(@angular/animations@19.1.5(@angular/core@19.1.5(rxjs@7.8.1)(zone.js@0.15.0)))(@angular/common@19.1.5(@angular/core@19.1.5(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1))(@angular/core@19.1.5(rxjs@7.8.1)(zone.js@0.15.0)))(rxjs@7.8.1))(@maskito/core@3.3.0)
+      '@maskito/core':
+        specifier: ^3.3.0
+        version: 3.3.0
       luxon:
         specifier: ^3.5.0
         version: 3.5.0
@@ -1153,6 +1159,16 @@ packages:
     resolution: {integrity: sha512-Y0qoSCAja+xZE7QQ0LCHoYAuyI1n9ZqukQJa8lv9X3yCvWahFF7OYHAgVH1ejp43XWstj3U89/PAAzcowgF/uQ==}
     cpu: [x64]
     os: [win32]
+
+  '@maskito/angular@3.3.0':
+    resolution: {integrity: sha512-gClGPssn5S9eYaA/U1DlybNo5rGOCbdCXmrPrT1JuZ24yECsmAMabFaAbgDNFe0q+vy9PoujMxpw13lB2y85oA==}
+    peerDependencies:
+      '@angular/core': '>=16.0.0'
+      '@angular/forms': '>=16.0.0'
+      '@maskito/core': ^3.3.0
+
+  '@maskito/core@3.3.0':
+    resolution: {integrity: sha512-eIMLHIv+l1ymuD6ZQqu23dZxSYYZa9BEVbpaSKFaNbGoM2DswB4e4XVzbDSsBFHSefT6lyFdUtm/kzUNjnm+ww==}
 
   '@msgpackr-extract/msgpackr-extract-darwin-arm64@3.0.3':
     resolution: {integrity: sha512-QZHtlVgbAdy2zAqNA9Gu1UpIuI8Xvsd1v8ic6B2pZmeFnFcMWiPLfWXh7TVw4eGEZ/C9TH281KwhVoeQUKbyjw==}
@@ -5495,6 +5511,15 @@ snapshots:
 
   '@lmdb/lmdb-win32-x64@3.2.2':
     optional: true
+
+  '@maskito/angular@3.3.0(@angular/core@19.1.5(rxjs@7.8.1)(zone.js@0.15.0))(@angular/forms@19.1.5(@angular/common@19.1.5(@angular/core@19.1.5(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1))(@angular/core@19.1.5(rxjs@7.8.1)(zone.js@0.15.0))(@angular/platform-browser@19.1.5(@angular/animations@19.1.5(@angular/core@19.1.5(rxjs@7.8.1)(zone.js@0.15.0)))(@angular/common@19.1.5(@angular/core@19.1.5(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1))(@angular/core@19.1.5(rxjs@7.8.1)(zone.js@0.15.0)))(rxjs@7.8.1))(@maskito/core@3.3.0)':
+    dependencies:
+      '@angular/core': 19.1.5(rxjs@7.8.1)(zone.js@0.15.0)
+      '@angular/forms': 19.1.5(@angular/common@19.1.5(@angular/core@19.1.5(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1))(@angular/core@19.1.5(rxjs@7.8.1)(zone.js@0.15.0))(@angular/platform-browser@19.1.5(@angular/animations@19.1.5(@angular/core@19.1.5(rxjs@7.8.1)(zone.js@0.15.0)))(@angular/common@19.1.5(@angular/core@19.1.5(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1))(@angular/core@19.1.5(rxjs@7.8.1)(zone.js@0.15.0)))(rxjs@7.8.1)
+      '@maskito/core': 3.3.0
+      tslib: 2.8.1
+
+  '@maskito/core@3.3.0': {}
 
   '@msgpackr-extract/msgpackr-extract-darwin-arm64@3.0.3':
     optional: true
