@@ -66,6 +66,15 @@
     display: flex;
     flex-direction: column;
     gap: 4px;
+
+    &--checkbox {
+      flex-direction: row;
+      align-items: center;
+
+      .control__input {
+        width: unset;
+      }
+    }
   }
 
   .control__label {
@@ -143,6 +152,11 @@
       --border-color: var(--primary-red-color);
     }
 
+    &.ng-pending {
+      --border-color: var(--primary-green-color);
+      border-style: dashed;
+    }
+
     &:is(textarea) {
       min-height: 108px;
       resize: vertical;
@@ -191,5 +205,9 @@
     justify-self: center;
     color: var(--light-color);
     opacity: 0.75;
+  }
+
+  .control__error {
+    color: var(--primary-red-color);
   }
 }
