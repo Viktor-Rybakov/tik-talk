@@ -16,7 +16,8 @@
     "target": "ES2022",
     "module": "ES2022",
     "paths": {
-      "@tt/auth": ["libs/auth/src/index.ts"]
+      "@tt/auth": ["libs/auth/src/index.ts"],
+      "@tt/posts": ["libs/posts/src/index.ts"]
     },
     "baseUrl": ".",
     "rootDir": "."

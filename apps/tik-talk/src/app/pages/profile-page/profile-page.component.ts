@@ -7,7 +7,7 @@ import { firstValueFrom, switchMap, tap } from 'rxjs';
 import { ProfileHeaderComponent } from '../../common-ui/profile-header/profile-header.component';
 import { ProfileService } from '../../data/services/profile.service';
 import { SvgIconComponent } from '../../common-ui/svg-icon/svg-icon.component';
-import { PostFeedComponent } from './post-feed/post-feed.component';
+import { PostFeedComponent } from '@tt/posts';
 import { AvatarComponent } from '../../common-ui/avatar/avatar.component';
 import { ChatsService } from '../../data/services/chats.service';
 

@@ -37,6 +37,7 @@
     "@nx/angular:library": {
       "linter": "eslint",
       "unitTestRunner": "none",
+      "prefix": "tt",
       "style": "scss",
       "skipTests": true
     },
