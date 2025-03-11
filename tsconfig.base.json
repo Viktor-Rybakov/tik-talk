@@ -15,7 +15,9 @@
     "importHelpers": true,
     "target": "ES2022",
     "module": "ES2022",
-    "paths": {},
+    "paths": {
+      "@tt/auth": ["libs/auth/src/index.ts"]
+    },
     "baseUrl": ".",
     "rootDir": "."
   },
