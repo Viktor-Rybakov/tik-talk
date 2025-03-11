@@ -36,10 +36,14 @@
   "generators": {
     "@nx/angular:library": {
       "linter": "eslint",
-      "unitTestRunner": "none"
+      "unitTestRunner": "none",
+      "style": "scss",
+      "skipTests": true
     },
     "@nx/angular:component": {
-      "style": "scss"
+      "style": "scss",
+      "skipTests": true,
+      "standalone": true
     }
   }
 }
