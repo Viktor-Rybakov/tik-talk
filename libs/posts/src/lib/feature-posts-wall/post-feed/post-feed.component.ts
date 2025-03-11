@@ -2,11 +2,11 @@ import { AfterViewInit, Component, ElementRef, inject, Renderer2 } from '@angula
 import { debounceTime, firstValueFrom, fromEvent, switchMap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
-import { PostComponent } from '../post/post.component';
-import { PostService } from '../../../data/services/post.service';
-import { type PostCreateDto } from '../../../data/interfaces/post.interface';
-import { ProfileService } from '../../../data/services/profile.service';
-import { MessageInputComponent } from '../../../common-ui/message-input/message-input.component';
+import { PostComponent } from '../../feature-posts-wall';
+import { PostService } from '../../data';
+import type { PostCreateDto } from '../../data';
+import { ProfileService } from '../../../../../../apps/tik-talk/src/app/data/services/profile.service';
+import { MessageInputComponent } from '../../../../../../apps/tik-talk/src/app/common-ui/message-input/message-input.component';
 
 @Component({
   selector: 'app-post-feed',

@@ -1,14 +1,14 @@
 import { Component, inject, input, OnInit, signal } from '@angular/core';
 import { firstValueFrom, switchMap } from 'rxjs';
 
-import { type CommentCreateDto, type Post, type PostComment } from '../../../data/interfaces/post.interface';
-import { AvatarComponent } from '../../../common-ui/avatar/avatar.component';
-import { SvgIconComponent } from '../../../common-ui/svg-icon/svg-icon.component';
-import { CommentComponent } from '../comment/comment.component';
-import { TimeDiffToNowPipe } from '../../../helpers/pipes/time-diff-to-now.pipe';
-import { ProfileService } from '../../../data/services/profile.service';
-import { PostService } from '../../../data/services/post.service';
-import { MessageInputComponent } from '../../../common-ui/message-input/message-input.component';
+import type { CommentCreateDto, Post, PostComment } from '../../data';
+import { AvatarComponent } from '../../../../../../apps/tik-talk/src/app/common-ui/avatar/avatar.component';
+import { SvgIconComponent } from '../../../../../../apps/tik-talk/src/app/common-ui/svg-icon/svg-icon.component';
+import { CommentComponent } from '../../ui/';
+import { TimeDiffToNowPipe } from '../../../../../../apps/tik-talk/src/app/helpers/pipes/time-diff-to-now.pipe';
+import { ProfileService } from '../../../../../../apps/tik-talk/src/app/data/services/profile.service';
+import { PostService } from '../../data';
+import { MessageInputComponent } from '../../../../../../apps/tik-talk/src/app/common-ui/message-input/message-input.component';
 
 @Component({
   selector: 'app-post',
