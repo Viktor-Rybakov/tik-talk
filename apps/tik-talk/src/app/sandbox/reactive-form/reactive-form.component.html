@@ -1,0 +1,243 @@
+<form
+  [formGroup]="form"
+  class="reactive-form"
+  (ngSubmit)="onSubmit()"
+>
+  <h1 class="reactive-form__title reactive-form__two-columns">Информация о доставке</h1>
+
+  <label class="control reactive-form__two-columns">
+    <span class="control__label">Тип получателя</span>
+
+    <select
+      class="control__input"
+      formControlName="type"
+    >
+      <option [value]="RecipientType.PRIVATE">Физическое лицо</option>
+      <option [value]="RecipientType.LEGAL">Юридическое лицо</option>
+    </select>
+  </label>
+
+  <label class="control reactive-form__two-columns">
+    <span class="control__label">Имя</span>
+
+    <input
+      class="control__input"
+      type="text"
+      placeholder="Введите имя"
+      formControlName="name"
+    />
+
+    @if (form.controls.name.hasError('required') && form.controls.name.touched) {
+      <p class="control__error">Это поле обязательно!</p>
+    }
+
+    @if (form.controls.name.hasError('legalRecipientNameValid') && form.controls.name.touched) {
+      <p class="control__error">{{ form.controls.name.getError('legalRecipientNameValid')?.message }}</p>
+    }
+  </label>
+
+  @if (form.controls.type.value === RecipientType.PRIVATE) {
+    <label class="control reactive-form__two-columns">
+      <span class="control__label">Фамилия</span>
+
+      <input
+        class="control__input"
+        type="text"
+        placeholder="Введите фамилию"
+        formControlName="secondName"
+      />
+
+      @if (form.controls.secondName.getError('required') && form.controls.secondName.touched) {
+        <p class="control__error">Это поле обязательно!</p>
+      }
+    </label>
+  } @else {
+    <label class="control reactive-form__two-columns">
+      <span class="control__label">ИНН</span>
+
+      <input
+        class="control__input"
+        type="text"
+        placeholder="Введите ИНН"
+        formControlName="inn"
+      />
+      @if (form.controls.inn.getError('required') && form.controls.inn.touched) {
+        <p class="control__error">Это поле обязательно!</p>
+      }
+    </label>
+  }
+
+  <fieldset class="reactive-form__fieldset">
+    <legend class="reactive-form__fieldset-title">Адрес доставки</legend>
+
+    <button
+      class="btn reactive-form__add-btn"
+      type="button"
+      (click)="addAddress()"
+    >
+      +
+    </button>
+
+    @for (group of form.controls.addresses.controls; track group; let i = $index) {
+      <fieldset
+        class="reactive-form__fieldset"
+        [formGroup]="group"
+      >
+        <label class="control">
+          <span class="control__label">Город</span>
+
+          <input
+            class="control__input"
+            type="text"
+            placeholder="Город"
+            formControlName="city"
+          />
+        </label>
+
+        <label class="control">
+          <span class="control__label">Улица</span>
+
+          <input
+            class="control__input"
+            type="text"
+            placeholder="Улица"
+            formControlName="street"
+          />
+        </label>
+
+        <label class="control">
+          <span class="control__label">Дом</span>
+
+          <input
+            class="control__input"
+            type="number"
+            placeholder="Дом"
+            formControlName="building"
+          />
+
+          @if (group.controls.building.hasError('buildValidator') && group.controls.building.touched) {
+            <p class="control__error">
+              {{ group.controls.building.getError('buildValidator')?.message }}
+            </p>
+          }
+        </label>
+
+        <label class="control">
+          <span class="control__label">Квартира</span>
+
+          <input
+            class="control__input"
+            type="number"
+            placeholder="Кваритра"
+            formControlName="apartment"
+          />
+        </label>
+
+        <button
+          class="btn reactive-form__two-columns"
+          type="button"
+          (click)="deleteAddress(i)"
+        >
+          Удалить
+        </button>
+      </fieldset>
+    }
+  </fieldset>
+
+  <fieldset
+    class="reactive-form__fieldset"
+    formGroupName="dateRange"
+  >
+    <legend class="reactive-form__fieldset-title reactive-form__two-columns">Интервал доставки</legend>
+
+    <label class="control">
+      <span class="control__label">С</span>
+
+      <input
+        class="control__input"
+        type="date"
+        placeholder="Дата начала"
+        formControlName="from"
+      />
+    </label>
+
+    <label class="control">
+      <span class="control__label">По</span>
+
+      <input
+        class="control__input"
+        type="date"
+        placeholder="Дата окончания"
+        formControlName="to"
+      />
+    </label>
+
+    @if (form.controls.dateRange.hasError('dateRange') && form.controls.dateRange.touched) {
+      <p class="control__error reactive-form__two-columns">
+        {{ form.controls.dateRange.getError('dateRange')?.message }}
+      </p>
+    }
+  </fieldset>
+
+  <fieldset
+    class="reactive-form__fieldset"
+    [formGroup]="form.controls.features"
+  >
+    <legend class="reactive-form__fieldset-title reactive-form__two-columns">Дополнительно</legend>
+
+    <!--    @for (control of form.controls.features.controls | keyvalue: sort; track control; let i = $index) {-->
+    <!--      <label class="control control&#45;&#45;checkbox reactive-form__two-columns">-->
+    <!--        <span class="control__label">{{ features[i].name }}</span>-->
+
+    <!--        <input-->
+    <!--          class="control__input"-->
+    <!--          type="checkbox"-->
+    <!--          [formControlName]="control.key"-->
+    <!--        />-->
+    <!--      </label>-->
+    <!--    }-->
+
+    @for (feature of features; track feature.id) {
+      <label class="control control--checkbox reactive-form__two-columns">
+        <span class="control__label">{{ feature.name }}</span>
+
+        <input
+          class="control__input"
+          type="checkbox"
+          [formControl]="getFeatureControl(feature.id)"
+        />
+      </label>
+    }
+  </fieldset>
+
+  <!--  <button-->
+  <!--    class="btn reactive-form__two-columns"-->
+  <!--    type="button"-->
+  <!--    (click)="onPatch()"-->
+  <!--  >-->
+  <!--    Patch-->
+  <!--  </button>-->
+
+  <!--  <button-->
+  <!--    class="btn reactive-form__two-columns"-->
+  <!--    type="button"-->
+  <!--    (click)="onSetAddressValue()"-->
+  <!--  >-->
+  <!--    SetValue-->
+  <!--  </button>-->
+
+  <!--  <button-->
+  <!--    class="btn reactive-form__two-columns"-->
+  <!--    type="button"-->
+  <!--    (click)="onReset()"-->
+  <!--  >-->
+  <!--    Reset-->
+  <!--  </button>-->
+
+  <button
+    class="btn reactive-form__two-columns"
+    type="submit"
+  >
+    Submit
+  </button>
+</form>

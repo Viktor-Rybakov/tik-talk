@@ -3,10 +3,10 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "start": "nx run tik-talk:serve",
+    "build": "nx build",
+    "watch": "nx build --watch --configuration development",
+    "test": "nx test"
   },
   "private": true,
   "dependencies": {
@@ -28,8 +28,17 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^19.0.7",
+    "@angular-devkit/core": "^19.0.7",
+    "@angular-devkit/schematics": "^19.0.7",
     "@angular/cli": "^19.0.7",
     "@angular/compiler-cli": "^19.0.6",
+    "@nx/angular": "20.5.0",
+    "@nx/js": "20.5.0",
+    "@nx/workspace": "20.5.0",
+    "@schematics/angular": "^19.0.7",
+    "@swc-node/register": "~1.9.1",
+    "@swc/core": "~1.5.7",
+    "@swc/helpers": "~0.5.11",
     "@types/jasmine": "~5.1.0",
     "@types/luxon": "^3.4.2",
     "jasmine-core": "~5.4.0",
@@ -38,7 +47,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
-    "nx": "^20.5.0",
+    "nx": "20.5.0",
     "prettier": "^3.4.2",
     "typescript": "~5.6.2"
   }

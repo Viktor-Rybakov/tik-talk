@@ -1,0 +1,37 @@
+<div class="chats-list__search-wrapper">
+  <div class="control">
+    <label
+      class="visually-hidden"
+      for="chat-search"
+    >
+      Поиск по чатам
+    </label>
+
+    <div class="control__wrapper">
+      <input
+        class="control__input control__input--underlined"
+        id="chat-search"
+        type="text"
+        placeholder="Искать..."
+        [formControl]="searchControl"
+      />
+
+      <svg
+        class="control__icon"
+        icon="search"
+      ></svg>
+    </div>
+  </div>
+</div>
+
+<ul class="chats-list__list">
+  @for (chat of chats$ | async; track chat.id) {
+    <li class="chats-list__item">
+      <button
+        [chat]="chat"
+        [routerLink]="[chat.id]"
+        routerLinkActive="active"
+      ></button>
+    </li>
+  }
+</ul>
