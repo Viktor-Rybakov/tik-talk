@@ -1,0 +1,103 @@
+<div></div>
+
+<div class="setting-page__form-wrapper">
+  <form
+    class="setting-page__form"
+    [formGroup]="form"
+  >
+    <div class="two-columns">
+      <label class="control">
+        <span class="control__label">Имя</span>
+
+        <input
+          class="control__input control__input--underlined"
+          type="text"
+          formControlName="firstName"
+          placeholder="Иван"
+        />
+      </label>
+
+      <label class="control">
+        <span class="control__label">Фамилия</span>
+
+        <input
+          class="control__input control__input--underlined"
+          type="text"
+          formControlName="lastName"
+          placeholder="Иванов"
+        />
+      </label>
+    </div>
+
+    <label class="control">
+      <span class="control__label">Telegram username</span>
+
+      <input
+        class="control__input control__input--underlined"
+        type="text"
+        formControlName="username"
+      />
+    </label>
+
+    <label class="control">
+      <span class="control__label">О себе</span>
+
+      <textarea
+        class="control__input control__input--underlined"
+        type="text"
+        rows="4"
+        formControlName="description"
+      ></textarea>
+    </label>
+
+    <app-avatar-upload />
+
+    <label class="control">
+      <span class="control__label">Навыки</span>
+
+      <input
+        class="control__input control__input--underlined"
+        type="text"
+        formControlName="stack"
+      />
+    </label>
+  </form>
+
+  <div class="profile-form__controls-wrapper">
+    <div class="profile-form__controls">
+      <button
+        class="btn"
+        type="button"
+        (click)="onDelete()"
+      >
+        Удалить
+      </button>
+
+      <button
+        class="btn"
+        type="button"
+        (click)="onLogout()"
+      >
+        Выйти
+      </button>
+    </div>
+
+    <div class="profile-form__controls">
+      <button
+        class="btn"
+        type="button"
+        (click)="onCancel()"
+      >
+        Отмена
+      </button>
+
+      <button
+        class="btn"
+        type="button"
+        (click)="onSave()"
+      >
+        Сохранить
+      </button>
+    </div>
+  </div>
+</div>

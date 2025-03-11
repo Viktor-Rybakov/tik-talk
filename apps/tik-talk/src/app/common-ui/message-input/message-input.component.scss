@@ -1,0 +1,25 @@
+:host {
+  display: grid;
+  grid-template-columns: max-content 1fr max-content;
+  gap: 12px;
+  align-items: center;
+  padding: 16px;
+  background-color: var(--dark-color);
+  border: var(--border-light);
+  border-radius: 2px;
+}
+
+:host-context(.dotted) {
+  border-style: dashed;
+}
+
+.post-input__textarea {
+  min-height: unset;
+  resize: none;
+}
+
+.post-input__buttons {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}

@@ -1,0 +1,43 @@
+.reactive-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 20px;
+  width: 600px;
+  margin: auto;
+  padding: 20px;
+  background-color: var(--dark-color);
+  border: var(--border-light);
+
+  &.ng-submitted {
+    border-color: var(--primary-green-color);
+  }
+}
+
+.reactive-form__title {
+  margin-bottom: 16px;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+}
+
+.reactive-form__fieldset {
+  margin: 0;
+  padding: 0;
+  border: none;
+  display: contents;
+}
+
+.reactive-form__fieldset-title {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.reactive-form__add-btn {
+  justify-self: end;
+}
+
+.reactive-form__two-columns {
+  grid-column: span 2;
+}
