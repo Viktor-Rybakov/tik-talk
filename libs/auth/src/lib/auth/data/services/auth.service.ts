@@ -4,7 +4,7 @@ import { catchError, tap, throwError } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 
-import { type Auth, type TokenResponse } from '../index';
+import { type Auth, type TokenResponse } from '../interfaces/auth.interface';
 
 const ApiPrefix: string = 'https://icherniakov.ru/yt-course/auth/';
 
