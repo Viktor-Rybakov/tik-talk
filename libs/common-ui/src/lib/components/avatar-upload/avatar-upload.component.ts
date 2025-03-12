@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 
-import { SvgIconComponent } from '../svg-icon/svg-icon.component';
+import { SvgIconComponent } from '../index';
 import { DndDirective } from '../../directives';
 
 const previewUrl: string = '/assets/svg/avatar-placeholder.svg';

@@ -5,8 +5,8 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { PostComponent } from '../post/post.component';
 import { PostService } from '../../data';
 import { type PostCreateDto } from '../../data';
-import { ProfileService } from '@tt/profile';
 import { MessageInputComponent } from '@tt/common-ui';
+import { GlobalStoreService } from '@tt/shared';
 
 @Component({
   selector: 'app-post-feed',
@@ -18,7 +18,7 @@ export class PostFeedComponent implements AfterViewInit {
   #postService = inject(PostService);
   #hostElement = inject(ElementRef);
   #r2 = inject(Renderer2);
-  me = inject(ProfileService).me;
+  me = inject(GlobalStoreService).me;
 
   posts = this.#postService.posts.asReadonly();
 
@@ -52,7 +52,6 @@ export class PostFeedComponent implements AfterViewInit {
     fromEvent(window, 'resize')
       .pipe(debounceTime(50), takeUntilDestroyed())
       .subscribe(() => {
-        console.log('+++');
         this.#resizeFeed();
       });
   }

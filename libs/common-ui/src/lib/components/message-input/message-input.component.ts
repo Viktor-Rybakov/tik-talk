@@ -1,9 +1,9 @@
 import { booleanAttribute, Component, inject, input, output, Renderer2 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-import { AvatarComponent } from '../avatar/avatar.component';
-import { SvgIconComponent } from '../svg-icon/svg-icon.component';
-import { ProfileService } from '@tt/profile';
+import { AvatarComponent } from '../index';
+import { SvgIconComponent } from '../index';
+import { GlobalStoreService } from '@tt/shared';
 
 @Component({
   selector: 'app-message-input',
@@ -13,7 +13,7 @@ import { ProfileService } from '@tt/profile';
 })
 export class MessageInputComponent {
   #r2 = inject(Renderer2);
-  profile = inject(ProfileService).me;
+  profile = inject(GlobalStoreService).me;
 
   isComment = input(false, { transform: booleanAttribute });
 

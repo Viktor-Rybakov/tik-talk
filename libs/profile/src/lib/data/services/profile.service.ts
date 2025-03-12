@@ -2,8 +2,9 @@ import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom, map, Observable, tap } from 'rxjs';
 
-import { type Profile } from '../../data';
+import { type Profile } from '@tt/interfaces/profile';
 import { type Pageable } from '@tt/common-ui';
+import { GlobalStoreService } from '@tt/shared';
 
 const ApiPrefix: string = 'https://icherniakov.ru/yt-course/';
 
@@ -12,8 +13,9 @@ const ApiPrefix: string = 'https://icherniakov.ru/yt-course/';
 })
 export class ProfileService {
   #http = inject(HttpClient);
+  #globalStoreService = inject(GlobalStoreService);
 
-  me = signal<Profile | null>(null);
+  // me = signal<Profile | null>(null);
   filteredProfiles = signal<Profile[]>([]);
 
   constructor() {
@@ -29,7 +31,8 @@ export class ProfileService {
   getMe(): Observable<Profile> {
     return this.#http.get<Profile>(`${ApiPrefix}account/me`).pipe(
       tap((response) => {
-        this.me.set(response);
+        this.#globalStoreService.me.set(response);
+        // this.me.set(response);
       })
     );
   }

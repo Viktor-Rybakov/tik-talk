@@ -1,5 +1,4 @@
-import { canActivateAuth } from './lib/auth/access.guard';
-import { authTokenInterceptor } from './lib/auth/auth.interceptor';
-import { AuthService } from './lib/auth/auth.service';
+import { LoginPageComponent } from './lib/auth/feature-login-page';
 
-export { canActivateAuth, authTokenInterceptor, AuthService };
+export * from './lib/auth/utils';
+export { LoginPageComponent };
