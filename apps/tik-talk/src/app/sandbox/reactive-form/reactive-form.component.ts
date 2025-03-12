@@ -12,8 +12,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+
 import { LegalRecipientNameValidator } from '../legal-recipient-name.validator';
-import { Address } from '../form.interface';
+import { type Address } from '../form.interface';
 import { AdditionOptions, MockService } from '../mock.service';
 
 enum RecipientType {
