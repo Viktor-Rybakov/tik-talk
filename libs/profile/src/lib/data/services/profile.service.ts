@@ -2,8 +2,8 @@ import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom, map, Observable, tap } from 'rxjs';
 
-import { type Profile } from '../interfaces/profile.interface';
-import { type Pageable } from '../interfaces/pageable.interface';
+import { type Profile } from '../../data';
+import { type Pageable } from '@tt/common-ui';
 
 const ApiPrefix: string = 'https://icherniakov.ru/yt-course/';
 

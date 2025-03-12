@@ -6,7 +6,7 @@ import { AvatarComponent } from '@tt/common-ui';
 import { SvgIconComponent } from '@tt/common-ui';
 import { CommentComponent } from '../../ui/';
 import { TimeDiffToNowPipe } from '@tt/common-ui';
-import { ProfileService } from '../../../../../../apps/tik-talk/src/app/data/services/profile.service';
+import { ProfileService } from '@tt/profile';
 import { PostService } from '../../data';
 import { MessageInputComponent } from '@tt/common-ui';
 
