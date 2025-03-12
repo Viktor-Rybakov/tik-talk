@@ -4,7 +4,7 @@ import { catchError } from 'rxjs';
 import { Router } from '@angular/router';
 
 import { AuthService } from '@tt/auth';
-import { SvgIconComponent } from '../../common-ui/svg-icon/svg-icon.component';
+import { SvgIconComponent } from '@tt/common-ui';
 
 @Component({
   selector: 'app-login-page',

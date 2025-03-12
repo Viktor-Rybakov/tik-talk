@@ -6,7 +6,7 @@ import { map, startWith, switchMap } from 'rxjs';
 
 import { ChatsService } from '../../../data/services/chats.service';
 import { ChatButtonComponent } from './chat-button/chat-button.component';
-import { SvgIconComponent } from '../../../common-ui/svg-icon/svg-icon.component';
+import { SvgIconComponent } from '@tt/common-ui';
 
 @Component({
   selector: 'app-chats-list',

@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { AvatarUrlPipe } from '../../helpers/pipes/avatar-url.pipe';
+
+import { AvatarUrlPipe } from '../../pipes/avatar-url.pipe';
 
 @Component({
   selector: 'app-avatar',

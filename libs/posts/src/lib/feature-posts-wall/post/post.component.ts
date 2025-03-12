@@ -2,13 +2,13 @@ import { Component, inject, input, OnInit, signal } from '@angular/core';
 import { firstValueFrom, switchMap } from 'rxjs';
 
 import type { CommentCreateDto, Post, PostComment } from '../../data';
-import { AvatarComponent } from '../../../../../../apps/tik-talk/src/app/common-ui/avatar/avatar.component';
-import { SvgIconComponent } from '../../../../../../apps/tik-talk/src/app/common-ui/svg-icon/svg-icon.component';
+import { AvatarComponent } from '@tt/common-ui';
+import { SvgIconComponent } from '@tt/common-ui';
 import { CommentComponent } from '../../ui/';
-import { TimeDiffToNowPipe } from '../../../../../../apps/tik-talk/src/app/helpers/pipes/time-diff-to-now.pipe';
+import { TimeDiffToNowPipe } from '@tt/common-ui';
 import { ProfileService } from '../../../../../../apps/tik-talk/src/app/data/services/profile.service';
 import { PostService } from '../../data';
-import { MessageInputComponent } from '../../../../../../apps/tik-talk/src/app/common-ui/message-input/message-input.component';
+import { MessageInputComponent } from '@tt/common-ui';
 
 @Component({
   selector: 'app-post',

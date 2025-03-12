@@ -3,11 +3,11 @@ import { AsyncPipe } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { Observable } from 'rxjs';
 
-import { type IconType, SvgIconComponent } from '../svg-icon/svg-icon.component';
+import { type IconType, SvgIconComponent } from '@tt/common-ui';
 import { SubscriberCardComponent } from '../subscriber-card/subscriber-card.component';
 import { type Profile } from '../../data/interfaces/profile.interface';
 import { ProfileService } from '../../data/services/profile.service';
-import { AvatarComponent } from '../avatar/avatar.component';
+import { AvatarComponent } from '@tt/common-ui';
 
 @Component({
   selector: 'app-sidebar',

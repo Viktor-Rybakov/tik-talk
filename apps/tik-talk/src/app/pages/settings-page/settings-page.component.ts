@@ -3,7 +3,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
 
 import { ProfileService } from '../../data/services/profile.service';
-import { AvatarUploadComponent } from './avatar-upload/avatar-upload.component';
+import { AvatarUploadComponent } from '@tt/common-ui';
 
 @Component({
   selector: 'app-settings-page',

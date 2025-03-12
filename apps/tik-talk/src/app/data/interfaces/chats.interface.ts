@@ -1,4 +1,4 @@
-import { type Profile } from './profile.interface';
+import { type Profile } from '@tt/profile';
 
 export interface Message {
   id: number;
