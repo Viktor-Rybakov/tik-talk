@@ -1,13 +1,7 @@
 import { Observable, of } from 'rxjs';
 import { Injectable } from '@angular/core';
 
-import { type Address } from './form.interface';
-
-export interface AdditionOptions {
-  id: string;
-  name: string;
-  value: boolean;
-}
+import { AdditionOptions, type Address } from '../interfaces/form.interface';
 
 @Injectable({
   providedIn: 'root',

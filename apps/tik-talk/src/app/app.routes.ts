@@ -7,7 +7,7 @@ import { SettingsPageComponent } from '@tt/profile';
 import { LayoutComponent } from '@tt/layout';
 import { canActivateAuth } from '@tt/auth';
 import { chatsRoutes } from '@tt/chats';
-import { SandboxPageComponent } from './sandbox/sandbox-page/sandbox-page.component';
+import { SandboxPageComponent } from '@tt/sandbox';
 
 export const routes: Routes = [
   {

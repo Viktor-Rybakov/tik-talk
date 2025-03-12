@@ -2,7 +2,7 @@ import { AbstractControl, AsyncValidator, ValidationErrors, ValidatorFn } from '
 import { inject, Injectable } from '@angular/core';
 import { delay, map, Observable } from 'rxjs';
 
-import { MockService } from './mock.service';
+import { MockService } from '../data';
 
 @Injectable({
   providedIn: 'root',
