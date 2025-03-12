@@ -6,9 +6,9 @@ import { AvatarComponent } from '@tt/common-ui';
 import { SvgIconComponent } from '@tt/common-ui';
 import { CommentComponent } from '../../ui/';
 import { TimeDiffToNowPipe } from '@tt/common-ui';
-import { ProfileService } from '@tt/profile';
 import { PostService } from '../../data';
 import { MessageInputComponent } from '@tt/common-ui';
+import { GlobalStoreService } from '@tt/shared';
 
 @Component({
   selector: 'app-post',
@@ -18,7 +18,7 @@ import { MessageInputComponent } from '@tt/common-ui';
 })
 export class PostComponent implements OnInit {
   #postService = inject(PostService);
-  me = inject(ProfileService).me;
+  me = inject(GlobalStoreService).me;
 
   post = input.required<Post>();
   comments = signal<PostComment[]>([]);
