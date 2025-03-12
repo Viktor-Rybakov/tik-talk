@@ -1,8 +1,8 @@
 import { Component, input } from '@angular/core';
 
 import { type LastMessage } from '../../../../data/interfaces/chats.interface';
-import { AvatarComponent } from '../../../../common-ui/avatar/avatar.component';
-import { LocalDatePipe } from '../../../../helpers/pipes/local-date.pipe';
+import { AvatarComponent } from '@tt/common-ui';
+import { LocalDatePipe } from '@tt/common-ui';
 
 @Component({
   selector: 'button[chat]',

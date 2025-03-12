@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 
 import { AvatarComponent } from '../avatar/avatar.component';
 import { SvgIconComponent } from '../svg-icon/svg-icon.component';
-import { ProfileService } from '../../data/services/profile.service';
+import { ProfileService } from '@tt/profile';
 
 @Component({
   selector: 'app-message-input',

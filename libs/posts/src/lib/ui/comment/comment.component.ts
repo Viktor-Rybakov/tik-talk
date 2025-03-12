@@ -1,8 +1,8 @@
 import { Component, input } from '@angular/core';
-import { AvatarComponent } from '../../../../../../apps/tik-talk/src/app/common-ui/avatar/avatar.component';
+import { AvatarComponent } from '@tt/common-ui';
 
 import { type PostComment } from '../../data';
-import { LocalDatePipe } from '../../../../../../apps/tik-talk/src/app/helpers/pipes/local-date.pipe';
+import { LocalDatePipe } from '@tt/common-ui';
 
 @Component({
   selector: 'app-comment',

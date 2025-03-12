@@ -3,10 +3,10 @@ import { firstValueFrom, switchMap, timer } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 import { ChatMessageComponent } from '../chat-message/chat-message.component';
-import { MessageInputComponent } from '../../../../common-ui/message-input/message-input.component';
+import { MessageInputComponent } from '@tt/common-ui';
 import { ChatsService } from '../../../../data/services/chats.service';
 import { type Chat } from '../../../../data/interfaces/chats.interface';
-import { RelativeDatePipe } from '../../../../helpers/pipes/relative-date.pipe';
+import { RelativeDatePipe } from '@tt/common-ui';
 
 @Component({
   selector: 'app-chat-messages-list',

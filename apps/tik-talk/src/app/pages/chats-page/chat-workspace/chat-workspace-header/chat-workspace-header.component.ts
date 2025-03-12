@@ -1,7 +1,7 @@
 import { Component, input } from '@angular/core';
 
-import { type Profile } from '../../../../data/interfaces/profile.interface';
-import { AvatarComponent } from '../../../../common-ui/avatar/avatar.component';
+import { type Profile } from '@tt/profile';
+import { AvatarComponent } from '@tt/common-ui';
 
 @Component({
   selector: 'app-chat-workspace-header',
