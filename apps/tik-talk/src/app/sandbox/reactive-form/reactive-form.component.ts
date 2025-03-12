@@ -13,7 +13,6 @@ import {
 } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { LegalRecipientNameValidator } from '../legal-recipient-name.validator';
-import { JsonPipe, KeyValuePipe } from '@angular/common';
 import { Address } from '../form.interface';
 import { AdditionOptions, MockService } from '../mock.service';
 
@@ -75,7 +74,7 @@ function getDateRangeValidator(controlNameFrom: string, controlNameTo: string): 
 
 @Component({
   selector: 'app-reactive-form',
-  imports: [ReactiveFormsModule, KeyValuePipe],
+  imports: [ReactiveFormsModule],
   templateUrl: './reactive-form.component.html',
   styleUrl: './reactive-form.component.scss',
 })

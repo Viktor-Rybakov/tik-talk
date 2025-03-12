@@ -5,8 +5,7 @@ import { Observable } from 'rxjs';
 
 import { type IconType, SvgIconComponent } from '@tt/common-ui';
 import { SubscriberCardComponent } from '../subscriber-card/subscriber-card.component';
-import { type Profile } from '../../data/interfaces/profile.interface';
-import { ProfileService } from '../../data/services/profile.service';
+import { type Profile, ProfileService } from '@tt/profile';
 import { AvatarComponent } from '@tt/common-ui';
 
 @Component({

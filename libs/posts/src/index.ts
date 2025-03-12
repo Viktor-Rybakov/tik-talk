@@ -1,3 +1,1 @@
-import { PostFeedComponent } from './lib/feature-posts-wall';
-
-export { PostFeedComponent };
+export * from './lib/feature-posts-wall';

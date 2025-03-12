@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
-import { type Profile } from '../../data/interfaces/profile.interface';
-import { AvatarComponent } from '../avatar/avatar.component';
+import { type Profile } from '@tt/profile';
+import { AvatarComponent } from '@tt/common-ui';
 
 @Component({
   selector: 'app-subscriber-card',

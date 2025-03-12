@@ -4,7 +4,7 @@ import { map } from 'rxjs';
 import { DateTime } from 'luxon';
 
 import { type Chat, type LastMessage, type Message, MessagesGroupByDate } from '../interfaces/chats.interface';
-import { ProfileService } from './profile.service';
+import { ProfileService } from '@tt/profile';
 
 const ApiPrefix: string = 'https://icherniakov.ru/yt-course/';
 
