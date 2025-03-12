@@ -1,8 +1,8 @@
 import { booleanAttribute, Component, inject, input, output, Renderer2 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-import { AvatarComponent } from '../index';
-import { SvgIconComponent } from '../index';
+import { AvatarComponent } from '../avatar/avatar.component';
+import { SvgIconComponent } from '../svg-icon/svg-icon.component';
 import { GlobalStoreService } from '@tt/shared';
 
 @Component({

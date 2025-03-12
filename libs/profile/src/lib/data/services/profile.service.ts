@@ -15,7 +15,6 @@ export class ProfileService {
   #http = inject(HttpClient);
   #globalStoreService = inject(GlobalStoreService);
 
-  // me = signal<Profile | null>(null);
   filteredProfiles = signal<Profile[]>([]);
 
   constructor() {
@@ -32,7 +31,6 @@ export class ProfileService {
     return this.#http.get<Profile>(`${ApiPrefix}account/me`).pipe(
       tap((response) => {
         this.#globalStoreService.me.set(response);
-        // this.me.set(response);
       })
     );
   }

@@ -11,6 +11,5 @@ import { ProfileFiltersComponent } from '../profile-filters/profile-filters.comp
   styleUrl: './search-page.component.scss',
 })
 export class SearchPageComponent {
-  #profileService = inject(ProfileService);
-  profiles = this.#profileService.filteredProfiles;
+  profiles = inject(ProfileService).filteredProfiles;
 }
