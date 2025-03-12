@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs';
 import { DateTime } from 'luxon';
 
-import { type Chat, type LastMessage, type Message, MessagesGroupByDate } from '../interfaces/chats.interface';
+import { type Chat, type LastMessage, type Message, type MessagesGroupByDate } from '../interfaces/chats.interface';
 import { ProfileService } from '@tt/profile';
 
 const ApiPrefix: string = 'https://icherniakov.ru/yt-course/';

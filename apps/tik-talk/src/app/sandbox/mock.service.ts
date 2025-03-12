@@ -1,6 +1,7 @@
 import { Observable, of } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { Address } from './form.interface';
+
+import { type Address } from './form.interface';
 
 export interface AdditionOptions {
   id: string;

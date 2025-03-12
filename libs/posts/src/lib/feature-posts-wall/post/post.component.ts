@@ -1,7 +1,7 @@
 import { Component, inject, input, OnInit, signal } from '@angular/core';
 import { firstValueFrom, switchMap } from 'rxjs';
 
-import type { CommentCreateDto, Post, PostComment } from '../../data';
+import { type CommentCreateDto, type Post, type PostComment } from '../../data';
 import { AvatarComponent } from '@tt/common-ui';
 import { SvgIconComponent } from '@tt/common-ui';
 import { CommentComponent } from '../../ui/';

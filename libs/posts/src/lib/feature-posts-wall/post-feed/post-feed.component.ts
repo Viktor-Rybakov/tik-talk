@@ -4,7 +4,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 import { PostComponent } from '../post/post.component';
 import { PostService } from '../../data';
-import type { PostCreateDto } from '../../data';
+import { type PostCreateDto } from '../../data';
 import { ProfileService } from '@tt/profile';
 import { MessageInputComponent } from '@tt/common-ui';
 

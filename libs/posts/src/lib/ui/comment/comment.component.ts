@@ -1,6 +1,6 @@
 import { Component, input } from '@angular/core';
-import { AvatarComponent } from '@tt/common-ui';
 
+import { AvatarComponent } from '@tt/common-ui';
 import { type PostComment } from '../../data';
 import { LocalDatePipe } from '@tt/common-ui';
 
