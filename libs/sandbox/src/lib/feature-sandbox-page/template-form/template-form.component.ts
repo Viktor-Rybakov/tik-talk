@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
 import { JsonPipe } from '@angular/common';
 
-import { NoReactValidator } from './no-react.validator';
+import { NoReactValidator } from '../../utils';
 
 @Component({
   selector: 'app-template-form',
