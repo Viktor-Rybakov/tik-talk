@@ -1,4 +1,4 @@
-import { inject, Injectable, signal } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom, map, Observable, tap } from 'rxjs';
 
@@ -15,16 +15,12 @@ export class ProfileService {
   #http = inject(HttpClient);
   #globalStoreService = inject(GlobalStoreService);
 
-  filteredProfiles = signal<Profile[]>([]);
-
   constructor() {
     firstValueFrom(this.getMe());
   }
 
   getFilteredProfiles(params: Record<string, any>): Observable<Pageable<Profile>> {
-    return this.#http
-      .get<Pageable<Profile>>(`${ApiPrefix}account/accounts`, { params })
-      .pipe(tap((response) => this.filteredProfiles.set(response.items)));
+    return this.#http.get<Pageable<Profile>>(`${ApiPrefix}account/accounts`, { params });
   }
 
   getMe(): Observable<Profile> {
