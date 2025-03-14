@@ -1,11 +1,16 @@
 import { Routes } from '@angular/router';
+import { provideState } from '@ngrx/store';
+import { provideEffects } from '@ngrx/effects';
 
-import { SearchPageComponent } from '@tt/profile';
-import { LoginPageComponent } from '@tt/auth';
-import { ProfilePageComponent } from '@tt/profile';
-import { SettingsPageComponent } from '@tt/profile';
+import {
+  ProfileEffects,
+  SearchPageComponent,
+  profileFeature,
+  ProfilePageComponent,
+  SettingsPageComponent,
+} from '@tt/profile';
+import { canActivateAuth, LoginPageComponent } from '@tt/auth';
 import { LayoutComponent } from '@tt/layout';
-import { canActivateAuth } from '@tt/auth';
 import { chatsRoutes } from '@tt/chats';
 import { SandboxPageComponent } from '@tt/sandbox';
 
@@ -15,7 +20,11 @@ export const routes: Routes = [
     component: LayoutComponent,
     children: [
       { path: '', redirectTo: 'profile/me', pathMatch: 'full' },
-      { path: 'search', component: SearchPageComponent },
+      {
+        path: 'search',
+        component: SearchPageComponent,
+        providers: [provideState(profileFeature), provideEffects(ProfileEffects)],
+      },
       { path: 'profile/:id', component: ProfilePageComponent },
       { path: 'settings', component: SettingsPageComponent },
       { path: 'chats', loadChildren: () => chatsRoutes },
