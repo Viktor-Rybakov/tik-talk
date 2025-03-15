@@ -1,10 +1,10 @@
 import { Component, inject } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { debounceTime, startWith } from 'rxjs';
+import { debounceTime } from 'rxjs';
 import { Store } from '@ngrx/store';
 
-import { profileActions } from '../../data';
+import { profileActions, ProfilesFilterForm, selectProfilesFilters } from '../../data';
 
 @Component({
   selector: 'app-profile-filters',
@@ -16,15 +16,19 @@ export class ProfileFiltersComponent {
   #fb = inject(FormBuilder);
   #store = inject(Store);
 
-  searchForm = this.#fb.group({
-    firstName: [''],
-    lastName: [''],
-    stack: [''],
+  searchForm: FormGroup<ProfilesFilterForm> = this.#fb.nonNullable.group({
+    firstName: '',
+    lastName: '',
+    stack: '',
   });
 
+  initialFilters = this.#store.selectSignal(selectProfilesFilters);
+
   constructor() {
-    this.searchForm.valueChanges.pipe(startWith({}), debounceTime(300), takeUntilDestroyed()).subscribe((formValue) => {
+    this.searchForm.valueChanges.pipe(debounceTime(300), takeUntilDestroyed()).subscribe((formValue) => {
       this.#store.dispatch(profileActions.filterEvent({ filters: formValue }));
     });
+
+    this.searchForm.patchValue(this.initialFilters());
   }
 }

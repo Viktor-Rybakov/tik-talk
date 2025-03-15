@@ -2,10 +2,11 @@ import { createFeature, createReducer, on } from '@ngrx/store';
 
 import { Profile } from '@tt/interfaces/profile';
 import { profileActions } from './actions';
+import { ProfilesFilter } from '../interfaces/profilesFilter';
 
 interface ProfileState {
   profiles: Profile[];
-  profileFilters: Record<string, any>;
+  profileFilters: Partial<ProfilesFilter>;
 }
 
 const initialState: ProfileState = {
@@ -21,6 +22,12 @@ export const profileFeature = createFeature({
       return {
         ...state,
         profiles: payload.profiles,
+      };
+    }),
+    on(profileActions.filterEvent, (state, payload) => {
+      return {
+        ...state,
+        profileFilters: payload.filters,
       };
     })
   ),
