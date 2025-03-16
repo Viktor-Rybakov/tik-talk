@@ -1,6 +1,6 @@
-import { ProfilesFilter, ProfilesFilterForm } from './interfaces/profilesFilter';
+import { ProfilesSearchInterface, ProfilesSearchForm } from './interfaces/profiles-search.interface';
 import { ProfileService } from './services/profile.service';
 export * from './store';
 
 export { ProfileService };
-export type { ProfilesFilter, ProfilesFilterForm };
+export type { ProfilesSearchInterface, ProfilesSearchForm };
