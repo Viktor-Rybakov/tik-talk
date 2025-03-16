@@ -1,9 +1,10 @@
 import { AfterViewInit, Component, ElementRef, inject, Renderer2 } from '@angular/core';
-import { debounceTime, firstValueFrom, fromEvent, switchMap } from 'rxjs';
+import { debounceTime, firstValueFrom, fromEvent } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Store } from '@ngrx/store';
 
 import { PostComponent } from '../post/post.component';
-import { PostService } from '../../data';
+import { postsActions, PostService, postsFeature } from '../../data';
 import { type PostCreateDto } from '../../data';
 import { MessageInputComponent } from '@tt/common-ui';
 import { GlobalStoreService } from '@tt/shared';
@@ -16,14 +17,17 @@ import { GlobalStoreService } from '@tt/shared';
 })
 export class PostFeedComponent implements AfterViewInit {
   #postService = inject(PostService);
+  #store = inject(Store);
   #hostElement = inject(ElementRef);
   #r2 = inject(Renderer2);
   me = inject(GlobalStoreService).me;
 
-  posts = this.#postService.posts.asReadonly();
+  posts = this.#store.selectSignal(postsFeature.selectPosts);
 
   constructor() {
-    firstValueFrom(this.#postService.getPosts());
+    firstValueFrom(this.#postService.getPosts()).then((response) =>
+      this.#store.dispatch(postsActions.postsLoaded({ posts: response }))
+    );
 
     this.#startListenWindowResize();
   }
@@ -39,7 +43,7 @@ export class PostFeedComponent implements AfterViewInit {
       content: commentText,
     };
 
-    firstValueFrom(this.#postService.createPost(payload).pipe(switchMap(() => this.#postService.getPosts())));
+    this.#store.dispatch(postsActions.createPost({ newPost: payload }));
   }
 
   #resizeFeed(): void {

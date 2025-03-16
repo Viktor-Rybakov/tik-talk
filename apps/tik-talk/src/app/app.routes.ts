@@ -13,6 +13,7 @@ import { canActivateAuth, LoginPageComponent } from '@tt/auth';
 import { LayoutComponent } from '@tt/layout';
 import { chatsRoutes } from '@tt/chats';
 import { SandboxPageComponent } from '@tt/sandbox';
+import { PostsEffects, postsFeature } from '@tt/posts';
 
 export const routes: Routes = [
   {
@@ -25,7 +26,11 @@ export const routes: Routes = [
         component: SearchPageComponent,
         providers: [provideState(profileFeature), provideEffects(ProfileEffects)],
       },
-      { path: 'profile/:id', component: ProfilePageComponent },
+      {
+        path: 'profile/:id',
+        component: ProfilePageComponent,
+        providers: [provideState(postsFeature), provideEffects(PostsEffects)],
+      },
       { path: 'settings', component: SettingsPageComponent },
       { path: 'chats', loadChildren: () => chatsRoutes },
     ],
