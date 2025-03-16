@@ -2,11 +2,11 @@ import { createFeature, createReducer, on } from '@ngrx/store';
 
 import { Profile } from '@tt/interfaces/profile';
 import { profileActions } from './actions';
-import { ProfilesFilter } from '../interfaces/profilesFilter';
+import { ProfilesSearchInterface } from '../interfaces/profiles-search.interface';
 
 interface ProfileState {
   profiles: Profile[];
-  profileFilters: Partial<ProfilesFilter>;
+  profileFilters: Partial<ProfilesSearchInterface>;
 }
 
 const initialState: ProfileState = {

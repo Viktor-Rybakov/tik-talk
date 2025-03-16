@@ -4,7 +4,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { debounceTime } from 'rxjs';
 import { Store } from '@ngrx/store';
 
-import { profileActions, ProfilesFilterForm, selectProfilesFilters } from '../../data';
+import { profileActions, ProfilesSearchForm, selectProfilesFilters } from '../../data';
 
 @Component({
   selector: 'app-profile-filters',
@@ -16,7 +16,7 @@ export class ProfileFiltersComponent {
   #fb = inject(FormBuilder);
   #store = inject(Store);
 
-  searchForm: FormGroup<ProfilesFilterForm> = this.#fb.nonNullable.group({
+  searchForm: FormGroup<ProfilesSearchForm> = this.#fb.nonNullable.group({
     firstName: '',
     lastName: '',
     stack: '',
