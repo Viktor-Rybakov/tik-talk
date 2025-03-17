@@ -1,3 +1,4 @@
-import { GlobalStoreService } from './services/global-store.service';
+import { MyProfileService } from './services';
 
-export { GlobalStoreService };
+export * from './store';
+export { MyProfileService }
