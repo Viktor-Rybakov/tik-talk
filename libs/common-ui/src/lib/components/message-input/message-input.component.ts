@@ -1,9 +1,10 @@
 import { booleanAttribute, Component, inject, input, output, Renderer2 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Store } from '@ngrx/store';
 
 import { AvatarComponent } from '../avatar/avatar.component';
 import { SvgIconComponent } from '../svg-icon/svg-icon.component';
-import { GlobalStoreService } from '@tt/shared';
+import { selectMyProfile } from '@tt/shared';
 
 @Component({
   selector: 'app-message-input',
@@ -13,7 +14,9 @@ import { GlobalStoreService } from '@tt/shared';
 })
 export class MessageInputComponent {
   #r2 = inject(Renderer2);
-  profile = inject(GlobalStoreService).me;
+  #store = inject(Store);
+
+  myProfile = this.#store.selectSignal(selectMyProfile);
 
   isComment = input(false, { transform: booleanAttribute });
 

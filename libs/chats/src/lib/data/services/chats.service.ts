@@ -2,9 +2,10 @@ import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs';
 import { DateTime } from 'luxon';
+import { Store } from '@ngrx/store';
 
 import { type Chat, type LastMessage, type Message, type MessagesGroupByDate } from '../interfaces/chats.interface';
-import { GlobalStoreService } from '@tt/shared';
+import { selectMyProfile } from '@tt/shared';
 
 const ApiPrefix: string = 'https://icherniakov.ru/yt-course/';
 
@@ -13,8 +14,9 @@ const ApiPrefix: string = 'https://icherniakov.ru/yt-course/';
 })
 export class ChatsService {
   #http = inject(HttpClient);
-  me = inject(GlobalStoreService).me;
+  #store = inject(Store);
 
+  myProfile = this.#store.selectSignal(selectMyProfile);
   activeChatMessagesGroups = signal<MessagesGroupByDate[]>([]);
 
   createChat(userId: number) {
@@ -32,7 +34,7 @@ export class ChatsService {
           return {
             ...message,
             user: message.userFromId === chat.userFirst.id ? chat.userFirst : chat.userSecond,
-            isMine: this.me()?.id === message.userFromId,
+            isMine: this.myProfile()?.id === message.userFromId,
           };
         });
 
@@ -41,7 +43,7 @@ export class ChatsService {
 
         return {
           ...chat,
-          companion: this.me()?.id === chat.userFirst.id ? chat.userSecond : chat.userFirst,
+          companion: this.myProfile()?.id === chat.userFirst.id ? chat.userSecond : chat.userFirst,
           messages: patchedMessages,
         };
       })

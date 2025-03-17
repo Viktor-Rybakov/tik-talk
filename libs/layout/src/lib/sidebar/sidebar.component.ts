@@ -2,13 +2,14 @@ import { Component, inject } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
 
 import { type IconType, SvgIconComponent } from '@tt/common-ui';
 import { SubscriberCardComponent } from '../ui';
 import { ProfileService } from '@tt/profile';
 import { AvatarComponent } from '@tt/common-ui';
 import { type Profile } from '@tt/interfaces/profile';
-import { GlobalStoreService } from '@tt/shared';
+import { selectMyProfile } from '@tt/shared';
 
 @Component({
   selector: 'app-sidebar',
@@ -18,8 +19,9 @@ import { GlobalStoreService } from '@tt/shared';
 })
 export class SidebarComponent {
   #profileService = inject(ProfileService);
+  #store = inject(Store);
 
-  me = inject(GlobalStoreService).me;
+  myProfile = this.#store.selectSignal(selectMyProfile);
 
   menu: { name: string; link: string[]; icon: IconType }[] = [
     {

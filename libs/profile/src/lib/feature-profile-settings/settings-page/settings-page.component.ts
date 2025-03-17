@@ -1,10 +1,11 @@
 import { Component, effect, inject, ViewChild } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
+import { Store } from '@ngrx/store';
 
 import { ProfileService } from '../../data';
 import { AvatarUploadComponent } from '@tt/common-ui';
-import { GlobalStoreService } from '@tt/shared';
+import { selectMyProfile } from '@tt/shared';
 
 @Component({
   selector: 'app-settings-page',
@@ -15,7 +16,9 @@ import { GlobalStoreService } from '@tt/shared';
 export class SettingsPageComponent {
   #fb = inject(FormBuilder);
   #profileService = inject(ProfileService);
-  #globalStoreService = inject(GlobalStoreService);
+  #store = inject(Store);
+
+  myProfile = this.#store.selectSignal(selectMyProfile);
 
   @ViewChild(AvatarUploadComponent, { static: true }) avatarUpload!: AvatarUploadComponent;
 
@@ -31,8 +34,8 @@ export class SettingsPageComponent {
     effect(() => {
       // @ts-ignore
       this.form.patchValue({
-        ...this.#globalStoreService.me(),
-        stack: this.mergeStack(this.#globalStoreService.me()?.stack),
+        ...this.myProfile(),
+        stack: this.mergeStack(this.myProfile()?.stack),
       });
     });
   }

@@ -4,7 +4,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Store } from '@ngrx/store';
 
 import { MessageInputComponent } from '@tt/common-ui';
-import { GlobalStoreService } from '@tt/shared';
+import { selectMyProfile } from '@tt/shared';
 import { PostComponent } from '../post/post.component';
 import { postsActions, selectPosts } from '../../data';
 import { type PostCreateDto } from '../../data';
@@ -19,7 +19,7 @@ export class PostFeedComponent implements AfterViewInit {
   #store = inject(Store);
   #hostElement = inject(ElementRef);
   #r2 = inject(Renderer2);
-  me = inject(GlobalStoreService).me;
+  myProfile = this.#store.selectSignal(selectMyProfile);
 
   posts = this.#store.selectSignal(selectPosts);
 
@@ -35,7 +35,7 @@ export class PostFeedComponent implements AfterViewInit {
   onPostCreated(commentText: string): void {
     const payload: PostCreateDto = {
       title: 'Новый пост',
-      authorId: this.me()!.id,
+      authorId: this.myProfile()!.id,
       content: commentText,
     };
 

@@ -2,7 +2,7 @@ import { Component, computed, inject, input, OnInit, signal, Signal } from '@ang
 import { Store } from '@ngrx/store';
 
 import { AvatarComponent, SvgIconComponent, TimeDiffToNowPipe, MessageInputComponent } from '@tt/common-ui';
-import { GlobalStoreService } from '@tt/shared';
+import { selectMyProfile } from '@tt/shared';
 import { type CommentCreateDto, type Post, PostComment, postsActions, selectCommentsByPostId } from '../../data';
 import { CommentComponent } from '../../ui/';
 
@@ -14,7 +14,8 @@ import { CommentComponent } from '../../ui/';
 })
 export class PostComponent implements OnInit {
   #store = inject(Store);
-  me = inject(GlobalStoreService).me;
+
+  myProfile = this.#store.selectSignal(selectMyProfile);
 
   post = input.required<Post>();
   storeComments!: Signal<PostComment[]>;
@@ -31,7 +32,7 @@ export class PostComponent implements OnInit {
   onCommentCreated(commentText: string) {
     const payload: CommentCreateDto = {
       text: commentText,
-      authorId: this.me()!.id,
+      authorId: this.myProfile()!.id,
       postId: this.post().id,
     };
 

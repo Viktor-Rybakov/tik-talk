@@ -1,6 +1,6 @@
 import { createActionGroup, props } from '@ngrx/store';
 
-import { Profile } from '@tt/interfaces/profile';
+import type { Profile } from '@tt/interfaces/profile';
 import { ProfilesSearchInterface } from '../interfaces/profiles-search.interface';
 
 export const profileActions = createActionGroup({

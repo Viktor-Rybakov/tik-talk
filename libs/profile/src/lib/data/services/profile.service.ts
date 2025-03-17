@@ -1,10 +1,11 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { firstValueFrom, map, Observable, tap } from 'rxjs';
+import { map, Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
 
 import { type Profile } from '@tt/interfaces/profile';
 import { type Pageable } from '@tt/common-ui';
-import { GlobalStoreService } from '@tt/shared';
+import { myProfileActions } from '@tt/shared';
 
 const ApiPrefix: string = 'https://icherniakov.ru/yt-course/';
 
@@ -13,22 +14,14 @@ const ApiPrefix: string = 'https://icherniakov.ru/yt-course/';
 })
 export class ProfileService {
   #http = inject(HttpClient);
-  #globalStoreService = inject(GlobalStoreService);
+  #store = inject(Store);
 
   constructor() {
-    firstValueFrom(this.getMe());
+    this.#store.dispatch(myProfileActions.fetchMyProfile({}));
   }
 
   getFilteredProfiles(params: Record<string, any>): Observable<Pageable<Profile>> {
     return this.#http.get<Pageable<Profile>>(`${ApiPrefix}account/accounts`, { params });
-  }
-
-  getMe(): Observable<Profile> {
-    return this.#http.get<Profile>(`${ApiPrefix}account/me`).pipe(
-      tap((response) => {
-        this.#globalStoreService.me.set(response);
-      })
-    );
   }
 
   getAccount(id: string): Observable<Profile> {
