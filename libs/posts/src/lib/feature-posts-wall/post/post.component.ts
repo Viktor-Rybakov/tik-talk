@@ -1,14 +1,10 @@
-import { Component, inject, input, OnInit, signal } from '@angular/core';
-import { firstValueFrom, switchMap } from 'rxjs';
+import { Component, computed, inject, input, OnInit, signal, Signal } from '@angular/core';
+import { Store } from '@ngrx/store';
 
-import { type CommentCreateDto, type Post, type PostComment } from '../../data';
-import { AvatarComponent } from '@tt/common-ui';
-import { SvgIconComponent } from '@tt/common-ui';
-import { CommentComponent } from '../../ui/';
-import { TimeDiffToNowPipe } from '@tt/common-ui';
-import { PostService } from '../../data';
-import { MessageInputComponent } from '@tt/common-ui';
+import { AvatarComponent, SvgIconComponent, TimeDiffToNowPipe, MessageInputComponent } from '@tt/common-ui';
 import { GlobalStoreService } from '@tt/shared';
+import { type CommentCreateDto, type Post, PostComment, postsActions, selectCommentsByPostId } from '../../data';
+import { CommentComponent } from '../../ui/';
 
 @Component({
   selector: 'app-post',
@@ -17,29 +13,29 @@ import { GlobalStoreService } from '@tt/shared';
   styleUrl: './post.component.scss',
 })
 export class PostComponent implements OnInit {
-  #postService = inject(PostService);
+  #store = inject(Store);
   me = inject(GlobalStoreService).me;
 
   post = input.required<Post>();
-  comments = signal<PostComment[]>([]);
+  storeComments!: Signal<PostComment[]>;
+  isCommentsUpdated = signal<boolean>(false);
+
+  comments = computed<PostComment[]>(() => {
+    return this.isCommentsUpdated() ? this.storeComments() : this.post().comments;
+  });
 
   ngOnInit(): void {
-    this.comments.set(this.post().comments);
+    this.storeComments = this.#store.selectSignal(selectCommentsByPostId(this.post().id));
   }
 
-  async onCommentCreated(commentText: string) {
+  onCommentCreated(commentText: string) {
     const payload: CommentCreateDto = {
       text: commentText,
       authorId: this.me()!.id,
       postId: this.post().id,
     };
 
-    const comments = await firstValueFrom(
-      this.#postService
-        .createComment(payload)
-        .pipe(switchMap(() => this.#postService.getCommentsByPostId(this.post().id)))
-    );
-
-    this.comments.set(comments);
+    this.#store.dispatch(postsActions.createComment({ newComment: payload }));
+    this.isCommentsUpdated.set(true);
   }
 }
