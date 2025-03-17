@@ -4,7 +4,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Store } from '@ngrx/store';
 
 import { PostComponent } from '../post/post.component';
-import { postsActions, PostService, postsFeature } from '../../data';
+import { postsActions, postsFeature } from '../../data';
 import { type PostCreateDto } from '../../data';
 import { MessageInputComponent } from '@tt/common-ui';
 import { GlobalStoreService } from '@tt/shared';
@@ -16,7 +16,6 @@ import { GlobalStoreService } from '@tt/shared';
   styleUrl: './post-feed.component.scss',
 })
 export class PostFeedComponent implements AfterViewInit {
-  #postService = inject(PostService);
   #store = inject(Store);
   #hostElement = inject(ElementRef);
   #r2 = inject(Renderer2);
@@ -25,9 +24,7 @@ export class PostFeedComponent implements AfterViewInit {
   posts = this.#store.selectSignal(postsFeature.selectPosts);
 
   constructor() {
-    firstValueFrom(this.#postService.getPosts()).then((response) =>
-      this.#store.dispatch(postsActions.postsLoaded({ posts: response }))
-    );
+    this.#store.dispatch(postsActions.fetchPosts({}));
 
     this.#startListenWindowResize();
   }
