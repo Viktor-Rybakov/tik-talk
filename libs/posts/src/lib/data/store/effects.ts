@@ -12,14 +12,21 @@ export class PostsEffects {
   #profileService = inject(PostService);
   actions$ = inject(Actions);
 
+  fetchPosts = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(postsActions.fetchPosts),
+      switchMap(() => this.#profileService.getPosts()),
+      map((response) => postsActions.postsLoaded({ posts: response }))
+    );
+  });
+
   createPost = createEffect(() => {
     return this.actions$.pipe(
       ofType(postsActions.createPost),
       switchMap(({ newPost }) => {
         return this.#profileService.createPost(newPost);
       }),
-      switchMap(() => this.#profileService.getPosts()),
-      map((response) => postsActions.postsLoaded({ posts: response }))
-    )
-  })
+      map(() => postsActions.fetchPosts({}))
+    );
+  });
 }
