@@ -1,13 +1,13 @@
 import { AfterViewInit, Component, ElementRef, inject, Renderer2 } from '@angular/core';
-import { debounceTime, firstValueFrom, fromEvent } from 'rxjs';
+import { debounceTime, fromEvent } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Store } from '@ngrx/store';
 
-import { PostComponent } from '../post/post.component';
-import { postsActions, postsFeature } from '../../data';
-import { type PostCreateDto } from '../../data';
 import { MessageInputComponent } from '@tt/common-ui';
 import { GlobalStoreService } from '@tt/shared';
+import { PostComponent } from '../post/post.component';
+import { postsActions, selectPosts } from '../../data';
+import { type PostCreateDto } from '../../data';
 
 @Component({
   selector: 'app-post-feed',
@@ -21,11 +21,10 @@ export class PostFeedComponent implements AfterViewInit {
   #r2 = inject(Renderer2);
   me = inject(GlobalStoreService).me;
 
-  posts = this.#store.selectSignal(postsFeature.selectPosts);
+  posts = this.#store.selectSignal(selectPosts);
 
   constructor() {
     this.#store.dispatch(postsActions.fetchPosts({}));
-
     this.#startListenWindowResize();
   }
 

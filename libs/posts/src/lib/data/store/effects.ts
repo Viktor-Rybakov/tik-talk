@@ -9,13 +9,13 @@ import { postsActions } from './actions';
   providedIn: 'root',
 })
 export class PostsEffects {
-  #profileService = inject(PostService);
+  #postService = inject(PostService);
   actions$ = inject(Actions);
 
   fetchPosts = createEffect(() => {
     return this.actions$.pipe(
       ofType(postsActions.fetchPosts),
-      switchMap(() => this.#profileService.getPosts()),
+      switchMap(() => this.#postService.getPosts()),
       map((response) => postsActions.postsLoaded({ posts: response }))
     );
   });
@@ -24,7 +24,7 @@ export class PostsEffects {
     return this.actions$.pipe(
       ofType(postsActions.createPost),
       switchMap(({ newPost }) => {
-        return this.#profileService.createPost(newPost);
+        return this.#postService.createPost(newPost);
       }),
       map(() => postsActions.fetchPosts({}))
     );
