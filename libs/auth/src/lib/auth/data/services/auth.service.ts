@@ -59,7 +59,7 @@ export class AuthService {
   #saveTokens(response: TokenResponse) {
     this.token = response.access_token;
     this.refreshToken = response.refresh_token;
-    this.#cookieService.set('token', this.token);
-    this.#cookieService.set('refreshToken', this.refreshToken);
+    this.#cookieService.set('token', this.token, { path: '/' });
+    this.#cookieService.set('refreshToken', this.refreshToken, { path: '/' });
   }
 }
