@@ -11,6 +11,16 @@
       <app-chat-message [message]="message" />
     }
   }
+
+  @if (activeChatWSMessages().length) {
+    <time class="chat-messages-list__group-messages-date">
+      Только что
+    </time>
+
+    @for (message of activeChatWSMessages(); track message.id) {
+      <app-chat-message [message]="message" />
+    }
+  }
 </div>
 
 <app-message-input

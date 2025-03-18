@@ -41,6 +41,7 @@
 }
 
 .chat-message__text {
+  min-width: 80px;
   grid-area: text;
   padding: 8px 16px;
   justify-self: start;
@@ -48,6 +49,7 @@
   font-size: 14px;
   font-weight: 500;
   line-height: 21px;
+  overflow-wrap: anywhere;
   background-color: var(--grey-color);
   clip-path: polygon(10px 0, 100% 0, 100% 100%, 0 100%, 0 10px);
 }

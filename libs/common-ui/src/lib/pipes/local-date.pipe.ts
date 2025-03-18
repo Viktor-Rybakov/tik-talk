@@ -10,8 +10,11 @@ export class LocalDatePipe implements PipeTransform {
       return null;
     }
 
-    const localDate = DateTime.fromISO(date, { zone: 'utc' }).toLocal();
+    const localDateISO = DateTime.fromISO(date, { zone: 'utc' }).toLocal();
+    const localDateFromFormat = DateTime.fromFormat(date, 'yyyy-MM-dd HH:mm:ss', { zone: 'utc' }).toLocal();
 
-    return localDate.toFormat(format);
+    const result = localDateISO.isValid ? localDateISO : localDateFromFormat;
+
+    return result.toFormat(format);
   }
 }
