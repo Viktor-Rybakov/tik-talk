@@ -1,6 +1,6 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { DateTime } from 'luxon';
 import { Store } from '@ngrx/store';
 
@@ -12,6 +12,7 @@ import { AuthService } from '../../../../../auth/src/lib/auth/data';
 import { ChatWSMessage } from '../interfaces/chat-ws-message.interface';
 import { isNewMessage, isUnreadMessage } from '../interfaces/type-guard';
 import { Profile } from '@tt/interfaces/profile';
+import { ChatWsRxjsService } from './chat-ws-rxjs.service';
 
 const ApiPrefix: string = 'https://icherniakov.ru/yt-course/';
 
@@ -23,14 +24,15 @@ export class ChatsService {
   #store = inject(Store);
   #authService = inject(AuthService);
 
-  wsAdapter: ChatWsService = new ChatWsNativeService();
+  // wsAdapter: ChatWsService = new ChatWsNativeService();
+  wsAdapter: ChatWsService = new ChatWsRxjsService();
 
   connectWS() {
-    this.wsAdapter.connect({
+    return this.wsAdapter.connect({
       url: `${ApiPrefix}chat/ws`,
       token: this.#authService.token ?? '',
       handleMessage: this.handleWSMessage,
-    });
+    }) as Observable<ChatWSMessage>;
   }
 
   handleWSMessage = (message: ChatWSMessage) => {

@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 import { ChatsListComponent } from '../chats-list/chats-list.component';
 import { ChatsService } from '../../data';
@@ -14,6 +15,6 @@ export class ChatsPageComponent {
   #chatService = inject(ChatsService);
 
   constructor() {
-    this.#chatService.connectWS();
+    this.#chatService.connectWS().pipe(takeUntilDestroyed()).subscribe();
   }
 }
