@@ -7,7 +7,7 @@
 
   <nav>
     <ul class="sidebar__menu">
-      @for (menuItem of menu; track menuItem.name) {
+      @for (menuItem of menu; track menuItem.id) {
         <li>
           <a
             class="sidebar__menu-link"
@@ -19,7 +19,12 @@
               class="size16"
               [icon]="menuItem.icon"
             ></svg>
+
             <span>{{ menuItem.name }}</span>
+
+            @if (menuItem.id === 'chats' && unreadMessagesCount()) {
+              <span class="sidebar__unread-messages-count">{{ unreadMessagesCount() }}</span>
+            }
           </a>
         </li>
       }
