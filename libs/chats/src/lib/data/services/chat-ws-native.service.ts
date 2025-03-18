@@ -13,7 +13,9 @@ export class ChatWsNativeService implements ChatWsService {
     };
 
     this.#socket.onclose = (): void => {
-      console.log('Connection closed');
+      this.disconnect();
+      this.#socket = null;
+      console.log('WS connection closed')
     };
   }
 

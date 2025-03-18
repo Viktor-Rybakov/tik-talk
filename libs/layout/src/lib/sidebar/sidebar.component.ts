@@ -27,7 +27,7 @@ export class SidebarComponent {
   myProfile = this.#store.selectSignal(selectMyProfile);
   unreadMessagesCount = this.#store.selectSignal(selectUnreadMessagesCount);
 
-  menu: { id: 'myProfile' | 'chats' | 'search', name: string; link: string[]; icon: IconType }[] = [
+  menu: { id: 'myProfile' | 'chats' | 'search'; name: string; link: string[]; icon: IconType }[] = [
     {
       id: 'myProfile',
       name: 'Моя страница',
@@ -51,6 +51,6 @@ export class SidebarComponent {
   subscribers$: Observable<Profile[]> = this.#profileService.getSubscribersShortList();
 
   constructor() {
-    this.#chatService.connectWS().pipe(takeUntilDestroyed()).subscribe();
+    this.#chatService.connectWithRefreshingWS().pipe(takeUntilDestroyed()).subscribe();
   }
 }

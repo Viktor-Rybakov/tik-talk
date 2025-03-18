@@ -1,16 +1,15 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, Observable } from 'rxjs';
+import { delay, firstValueFrom, map, Observable, startWith, Subject, switchMap } from 'rxjs';
 import { DateTime } from 'luxon';
 import { Store } from '@ngrx/store';
 
 import { type Chat, type LastMessage, type Message, type MessagesGroupByDate } from '../interfaces/chats.interface';
-import { selectMyProfile } from '@tt/shared';
-import { ChatWsNativeService } from './chat-ws-native.service';
+import { MyProfileService, selectMyProfile } from '@tt/shared';
 import { ChatWsService } from '../interfaces/chat-ws-service.interface';
 import { AuthService } from '../../../../../auth/src/lib/auth/data';
 import { ChatWSMessage } from '../interfaces/chat-ws-message.interface';
-import { isNewMessage, isUnreadMessage } from '../interfaces/type-guard';
+import { isError, isNewMessage, isUnreadMessage } from '../interfaces/type-guard';
 import { Profile } from '@tt/interfaces/profile';
 import { ChatWsRxjsService } from './chat-ws-rxjs.service';
 import { chatActions } from '../store/actions';
@@ -24,47 +23,11 @@ export class ChatsService {
   #http = inject(HttpClient);
   #store = inject(Store);
   #authService = inject(AuthService);
+  #myProfileService = inject(MyProfileService);
 
   // wsAdapter: ChatWsService = new ChatWsNativeService();
   wsAdapter: ChatWsService = new ChatWsRxjsService();
-
-  connectWS() {
-    return this.wsAdapter.connect({
-      url: `${ApiPrefix}chat/ws`,
-      token: this.#authService.token ?? '',
-      handleMessage: this.handleWSMessage,
-    }) as Observable<ChatWSMessage>;
-  }
-
-  handleWSMessage = (message: ChatWSMessage) => {
-    if (!('action' in message)) {
-      return;
-    }
-
-    if (isUnreadMessage(message)) {
-      this.#store.dispatch(chatActions.newWSUnreadMessage({ message }));
-    }
-
-    if (isNewMessage(message)) {
-      const isMyMessage = this.myProfile()?.id === message.data.author;
-      const isCompanionMessage = this.activeCompanionProfile()?.id === message.data.author;
-
-      if (isMyMessage || isCompanionMessage) {
-        const newWSMessage: Message = {
-          id: message.data.id,
-          userFromId: message.data.author,
-          personalChatId: message.data.chat_id,
-          text: message.data.message,
-          createdAt: message.data.created_at,
-          isRead: true,
-          user: isMyMessage ? this.myProfile()! : this.activeCompanionProfile()!,
-          isMine: isMyMessage,
-        };
-
-        this.activeChatWSMessages.set([...this.activeChatWSMessages(), newWSMessage]);
-      }
-    }
-  };
+  wsRefresh$ = new Subject<void>();
 
   myProfile = this.#store.selectSignal(selectMyProfile);
   activeCompanionProfile = signal<Profile | null>(null);
@@ -122,5 +85,59 @@ export class ChatsService {
     return Array.from(messagesMap, ([date, messages]) => {
       return { date, messages };
     });
+  }
+
+  connectWithRefreshingWS() {
+    return this.wsRefresh$.pipe(
+      startWith(null),
+      switchMap(() => this.#connectWS()),
+    )
+  }
+
+  handleWSMessage = (message: ChatWSMessage) => {
+    if (!('action' in message)) {
+      return;
+    }
+
+    if (isUnreadMessage(message)) {
+      this.#store.dispatch(chatActions.newWSUnreadMessage({ message }));
+    }
+
+    if (isNewMessage(message)) {
+      const isMyMessage = this.myProfile()?.id === message.data.author;
+      const isCompanionMessage = this.activeCompanionProfile()?.id === message.data.author;
+
+      if (isMyMessage || isCompanionMessage) {
+        const newWSMessage: Message = {
+          id: message.data.id,
+          userFromId: message.data.author,
+          personalChatId: message.data.chat_id,
+          text: message.data.message,
+          createdAt: message.data.created_at,
+          isRead: true,
+          user: isMyMessage ? this.myProfile()! : this.activeCompanionProfile()!,
+          isMine: isMyMessage,
+        };
+
+        this.activeChatWSMessages.set([...this.activeChatWSMessages(), newWSMessage]);
+      }
+    }
+
+    if (isError(message)) {
+      console.error('WS Connection ERROR: Invalid token');
+      this.#refreshWSConnection();
+    }
+  };
+
+  #connectWS() {
+    return this.wsAdapter.connect({
+      url: `${ApiPrefix}chat/ws`,
+      token: this.#authService.token ?? '',
+      handleMessage: this.handleWSMessage,
+    }) as Observable<ChatWSMessage>;
+  }
+
+  #refreshWSConnection() {
+    firstValueFrom(this.#myProfileService.getMe().pipe(delay(2000))).then(() => this.wsRefresh$.next());
   }
 }
