@@ -13,6 +13,7 @@ import { ChatWSMessage } from '../interfaces/chat-ws-message.interface';
 import { isNewMessage, isUnreadMessage } from '../interfaces/type-guard';
 import { Profile } from '@tt/interfaces/profile';
 import { ChatWsRxjsService } from './chat-ws-rxjs.service';
+import { chatActions } from '../store/actions';
 
 const ApiPrefix: string = 'https://icherniakov.ru/yt-course/';
 
@@ -41,15 +42,14 @@ export class ChatsService {
     }
 
     if (isUnreadMessage(message)) {
-      console.log('UNREAD MESSAGE', message.data.count);
+      this.#store.dispatch(chatActions.newWSUnreadMessage({ message }));
     }
 
     if (isNewMessage(message)) {
       const isMyMessage = this.myProfile()?.id === message.data.author;
       const isCompanionMessage = this.activeCompanionProfile()?.id === message.data.author;
 
-      if(isMyMessage || isCompanionMessage) {
-
+      if (isMyMessage || isCompanionMessage) {
         const newWSMessage: Message = {
           id: message.data.id,
           userFromId: message.data.author,

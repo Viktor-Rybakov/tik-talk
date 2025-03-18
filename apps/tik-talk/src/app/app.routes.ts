@@ -11,7 +11,7 @@ import {
 } from '@tt/profile';
 import { canActivateAuth, LoginPageComponent } from '@tt/auth';
 import { LayoutComponent } from '@tt/layout';
-import { chatsRoutes } from '@tt/chats';
+import { ChatEffects, chatFeature, chatsRoutes } from '@tt/chats';
 import { SandboxPageComponent } from '@tt/sandbox';
 import { PostsEffects, postsFeature } from '@tt/posts';
 import { MyProfileEffects, myProfileFeature } from '@tt/shared';
@@ -36,7 +36,12 @@ export const routes: Routes = [
       { path: 'chats', loadChildren: () => chatsRoutes },
     ],
     canActivate: [canActivateAuth],
-    providers: [provideState(myProfileFeature), provideEffects(MyProfileEffects)],
+    providers: [
+      provideState(myProfileFeature),
+      provideEffects(MyProfileEffects),
+      provideState(chatFeature),
+      provideEffects(ChatEffects),
+    ],
   },
   { path: 'login', component: LoginPageComponent },
   { path: 'sandbox', component: SandboxPageComponent },
