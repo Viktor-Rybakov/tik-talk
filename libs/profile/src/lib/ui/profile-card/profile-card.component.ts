@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 import { type Profile } from '@tt/interfaces/profile';
 import { AvatarComponent } from '@tt/common-ui';
@@ -8,6 +8,7 @@ import { AvatarComponent } from '@tt/common-ui';
   imports: [AvatarComponent],
   templateUrl: './profile-card.component.html',
   styleUrl: './profile-card.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProfileCardComponent {
   @Input({ required: true }) profile!: Profile;

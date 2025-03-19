@@ -1,4 +1,4 @@
-import { Component, HostBinding, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular/core';
 
 export type IconType =
   | 'eye'
@@ -27,6 +27,7 @@ export type IconType =
   imports: [],
   template: '<svg:use [attr.href]="href"></svg:use>',
   styleUrl: 'svg-icon.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SvgIconComponent {
   @Input({ required: true }) icon!: IconType;

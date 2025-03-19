@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 
 import { SvgIconComponent } from '../svg-icon/svg-icon.component';
 import { DndDirective } from '../../directives';
@@ -10,6 +10,7 @@ const previewUrl: string = '/assets/svg/avatar-placeholder.svg';
   imports: [SvgIconComponent, DndDirective],
   templateUrl: './avatar-upload.component.html',
   styleUrl: './avatar-upload.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AvatarUploadComponent {
   preview = signal<string>(previewUrl);

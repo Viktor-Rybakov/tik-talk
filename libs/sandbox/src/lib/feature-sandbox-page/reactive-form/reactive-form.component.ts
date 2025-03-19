@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import {
   AbstractControl,
   FormArray,
@@ -77,6 +77,7 @@ function getDateRangeValidator(controlNameFrom: string, controlNameTo: string): 
   imports: [ReactiveFormsModule],
   templateUrl: './reactive-form.component.html',
   styleUrl: './reactive-form.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ReactiveFormComponent {
   #fb = inject(FormBuilder);

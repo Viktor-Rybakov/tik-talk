@@ -1,4 +1,4 @@
-import { booleanAttribute, Component, inject, input, output, Renderer2 } from '@angular/core';
+import { booleanAttribute, ChangeDetectionStrategy, Component, inject, input, output, Renderer2 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
 
@@ -11,6 +11,7 @@ import { selectMyProfile } from '@tt/shared';
   imports: [AvatarComponent, FormsModule, SvgIconComponent],
   templateUrl: './message-input.component.html',
   styleUrl: './message-input.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MessageInputComponent {
   #r2 = inject(Renderer2);

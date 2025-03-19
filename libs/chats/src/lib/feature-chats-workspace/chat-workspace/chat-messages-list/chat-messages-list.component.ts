@@ -1,4 +1,4 @@
-import { Component, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
 
 import { ChatMessageComponent } from '../chat-message/chat-message.component';
 import { MessageInputComponent } from '@tt/common-ui';
@@ -11,6 +11,7 @@ import { RelativeDatePipe } from '@tt/common-ui';
   imports: [ChatMessageComponent, MessageInputComponent, RelativeDatePipe],
   templateUrl: './chat-messages-list.component.html',
   styleUrl: './chat-messages-list.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChatMessagesListComponent {
   #chatService = inject(ChatsService);
