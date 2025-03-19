@@ -19,12 +19,10 @@
       "@tt/auth": ["libs/auth/src/index.ts"],
       "@tt/chats": ["libs/chats/src/index.ts"],
       "@tt/common-ui": ["libs/common-ui/src/index.ts"],
-      "@tt/interfaces/*": ["libs/interfaces/src/lib/*"],
       "@tt/layout": ["libs/layout/src/index.ts"],
       "@tt/posts": ["libs/posts/src/index.ts"],
       "@tt/profile": ["libs/profile/src/index.ts"],
       "@tt/sandbox": ["libs/sandbox/src/index.ts"],
-      "@tt/shared": ["libs/shared/src/index.ts"],
       "@tt/data-access/*": ["libs/data-access/src/lib/*"]
     },
     "baseUrl": ".",

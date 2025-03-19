@@ -2,20 +2,15 @@ import { Routes } from '@angular/router';
 import { provideState } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 
-import {
-  ProfileEffects,
-  SearchPageComponent,
-  profileFeature,
-  ProfilePageComponent,
-  SettingsPageComponent,
-} from '@tt/profile';
-import { canActivateAuth, LoginPageComponent } from '@tt/auth';
+import { SearchPageComponent, ProfilePageComponent, SettingsPageComponent } from '@tt/profile';
+import { LoginPageComponent } from '@tt/auth';
+import { canActivateAuth } from '@tt/data-access/auth';
 import { LayoutComponent } from '@tt/layout';
 import { chatsRoutes } from '@tt/chats';
 import { SandboxPageComponent } from '@tt/sandbox';
 import { PostsEffects, postsFeature } from '@tt/data-access/posts';
-import { MyProfileEffects, myProfileFeature } from '@tt/shared';
 import { ChatEffects, chatFeature } from '@tt/data-access/chats';
+import { ProfileEffects, profileFeature } from '@tt/data-access/profile';
 
 export const routes: Routes = [
   {
@@ -26,7 +21,6 @@ export const routes: Routes = [
       {
         path: 'search',
         component: SearchPageComponent,
-        providers: [provideState(profileFeature), provideEffects(ProfileEffects)],
       },
       {
         path: 'profile/:id',
@@ -38,8 +32,8 @@ export const routes: Routes = [
     ],
     canActivate: [canActivateAuth],
     providers: [
-      provideState(myProfileFeature),
-      provideEffects(MyProfileEffects),
+      provideState(profileFeature),
+      provideEffects(ProfileEffects),
       provideState(chatFeature),
       provideEffects(ChatEffects),
     ],

@@ -4,7 +4,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { debounceTime } from 'rxjs';
 import { Store } from '@ngrx/store';
 
-import { profileActions, ProfilesSearchForm, selectProfilesFilters } from '../../data';
+import { profileActions, ProfilesSearchForm, selectProfilesFilters } from '@tt/data-access/profile';
 
 @Component({
   selector: 'app-profile-filters',

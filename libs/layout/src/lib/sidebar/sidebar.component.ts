@@ -7,10 +7,8 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 import { type IconType, SvgIconComponent } from '@tt/common-ui';
 import { SubscriberCardComponent } from '../ui';
-import { ProfileService } from '@tt/profile';
+import { type Profile, ProfileService, selectMyProfile } from '@tt/data-access/profile';
 import { AvatarComponent } from '@tt/common-ui';
-import { type Profile } from '@tt/interfaces/profile';
-import { selectMyProfile } from '@tt/shared';
 import { ChatsService, selectUnreadMessagesCount } from '@tt/data-access/chats';
 
 @Component({

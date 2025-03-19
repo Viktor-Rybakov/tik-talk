@@ -6,11 +6,10 @@ import { switchMap, tap } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 import { ProfileHeaderComponent } from '../../ui';
-import { ProfileService } from '../../data';
+import { ProfileService, selectMyProfile } from '@tt/data-access/profile';
 import { SvgIconComponent } from '@tt/common-ui';
 import { PostFeedComponent } from '@tt/posts';
 import { AvatarComponent } from '@tt/common-ui';
-import { selectMyProfile } from '@tt/shared';
 
 @Component({
   selector: 'app-profile-page',

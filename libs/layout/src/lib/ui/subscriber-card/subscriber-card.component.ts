@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
-import { type Profile } from '@tt/interfaces/profile';
+import { type Profile } from '@tt/data-access/profile';
 import { AvatarComponent } from '@tt/common-ui';
 
 @Component({

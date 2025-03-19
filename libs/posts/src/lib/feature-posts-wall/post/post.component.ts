@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, inject, input, OnInit, si
 import { Store } from '@ngrx/store';
 
 import { AvatarComponent, SvgIconComponent, TimeDiffToNowPipe, MessageInputComponent } from '@tt/common-ui';
-import { selectMyProfile } from '@tt/shared';
+import { selectMyProfile } from '@tt/data-access/profile';
 import { type CommentCreateDto, type Post, PostComment, postsActions, selectCommentsByPostId } from '@tt/data-access/posts';
 import { CommentComponent } from '../../ui/';
 
