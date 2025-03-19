@@ -5,12 +5,12 @@ import { DateTime } from 'luxon';
 import { Store } from '@ngrx/store';
 
 import { type Chat, type LastMessage, type Message, type MessagesGroupByDate } from '../interfaces/chats.interface';
-import { MyProfileService, selectMyProfile } from '@tt/shared';
+import { MyProfileService, selectMyProfile } from '@tt/data-access/profile';
 import { ChatWsService } from '../interfaces/chat-ws-service.interface';
-import { AuthService } from '../../../../../auth/src/lib/auth/data';
+import { AuthService } from '../../auth';
 import { ChatWSMessage } from '../interfaces/chat-ws-message.interface';
 import { isError, isNewMessage, isUnreadMessage } from '../interfaces/type-guard';
-import { Profile } from '@tt/interfaces/profile';
+import { Profile } from '@tt/data-access/profile';
 import { ChatWsRxjsService } from './chat-ws-rxjs.service';
 import { chatActions } from '../store/actions';
 

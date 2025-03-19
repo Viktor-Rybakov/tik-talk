@@ -5,7 +5,7 @@ import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 
 import { routes } from './app.routes';
-import { authTokenInterceptor } from '@tt/auth';
+import { authTokenInterceptor } from '@tt/data-access/auth';
 
 export const appConfig: ApplicationConfig = {
   providers: [

@@ -3,7 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { catchError } from 'rxjs';
 import { Router } from '@angular/router';
 
-import { AuthService } from '../../data';
+import { AuthService } from '@tt/data-access/auth';
 import { SvgIconComponent } from '@tt/common-ui';
 
 @Component({

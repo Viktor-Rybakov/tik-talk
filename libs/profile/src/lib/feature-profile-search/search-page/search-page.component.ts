@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 
 import { ProfileCardComponent } from '../../ui';
 import { ProfileFiltersComponent } from '../profile-filters/profile-filters.component';
-import { selectFilteredProfiles } from '../../data';
+import { selectFilteredProfiles } from '@tt/data-access/profile';
 
 @Component({
   selector: 'app-search-page',
