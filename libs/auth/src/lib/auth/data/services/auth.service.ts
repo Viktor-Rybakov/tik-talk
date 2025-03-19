@@ -6,8 +6,6 @@ import { Router } from '@angular/router';
 
 import { type Auth, type TokenResponse } from '../interfaces/auth.interface';
 
-const ApiPrefix: string = 'https://icherniakov.ru/yt-course/auth/';
-
 @Injectable({
   providedIn: 'root',
 })
@@ -32,12 +30,12 @@ export class AuthService {
     fd.append('username', payload.username);
     fd.append('password', payload.password);
 
-    return this.#http.post<TokenResponse>(`${ApiPrefix}token`, fd).pipe(tap((response) => this.#saveTokens(response)));
+    return this.#http.post<TokenResponse>(`/yt-course/auth/token`, fd).pipe(tap((response) => this.#saveTokens(response)));
   }
 
   refreshAuthToken() {
     return this.#http
-      .post<TokenResponse>(`${ApiPrefix}refresh`, {
+      .post<TokenResponse>(`/yt-course/auth/refresh`, {
         refresh_token: this.refreshToken,
       })
       .pipe(

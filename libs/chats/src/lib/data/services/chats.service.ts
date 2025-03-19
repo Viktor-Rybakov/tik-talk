@@ -14,8 +14,6 @@ import { Profile } from '@tt/interfaces/profile';
 import { ChatWsRxjsService } from './chat-ws-rxjs.service';
 import { chatActions } from '../store/actions';
 
-const ApiPrefix: string = 'https://icherniakov.ru/yt-course/';
-
 @Injectable({
   providedIn: 'root',
 })
@@ -35,15 +33,15 @@ export class ChatsService {
   activeChatWSMessages = signal<Message[]>([]);
 
   createChat(userId: number) {
-    return this.#http.post<Chat>(`${ApiPrefix}chat/${userId}`, {});
+    return this.#http.post<Chat>(`/yt-course/chat/${userId}`, {});
   }
 
   getMyChats() {
-    return this.#http.get<LastMessage[]>(`${ApiPrefix}chat/get_my_chats/`);
+    return this.#http.get<LastMessage[]>('/yt-course/chat/get_my_chats/');
   }
 
   getChatById(chatId: number) {
-    return this.#http.get<Chat>(`${ApiPrefix}chat/${chatId}`).pipe(
+    return this.#http.get<Chat>(`/yt-course/chat/${chatId}`).pipe(
       map((chat) => {
         const patchedMessages = chat.messages.map((message) => {
           return {
@@ -131,7 +129,7 @@ export class ChatsService {
 
   #connectWS() {
     return this.wsAdapter.connect({
-      url: `${ApiPrefix}chat/ws`,
+      url: '/yt-course/chat/ws',
       token: this.#authService.token ?? '',
       handleMessage: this.handleWSMessage,
     }) as Observable<ChatWSMessage>;
