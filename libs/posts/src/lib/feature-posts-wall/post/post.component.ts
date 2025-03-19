@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 
 import { AvatarComponent, SvgIconComponent, TimeDiffToNowPipe, MessageInputComponent } from '@tt/common-ui';
 import { selectMyProfile } from '@tt/shared';
-import { type CommentCreateDto, type Post, PostComment, postsActions, selectCommentsByPostId } from '../../data';
+import { type CommentCreateDto, type Post, PostComment, postsActions, selectCommentsByPostId } from '@tt/data-access/posts';
 import { CommentComponent } from '../../ui/';
 
 @Component({
