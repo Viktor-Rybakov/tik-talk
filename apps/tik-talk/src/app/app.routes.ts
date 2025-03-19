@@ -11,10 +11,11 @@ import {
 } from '@tt/profile';
 import { canActivateAuth, LoginPageComponent } from '@tt/auth';
 import { LayoutComponent } from '@tt/layout';
-import { ChatEffects, chatFeature, chatsRoutes } from '@tt/chats';
+import { chatsRoutes } from '@tt/chats';
 import { SandboxPageComponent } from '@tt/sandbox';
 import { PostsEffects, postsFeature } from '@tt/posts';
 import { MyProfileEffects, myProfileFeature } from '@tt/shared';
+import { ChatEffects, chatFeature } from '@tt/data-access/chats';
 
 export const routes: Routes = [
   {

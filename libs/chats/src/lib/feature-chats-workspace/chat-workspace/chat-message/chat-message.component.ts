@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, HostBinding, input } from '@angular/core';
 
-import { type Message } from '../../../data';
+import { type Message } from '@tt/data-access/chats';
 import { AvatarComponent } from '@tt/common-ui';
 import { LocalDatePipe } from '@tt/common-ui';
 
