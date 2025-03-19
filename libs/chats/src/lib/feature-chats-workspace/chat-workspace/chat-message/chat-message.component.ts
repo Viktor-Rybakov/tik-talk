@@ -1,4 +1,4 @@
-import { Component, HostBinding, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, input } from '@angular/core';
 
 import { type Message } from '../../../data';
 import { AvatarComponent } from '@tt/common-ui';
@@ -9,6 +9,7 @@ import { LocalDatePipe } from '@tt/common-ui';
   imports: [AvatarComponent, LocalDatePipe],
   templateUrl: './chat-message.component.html',
   styleUrl: './chat-message.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChatMessageComponent {
   message = input.required<Message>();
