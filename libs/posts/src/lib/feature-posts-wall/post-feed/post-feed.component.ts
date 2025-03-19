@@ -6,8 +6,8 @@ import { Store } from '@ngrx/store';
 import { MessageInputComponent } from '@tt/common-ui';
 import { selectMyProfile } from '@tt/shared';
 import { PostComponent } from '../post/post.component';
-import { postsActions, selectPosts } from '../../data';
-import { type PostCreateDto } from '../../data';
+import { postsActions, selectPosts } from '@tt/data-access/posts';
+import { type PostCreateDto } from '@tt/data-access/posts';
 
 @Component({
   selector: 'app-post-feed',

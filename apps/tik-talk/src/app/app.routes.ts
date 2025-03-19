@@ -13,7 +13,7 @@ import { canActivateAuth, LoginPageComponent } from '@tt/auth';
 import { LayoutComponent } from '@tt/layout';
 import { chatsRoutes } from '@tt/chats';
 import { SandboxPageComponent } from '@tt/sandbox';
-import { PostsEffects, postsFeature } from '@tt/posts';
+import { PostsEffects, postsFeature } from '@tt/data-access/posts';
 import { MyProfileEffects, myProfileFeature } from '@tt/shared';
 import { ChatEffects, chatFeature } from '@tt/data-access/chats';
 
