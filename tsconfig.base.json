@@ -24,7 +24,8 @@
       "@tt/posts": ["libs/posts/src/index.ts"],
       "@tt/profile": ["libs/profile/src/index.ts"],
       "@tt/sandbox": ["libs/sandbox/src/index.ts"],
-      "@tt/shared": ["libs/shared/src/index.ts"]
+      "@tt/shared": ["libs/shared/src/index.ts"],
+      "@tt/data-access/*": ["libs/data-access/src/lib/*"]
     },
     "baseUrl": ".",
     "rootDir": "."
