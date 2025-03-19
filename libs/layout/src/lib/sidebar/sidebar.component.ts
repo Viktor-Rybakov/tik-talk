@@ -11,7 +11,7 @@ import { ProfileService } from '@tt/profile';
 import { AvatarComponent } from '@tt/common-ui';
 import { type Profile } from '@tt/interfaces/profile';
 import { selectMyProfile } from '@tt/shared';
-import { ChatsService, selectUnreadMessagesCount } from '@tt/chats';
+import { ChatsService, selectUnreadMessagesCount } from '@tt/data-access/chats';
 
 @Component({
   selector: 'app-sidebar',

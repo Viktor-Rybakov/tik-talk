@@ -5,8 +5,8 @@ import { AsyncPipe } from '@angular/common';
 
 import { ChatWorkspaceHeaderComponent } from './chat-workspace-header/chat-workspace-header.component';
 import { ChatMessagesListComponent } from './chat-messages-list/chat-messages-list.component';
-import { ChatsService } from '../../data';
-import { type Chat } from '../../data';
+import { ChatsService } from '@tt/data-access/chats';
+import { type Chat } from '@tt/data-access/chats';
 
 @Component({
   selector: 'app-chat-workspace',

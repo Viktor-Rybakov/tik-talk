@@ -4,7 +4,7 @@ import { AsyncPipe } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { map, startWith, switchMap } from 'rxjs';
 
-import { ChatsService } from '../../data';
+import { ChatsService } from '@tt/data-access/chats';
 import { ChatButtonComponent } from './chat-button/chat-button.component';
 import { SvgIconComponent } from '@tt/common-ui';
 

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
-import { type LastMessage } from '../../../data';
+import { type LastMessage } from '@tt/data-access/chats';
 import { AvatarComponent } from '@tt/common-ui';
 import { LocalDatePipe } from '@tt/common-ui';
 
