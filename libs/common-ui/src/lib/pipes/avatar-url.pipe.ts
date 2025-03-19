@@ -1,7 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-const Prefix: string = 'https://icherniakov.ru/yt-course/';
-
 @Pipe({
   name: 'avatarUrl',
 })
@@ -10,6 +8,6 @@ export class AvatarUrlPipe implements PipeTransform {
     if (!value) {
       return '/assets/svg/avatar-placeholder.svg';
     }
-    return `${Prefix}${value}`;
+    return `/yt-course/${value}`;
   }
 }

@@ -7,8 +7,6 @@ import { type Profile } from '@tt/interfaces/profile';
 import { type Pageable } from '@tt/common-ui';
 import { myProfileActions } from '@tt/shared';
 
-const ApiPrefix: string = 'https://icherniakov.ru/yt-course/';
-
 @Injectable({
   providedIn: 'root',
 })
@@ -21,15 +19,15 @@ export class ProfileService {
   }
 
   getFilteredProfiles(params: Record<string, any>): Observable<Pageable<Profile>> {
-    return this.#http.get<Pageable<Profile>>(`${ApiPrefix}account/accounts`, { params });
+    return this.#http.get<Pageable<Profile>>('/yt-course/account/accounts', { params });
   }
 
   getAccount(id: string): Observable<Profile> {
-    return this.#http.get<Profile>(`${ApiPrefix}account/${id}`);
+    return this.#http.get<Profile>(`/yt-course/account/${id}`);
   }
 
   getSubscribers(): Observable<Pageable<Profile>> {
-    return this.#http.get<Pageable<Profile>>(`${ApiPrefix}account/subscribers/`);
+    return this.#http.get<Pageable<Profile>>('/yt-course/account/subscribers/');
   }
 
   getSubscribersShortList(amount: number = 3): Observable<Profile[]> {
@@ -37,12 +35,12 @@ export class ProfileService {
   }
 
   patchProfile(profile: Partial<Profile>) {
-    return this.#http.patch<Profile>(`${ApiPrefix}account/me`, profile);
+    return this.#http.patch<Profile>('/yt-course/account/me', profile);
   }
 
   uploadImage(file: File) {
     const fd = new FormData();
     fd.append('image', file);
-    return this.#http.post<Profile>(`${ApiPrefix}account/upload_image`, fd);
+    return this.#http.post<Profile>('/yt-course/account/upload_image', fd);
   }
 }
