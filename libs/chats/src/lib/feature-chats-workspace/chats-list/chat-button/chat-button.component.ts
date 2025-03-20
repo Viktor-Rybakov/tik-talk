@@ -1,8 +1,7 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
-import { type LastMessage } from '@tt/data-access/chats';
-import { AvatarComponent } from '@tt/common-ui';
-import { LocalDatePipe } from '@tt/common-ui';
+import type { LastMessage } from '@tt/data-access/chats';
+import { AvatarComponent, LocalDatePipe } from '@tt/common-ui';
 
 @Component({
   selector: 'button[chat]',

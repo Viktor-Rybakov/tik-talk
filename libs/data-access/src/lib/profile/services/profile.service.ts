@@ -3,8 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 
-import { type Profile } from '../interfaces/profile.interface';
-import { type Pageable } from '@tt/data-access/common';
+import type { Pageable } from '../../common';
+import type { Profile } from '../interfaces';
 import { profileActions } from '../store/actions';
 
 @Injectable({

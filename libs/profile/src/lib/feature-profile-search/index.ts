@@ -1,3 +1,1 @@
-import { SearchPageComponent } from './search-page/search-page.component';
-
-export { SearchPageComponent };
+export { SearchPageComponent } from './search-page/search-page.component';

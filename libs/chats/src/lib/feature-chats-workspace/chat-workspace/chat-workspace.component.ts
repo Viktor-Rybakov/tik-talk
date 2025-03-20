@@ -3,10 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { filter, Observable, of, switchMap } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 
+import { ChatsService, type Chat } from '@tt/data-access/chats';
 import { ChatWorkspaceHeaderComponent } from './chat-workspace-header/chat-workspace-header.component';
 import { ChatMessagesListComponent } from './chat-messages-list/chat-messages-list.component';
-import { ChatsService } from '@tt/data-access/chats';
-import { type Chat } from '@tt/data-access/chats';
 
 @Component({
   selector: 'app-chat-workspace',

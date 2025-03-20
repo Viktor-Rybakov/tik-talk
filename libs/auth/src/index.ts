@@ -1,1 +1,1 @@
-export { LoginPageComponent } from './lib/auth/feature-login-page';
+export * from './lib/auth/feature-login-page';

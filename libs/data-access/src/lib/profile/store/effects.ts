@@ -2,9 +2,8 @@ import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, switchMap } from 'rxjs';
 
-import { ProfileService } from '../services/profile.service';
+import { ProfileService, MyProfileService } from '../services';
 import { profileActions } from './actions';
-import { MyProfileService } from '../services/my-profile.service';
 
 @Injectable({
   providedIn: 'root',

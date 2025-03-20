@@ -1,8 +1,7 @@
 import { ChangeDetectionStrategy, Component, HostBinding, input } from '@angular/core';
 
-import { type Message } from '@tt/data-access/chats';
-import { AvatarComponent } from '@tt/common-ui';
-import { LocalDatePipe } from '@tt/common-ui';
+import type { Message } from '@tt/data-access/chats';
+import { AvatarComponent, LocalDatePipe } from '@tt/common-ui';
 
 @Component({
   selector: 'app-chat-message',

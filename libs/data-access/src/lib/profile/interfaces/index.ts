@@ -1,5 +1,2 @@
-import { Profile } from './profile.interface';
-import { ProfilesSearchForm, ProfilesSearchInterface } from './profiles-search.interface';
-
-export type { Profile };
-export type { ProfilesSearchInterface, ProfilesSearchForm };
+export type { Profile } from './profile.interface';
+export type { ProfilesSearchForm, ProfilesSearch } from './profiles.search';

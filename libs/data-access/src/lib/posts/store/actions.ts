@@ -1,6 +1,6 @@
 import { createActionGroup, props } from '@ngrx/store';
 
-import type { Post, PostCreateDto, PostComment, CommentCreateDto } from '../interfaces/post.interface';
+import type { Post, PostCreateDto, PostComment, CommentCreateDto } from '../interfaces';
 
 export const postsActions = createActionGroup({
   source: 'Posts',

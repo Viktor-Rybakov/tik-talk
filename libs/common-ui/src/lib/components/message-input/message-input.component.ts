@@ -2,9 +2,9 @@ import { booleanAttribute, ChangeDetectionStrategy, Component, inject, input, ou
 import { FormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
 
+import { selectMyProfile } from '@tt/data-access/profile';
 import { AvatarComponent } from '../avatar/avatar.component';
 import { SvgIconComponent } from '../svg-icon/svg-icon.component';
-import { selectMyProfile } from '@tt/data-access/profile';
 
 @Component({
   selector: 'app-message-input',

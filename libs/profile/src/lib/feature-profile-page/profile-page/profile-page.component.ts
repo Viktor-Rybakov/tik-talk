@@ -5,11 +5,10 @@ import { toObservable } from '@angular/core/rxjs-interop';
 import { switchMap, tap } from 'rxjs';
 import { Store } from '@ngrx/store';
 
-import { ProfileHeaderComponent } from '../../ui';
 import { ProfileService, selectMyProfile } from '@tt/data-access/profile';
-import { SvgIconComponent } from '@tt/common-ui';
 import { PostFeedComponent } from '@tt/posts';
-import { AvatarComponent } from '@tt/common-ui';
+import { SvgIconComponent, AvatarComponent } from '@tt/common-ui';
+import { ProfileHeaderComponent } from '../../ui';
 
 @Component({
   selector: 'app-profile-page',

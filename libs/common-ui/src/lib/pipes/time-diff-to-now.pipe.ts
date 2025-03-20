@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { DateTime } from 'luxon';
 
-import { getPluralForm, type PluralForms } from '../utils/pluralisation.util';
+import { getPluralForm, type PluralForms } from '../utils';
 
 @Pipe({
   name: 'timeDiffToNow',

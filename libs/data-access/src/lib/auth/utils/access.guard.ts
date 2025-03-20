@@ -1,7 +1,7 @@
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { AuthService } from '@tt/data-access/auth';
+import { AuthService } from '../services';
 
 export function canActivateAuth() {
   const isLoggedIn = inject(AuthService).isAuth;

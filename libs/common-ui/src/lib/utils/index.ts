@@ -1,3 +1,1 @@
-import { getPluralForm, type PluralForms } from './pluralisation.util';
-
-export { getPluralForm, type PluralForms };
+export { getPluralForm, type PluralForms } from './pluralisation.util';
