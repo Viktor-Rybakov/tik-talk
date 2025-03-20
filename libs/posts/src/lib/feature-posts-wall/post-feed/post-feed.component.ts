@@ -1,4 +1,15 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, inject, Renderer2 } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  ElementRef,
+  inject,
+  input,
+  OnChanges,
+  Renderer2,
+  SimpleChanges,
+} from '@angular/core';
 import { debounceTime, fromEvent } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Store } from '@ngrx/store';
@@ -15,17 +26,26 @@ import { PostComponent } from '../post/post.component';
   styleUrl: './post-feed.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PostFeedComponent implements AfterViewInit {
+export class PostFeedComponent implements OnChanges, AfterViewInit {
   #store = inject(Store);
   #hostElement = inject(ElementRef);
   #r2 = inject(Renderer2);
-  myProfile = this.#store.selectSignal(selectMyProfile);
 
+  myProfile = this.#store.selectSignal(selectMyProfile);
   posts = this.#store.selectSignal(selectPosts);
 
+  userId = input.required<number>();
+
+  isMyPage = computed<boolean>(() => this.myProfile()?.id === this.userId());
+
   constructor() {
-    this.#store.dispatch(postsActions.fetchPosts({}));
     this.#startListenWindowResize();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['userId']) {
+      this.#store.dispatch(postsActions.fetchPosts({ userId: this.userId() }));
+    }
   }
 
   ngAfterViewInit(): void {
@@ -39,7 +59,7 @@ export class PostFeedComponent implements AfterViewInit {
       content: commentText,
     };
 
-    this.#store.dispatch(postsActions.createPost({ newPost: payload }));
+    this.#store.dispatch(postsActions.createPost({ newPost: payload, userId: this.userId() }));
   }
 
   #resizeFeed(): void {

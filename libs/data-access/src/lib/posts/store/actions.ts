@@ -5,8 +5,8 @@ import type { Post, PostCreateDto, PostComment, CommentCreateDto } from '../inte
 export const postsActions = createActionGroup({
   source: 'Posts',
   events: {
-    fetchPosts: props<{ page?: string }>(),
-    createPost: props<{ newPost: PostCreateDto }>(),
+    fetchPosts: props<{ userId: number }>(),
+    createPost: props<{ newPost: PostCreateDto, userId: number }>(),
     postsLoaded: props<{ posts: Post[] }>(),
     fetchComments: props<{ postId: number }>(),
     createComment: props<{ newComment: CommentCreateDto }>(),

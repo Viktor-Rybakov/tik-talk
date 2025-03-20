@@ -2,10 +2,10 @@ import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/cor
 import { AsyncPipe } from '@angular/common';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { toObservable } from '@angular/core/rxjs-interop';
-import { switchMap, tap } from 'rxjs';
+import { Observable, switchMap, tap } from 'rxjs';
 import { Store } from '@ngrx/store';
 
-import { ProfileService, selectMyProfile } from '@tt/data-access/profile';
+import { type Profile, ProfileService, selectMyProfile } from '@tt/data-access/profile';
 import { PostFeedComponent } from '@tt/posts';
 import { SvgIconComponent, AvatarComponent } from '@tt/common-ui';
 import { ProfileHeaderComponent } from '../../ui';
@@ -29,7 +29,7 @@ export class ProfilePageComponent {
   myProfile$ = toObservable(this.myProfile);
   subscribers$ = this.#profileService.getSubscribersShortList(6);
 
-  profile$ = this.#route.params.pipe(
+  profile$: Observable<Profile | null> = this.#route.params.pipe(
     tap(({ id }) => {
       this.isMyPage.set(id === 'me' || id === this.myProfile()?.id);
     }),

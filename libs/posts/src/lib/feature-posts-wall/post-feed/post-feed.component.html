@@ -1,7 +1,9 @@
-<app-message-input
-  class="post-feed__input"
-  (created)="onPostCreated($event)"
-/>
+@if (isMyPage()) {
+  <app-message-input
+    class="post-feed__input"
+    (created)="onPostCreated($event)"
+  />
+}
 
 @if (posts(); as posts) {
   @if (posts.length) {
