@@ -15,7 +15,7 @@ export class PostsEffects {
   fetchPosts = createEffect(() => {
     return this.actions$.pipe(
       ofType(postsActions.fetchPosts),
-      switchMap(() => this.#postService.getPosts()),
+      switchMap(({ userId }) => this.#postService.getPosts(userId)),
       map((response) => postsActions.postsLoaded({ posts: response }))
     );
   });
@@ -24,9 +24,9 @@ export class PostsEffects {
     return this.actions$.pipe(
       ofType(postsActions.fetchComments),
       mergeMap(({ postId }) => {
-        return this.#postService.getCommentsByPostId(postId).pipe(
-          map((response) => postsActions.commentsLoaded({ postId, comments: response }))
-        );
+        return this.#postService
+          .getCommentsByPostId(postId)
+          .pipe(map((response) => postsActions.commentsLoaded({ postId, comments: response })));
       })
     );
   });
@@ -34,10 +34,9 @@ export class PostsEffects {
   createPost = createEffect(() => {
     return this.actions$.pipe(
       ofType(postsActions.createPost),
-      switchMap(({ newPost }) => {
-        return this.#postService.createPost(newPost);
-      }),
-      map(() => postsActions.fetchPosts({}))
+      switchMap(({ newPost, userId }) => {
+        return this.#postService.createPost(newPost).pipe(map(() => postsActions.fetchPosts({ userId })));
+      })
     );
   });
 

@@ -14,8 +14,8 @@ export class PostService {
     return this.#http.post<Post>('/yt-course/post/', payload);
   }
 
-  getPosts(): Observable<Post[]> {
-    return this.#http.get<Post[]>('/yt-course/post/');
+  getPosts(userId: number): Observable<Post[]> {
+    return this.#http.get<Post[]>('/yt-course/post/', { params: { user_id: userId } });
   }
 
   createComment(payload: CommentCreateDto) {
