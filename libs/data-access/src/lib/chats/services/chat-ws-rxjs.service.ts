@@ -1,8 +1,7 @@
 import { finalize, Observable, tap } from 'rxjs';
-
-import { ChatWSConnectionParams, ChatWsService } from '../interfaces/chat-ws-service.interface';
 import { WebSocketSubject } from 'rxjs/internal/observable/dom/WebSocketSubject';
-import { ChatWSSendMessage } from '../interfaces/chat-ws-message.interface';
+
+import type { ChatWSConnectionParams, ChatWsService, ChatWSSendMessage } from '../interfaces';
 
 export class ChatWsRxjsService implements ChatWsService {
   #socket: WebSocketSubject<ChatWSSendMessage> | null = null;

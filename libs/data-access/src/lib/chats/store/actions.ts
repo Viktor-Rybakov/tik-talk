@@ -1,6 +1,6 @@
 import { createActionGroup, props } from '@ngrx/store';
 
-import { ChatWSUnreadMessage } from '../interfaces/chat-ws-message.interface';
+import type { ChatWSUnreadMessage } from '../interfaces';
 
 export const chatActions = createActionGroup({
   source: 'Chat',

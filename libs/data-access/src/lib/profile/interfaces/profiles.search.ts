@@ -1,6 +1,6 @@
 import { FormControl } from '@angular/forms';
 
-export interface ProfilesSearchInterface {
+export interface ProfilesSearch {
   firstName: string;
   lastName: string;
   stack: string;

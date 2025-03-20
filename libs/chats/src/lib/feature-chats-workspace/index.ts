@@ -1,3 +1,1 @@
-import { chatsRoutes } from './chats-page/chats.routes';
-
-export { chatsRoutes }
+export { chatsRoutes } from './chats-page/chats.routes';

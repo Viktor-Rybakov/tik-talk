@@ -3,9 +3,8 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
 import { Store } from '@ngrx/store';
 
-import { ProfileService } from '@tt/data-access/profile';
+import { ProfileService, selectMyProfile } from '@tt/data-access/profile';
 import { AvatarUploadComponent } from '@tt/common-ui';
-import { selectMyProfile } from '@tt/data-access/profile';
 
 @Component({
   selector: 'app-settings-page',

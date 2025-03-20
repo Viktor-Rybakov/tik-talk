@@ -1,4 +1,4 @@
-import { ChatWSConnectionParams, ChatWsService } from '../interfaces/chat-ws-service.interface';
+import type { ChatWSConnectionParams, ChatWsService } from '../interfaces';
 
 export class ChatWsNativeService implements ChatWsService {
   #socket: WebSocket | null = null;

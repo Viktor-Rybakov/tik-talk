@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 
-import type { CommentCreateDto, Post, PostComment, PostCreateDto } from '../interfaces/post.interface';
+import type { CommentCreateDto, Post, PostComment, PostCreateDto } from '../interfaces';
 
 @Injectable({
   providedIn: 'root',

@@ -5,8 +5,8 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { map, startWith, switchMap } from 'rxjs';
 
 import { ChatsService } from '@tt/data-access/chats';
-import { ChatButtonComponent } from './chat-button/chat-button.component';
 import { SvgIconComponent } from '@tt/common-ui';
+import { ChatButtonComponent } from './chat-button/chat-button.component';
 
 @Component({
   selector: 'app-chats-list',

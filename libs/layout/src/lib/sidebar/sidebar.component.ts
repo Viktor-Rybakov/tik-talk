@@ -5,11 +5,10 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
-import { type IconType, SvgIconComponent } from '@tt/common-ui';
-import { SubscriberCardComponent } from '../ui';
+import { type IconType, SvgIconComponent, AvatarComponent } from '@tt/common-ui';
 import { type Profile, ProfileService, selectMyProfile } from '@tt/data-access/profile';
-import { AvatarComponent } from '@tt/common-ui';
 import { ChatsService, selectUnreadMessagesCount } from '@tt/data-access/chats';
+import { SubscriberCardComponent } from '../ui';
 
 @Component({
   selector: 'app-sidebar',

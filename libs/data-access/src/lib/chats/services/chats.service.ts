@@ -4,15 +4,21 @@ import { delay, firstValueFrom, map, Observable, startWith, Subject, switchMap }
 import { DateTime } from 'luxon';
 import { Store } from '@ngrx/store';
 
-import { type Chat, type LastMessage, type Message, type MessagesGroupByDate } from '../interfaces/chats.interface';
-import { MyProfileService, selectMyProfile } from '@tt/data-access/profile';
-import { ChatWsService } from '../interfaces/chat-ws-service.interface';
+import { type Profile, MyProfileService, selectMyProfile } from '../../profile';
 import { AuthService } from '../../auth';
-import { ChatWSMessage } from '../interfaces/chat-ws-message.interface';
-import { isError, isNewMessage, isUnreadMessage } from '../interfaces/type-guard';
-import { Profile } from '@tt/data-access/profile';
-import { ChatWsRxjsService } from './chat-ws-rxjs.service';
+import {
+  isError,
+  isNewMessage,
+  isUnreadMessage,
+  type ChatWsService,
+  type ChatWSMessage,
+  type Chat,
+  type LastMessage,
+  type Message,
+  type MessagesGroupByDate,
+} from '../interfaces';
 import { chatActions } from '../store/actions';
+import { ChatWsRxjsService } from './chat-ws-rxjs.service';
 
 @Injectable({
   providedIn: 'root',
@@ -88,8 +94,8 @@ export class ChatsService {
   connectWithRefreshingWS() {
     return this.wsRefresh$.pipe(
       startWith(null),
-      switchMap(() => this.#connectWS()),
-    )
+      switchMap(() => this.#connectWS())
+    );
   }
 
   handleWSMessage = (message: ChatWSMessage) => {

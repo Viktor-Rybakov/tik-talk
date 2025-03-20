@@ -1,10 +1,8 @@
 import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
 
+import { MessageInputComponent, RelativeDatePipe } from '@tt/common-ui';
+import { ChatsService, type Chat } from '@tt/data-access/chats';
 import { ChatMessageComponent } from '../chat-message/chat-message.component';
-import { MessageInputComponent } from '@tt/common-ui';
-import { ChatsService } from '@tt/data-access/chats';
-import { type Chat } from '@tt/data-access/chats';
-import { RelativeDatePipe } from '@tt/common-ui';
 
 @Component({
   selector: 'app-chat-messages-list',

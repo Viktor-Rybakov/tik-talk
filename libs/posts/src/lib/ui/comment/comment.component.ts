@@ -1,8 +1,7 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
-import { AvatarComponent } from '@tt/common-ui';
+import { AvatarComponent, LocalDatePipe } from '@tt/common-ui';
 import { type PostComment } from '@tt/data-access/posts';
-import { LocalDatePipe } from '@tt/common-ui';
 
 @Component({
   selector: 'app-comment',

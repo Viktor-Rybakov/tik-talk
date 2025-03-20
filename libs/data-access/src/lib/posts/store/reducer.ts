@@ -1,6 +1,6 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
 
-import type { Post, PostComment } from '../interfaces/post.interface';
+import type { Post, PostComment } from '../interfaces';
 import { postsActions } from './actions';
 
 export interface PostsState {
