@@ -47,13 +47,15 @@ export class ChatsService {
   }
 
   getChatById(chatId: number) {
+    const myProfile = this.myProfile();
+
     return this.#http.get<Chat>(`/yt-course/chat/${chatId}`).pipe(
       map((chat) => {
         const patchedMessages = chat.messages.map((message) => {
           return {
             ...message,
             user: message.userFromId === chat.userFirst.id ? chat.userFirst : chat.userSecond,
-            isMine: this.myProfile()?.id === message.userFromId,
+            isMine: myProfile?.id === message.userFromId,
           };
         });
 
@@ -108,8 +110,15 @@ export class ChatsService {
     }
 
     if (isNewMessage(message)) {
-      const isMyMessage = this.myProfile()?.id === message.data.author;
-      const isCompanionMessage = this.activeCompanionProfile()?.id === message.data.author;
+      const myProfile = this.myProfile();
+      const companionProfile = this.activeCompanionProfile();
+
+      if (!myProfile || !companionProfile) {
+        return;
+      }
+
+      const isMyMessage = myProfile.id === message.data.author;
+      const isCompanionMessage = companionProfile.id === message.data.author;
 
       if (isMyMessage || isCompanionMessage) {
         const newWSMessage: Message = {
@@ -119,7 +128,7 @@ export class ChatsService {
           text: message.data.message,
           createdAt: message.data.created_at,
           isRead: true,
-          user: isMyMessage ? this.myProfile()! : this.activeCompanionProfile()!,
+          user: isMyMessage ? myProfile : companionProfile,
           isMine: isMyMessage,
         };
 

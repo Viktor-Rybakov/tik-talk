@@ -23,7 +23,7 @@ export class ProfileEffects {
     );
   });
 
-  myProfile = createEffect(() => {
+  fetchMyProfile = createEffect(() => {
     return this.actions$.pipe(
       ofType(profileActions.fetchMyProfile),
       switchMap(() => this.#myProfileService.getMe()),
