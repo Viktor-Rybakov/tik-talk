@@ -151,6 +151,6 @@ export class ChatsService {
   }
 
   #refreshWSConnection() {
-    firstValueFrom(this.#myProfileService.getMe().pipe(delay(2000))).then(() => this.wsRefresh$.next());
+    firstValueFrom(this.#authService.refreshAuthToken().pipe(delay(2000))).then(() => this.wsRefresh$.next());
   }
 }
