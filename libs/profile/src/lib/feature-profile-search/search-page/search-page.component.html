@@ -1,9 +1,18 @@
 <app-profile-filters class="mb20" />
 
 <ul class="search-page__profiles">
-  @for (profile of profiles(); track profile.id) {
+  @for (profile of profiles(); track profile.id; let last = $last) {
     <li class="search-page__profile-item">
       <app-profile-card [profile]="profile" />
     </li>
+
+    @if (last) {
+      @defer (on viewport) {
+        <app-infinite-scroll-trigger (loaded)="loadNextPage()"/>
+      }
+      @placeholder {
+        <div></div>
+      }
+    }
   }
 </ul>
