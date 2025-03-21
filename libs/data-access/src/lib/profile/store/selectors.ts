@@ -12,6 +12,18 @@ export const selectProfilesFilters = createSelector(
   (filters) => filters
 );
 
+export const selectProfilesPageable = createSelector(
+  profileFeature.selectPage,
+  profileFeature.selectSize,
+  (page, size) => {
+    return {
+      page,
+      size,
+    }
+  }
+);
+
+
 export const selectMyProfile = createSelector(
   profileFeature.selectMyProfile,
   (myProfile) => myProfile
