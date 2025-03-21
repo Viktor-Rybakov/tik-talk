@@ -7,6 +7,7 @@ export const profileActions = createActionGroup({
   events: {
     filterEvent: props<{ filters: Partial<ProfilesSearch> }>(),
     profilesLoaded: props<{ profiles: Profile[] }>(),
+    setPage: props<{ page?: number }>(),
     fetchMyProfile: props<{ profileId?: number }>(),
     myProfileLoaded: props<{ myProfile: Profile }>(),
   },
