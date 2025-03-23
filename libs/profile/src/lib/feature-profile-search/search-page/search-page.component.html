@@ -1,18 +1,26 @@
-<app-profile-filters class="mb20" />
+<app-profile-filters class="search-page__filters" />
 
-<ul class="search-page__profiles">
-  @for (profile of profiles(); track profile.id; let last = $last) {
-    <li class="search-page__profile-item">
-      <app-profile-card [profile]="profile" />
-    </li>
+<app-infinite-scroll
+  class="search-page__scroll"
+  scrollType="web-api"
+  (scrollEnded)="loadNextPage()"
+>
+  <ul
+    class="search-page__profiles-list"
+    ngProjectAs="web-api"
+  >
+    @for (profile of profiles(); track profile.id; let last = $last) {
+      <li class="search-page__profile-item">
+        <app-profile-card [profile]="profile" />
+      </li>
 
-    @if (last) {
-      @defer (on viewport) {
-        <app-infinite-scroll-trigger (loaded)="loadNextPage()"/>
-      }
-      @placeholder {
-        <div></div>
-      }
+<!--      @if (last) {-->
+<!--        @defer (on viewport) {-->
+<!--          <app-infinite-scroll-trigger (loaded)="loadNextPage()" />-->
+<!--        } @placeholder {-->
+<!--          <div></div>-->
+<!--        }-->
+<!--      }-->
     }
-  }
-</ul>
+  </ul>
+</app-infinite-scroll>

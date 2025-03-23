@@ -1,0 +1,31 @@
+@switch (scrollType()) {
+  @case ('ngx') {
+    <div
+      class="infinite-scroll"
+      infiniteScroll
+      [infiniteScrollContainer]="'.infinite-scroll'"
+      [fromRoot]="true"
+      (scrolled)="onScrollEnded()"
+    >
+      <ng-content select="ngx" />
+    </div>
+  }
+
+  @case ('web-api') {
+    <div
+      class="infinite-scroll"
+      waIntersectionObserver
+      waIntersectionThreshold="0"
+      waIntersectionRootMargin="100px"
+    >
+      <ng-content select="web-api" />
+      <div (waIntersectionObservee)="onIntersection($event)"></div>
+    </div>
+  }
+
+  @default {
+    <div class="infinite-scroll">
+      <ng-content />
+    </div>
+  }
+}
