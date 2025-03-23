@@ -1,4 +1,15 @@
-.search-page__profiles {
+:host {
+  display: grid;
+  gap: 20px;
+  grid-template-rows: max-content 1fr;
+  height: 100%;
+}
+
+.search-page__scroll {
+  min-height: 200px;
+}
+
+.search-page__profiles-list {
   display: flex;
   flex-direction: column;
   gap: 8px;
