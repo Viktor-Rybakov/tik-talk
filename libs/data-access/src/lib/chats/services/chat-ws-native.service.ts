@@ -6,6 +6,7 @@ export class ChatWsNativeService implements ChatWsService {
   connect(params: ChatWSConnectionParams): void {
     if (!this.#socket) {
       this.#socket = new WebSocket(params.url, [params.token]);
+      console.log('WS connected');
     }
 
     this.#socket.onmessage = (event: MessageEvent): void => {
@@ -14,8 +15,6 @@ export class ChatWsNativeService implements ChatWsService {
 
     this.#socket.onclose = (): void => {
       this.disconnect();
-      this.#socket = null;
-      console.log('WS connection closed')
     };
   }
 
@@ -30,5 +29,7 @@ export class ChatWsNativeService implements ChatWsService {
 
   disconnect(): void {
     this.#socket?.close();
+    this.#socket = null;
+    console.log('WS disconnected');
   }
 }

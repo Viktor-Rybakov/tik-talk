@@ -27,7 +27,6 @@ export class ChatsService {
   #http = inject(HttpClient);
   #store = inject(Store);
   #authService = inject(AuthService);
-  #myProfileService = inject(MyProfileService);
 
   // wsAdapter: ChatWsService = new ChatWsNativeService();
   wsAdapter: ChatWsService = new ChatWsRxjsService();
@@ -101,10 +100,6 @@ export class ChatsService {
   }
 
   handleWSMessage = (message: ChatWSMessage) => {
-    if (!('action' in message)) {
-      return;
-    }
-
     if (isUnreadMessage(message)) {
       this.#store.dispatch(chatActions.newWSUnreadMessage({ message }));
     }

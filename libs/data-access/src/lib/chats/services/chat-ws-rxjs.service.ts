@@ -12,14 +12,13 @@ export class ChatWsRxjsService implements ChatWsService {
         url: params.url,
         protocol: [params.token],
       });
+      console.log('WS connected');
     }
 
     return this.#socket.asObservable().pipe(
       tap((message) => params.handleMessage(message)),
       finalize(() => {
         this.disconnect();
-        this.#socket = null;
-        console.log('WS connection closed')
       })
     );
   }
@@ -33,5 +32,7 @@ export class ChatWsRxjsService implements ChatWsService {
 
   disconnect(): void {
     this.#socket?.complete();
+    this.#socket = null;
+    console.log('WS disconnected');
   }
 }
