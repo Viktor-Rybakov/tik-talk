@@ -4,11 +4,11 @@ import { firstValueFrom } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 import { ProfileService, selectMyProfile } from '@tt/data-access/profile';
-import { AvatarUploadComponent } from '@tt/common-ui';
+import { AvatarUploadComponent, StackInputComponent } from '@tt/common-ui';
 
 @Component({
   selector: 'app-settings-page',
-  imports: [ReactiveFormsModule, AvatarUploadComponent],
+  imports: [ReactiveFormsModule, AvatarUploadComponent, StackInputComponent],
   templateUrl: './settings-page.component.html',
   styleUrl: './settings-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -27,16 +27,13 @@ export class SettingsPageComponent {
     lastName: ['', Validators.required],
     username: [{ value: '', disabled: true }, Validators.required],
     description: [''],
-    stack: [''],
+    stack: ['', Validators.required],
   });
 
   constructor() {
     effect(() => {
       // @ts-ignore
-      this.form.patchValue({
-        ...this.myProfile(),
-        stack: this.mergeStack(this.myProfile()?.stack),
-      });
+      this.form.patchValue(this.myProfile());
     });
   }
 
@@ -60,34 +57,7 @@ export class SettingsPageComponent {
 
     firstValueFrom(
       // @ts-ignore
-      this.#profileService.patchProfile({
-        ...this.form.value,
-        stack: this.splitStack(this.form.value.stack),
-      })
+      this.#profileService.patchProfile(this.form.value)
     );
-  }
-
-  splitStack(stack: string | string[] | null | undefined): string[] {
-    if (stack == null) {
-      return [];
-    }
-
-    if (Array.isArray(stack)) {
-      return stack;
-    }
-
-    return stack.split(',');
-  }
-
-  mergeStack(stack: string | string[] | null | undefined): string {
-    if (stack == null) {
-      return '';
-    }
-
-    if (Array.isArray(stack)) {
-      return stack.join(',');
-    }
-
-    return stack;
   }
 }

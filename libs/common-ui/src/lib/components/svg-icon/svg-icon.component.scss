@@ -1,5 +1,6 @@
 :host {
   display: block;
+  flex-shrink: 0;
   width: var(--icon-width, 20px);
   height: var(--icon-height, 20px);
   fill: currentColor;
