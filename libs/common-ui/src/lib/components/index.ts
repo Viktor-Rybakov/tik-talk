@@ -5,3 +5,4 @@ export { type IconType, SvgIconComponent } from './svg-icon/svg-icon.component';
 export { InfiniteScrollTriggerComponent } from './infinite-scroll-trigger/infinite-scroll-trigger.component';
 export { InfiniteScrollComponent } from './infinite-scroll/infinite-scroll.component';
 export { StackInputComponent } from './stack-input/stack-input.component';
+export { AddressInputComponent } from './address-input/address-input.component';

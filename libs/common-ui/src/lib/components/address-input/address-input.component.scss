@@ -1,0 +1,37 @@
+:host {
+  position: relative;
+
+  &.disabled {
+    opacity: 0.8;
+  }
+}
+
+.address-input__dropdown {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 200px;
+  background-color: var(--light-color-075);
+  border-radius: 4px;
+  overflow: hidden auto;
+  scrollbar-width: thin;
+  scrollbar-color: hsla(263, 100%, 74%, 1) hsla(0, 0%, 9%, 1);
+}
+
+.address-input__suggest-button {
+  min-width: 120px;
+  padding: 4px 8px;
+  color: var(--dark-color);
+  font-family: inherit;
+  background: none;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+
+  &:hover,
+  &:focus-visible {
+    background-color: var(--primary-color);
+  }
+}
