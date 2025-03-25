@@ -4,11 +4,11 @@ import { firstValueFrom } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 import { ProfileService, selectMyProfile } from '@tt/data-access/profile';
-import { AvatarUploadComponent, StackInputComponent } from '@tt/common-ui';
+import { AddressInputComponent, AvatarUploadComponent, StackInputComponent } from '@tt/common-ui';
 
 @Component({
   selector: 'app-settings-page',
-  imports: [ReactiveFormsModule, AvatarUploadComponent, StackInputComponent],
+  imports: [ReactiveFormsModule, AvatarUploadComponent, StackInputComponent, AddressInputComponent],
   templateUrl: './settings-page.component.html',
   styleUrl: './settings-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -28,6 +28,7 @@ export class SettingsPageComponent {
     username: [{ value: '', disabled: true }, Validators.required],
     description: [''],
     stack: ['', Validators.required],
+    city: [null],
   });
 
   constructor() {

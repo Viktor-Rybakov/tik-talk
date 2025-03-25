@@ -1,0 +1,26 @@
+<label class="control">
+  <span class="control__label">Адрес</span>
+
+  <input
+    class="control__input control__input--underlined"
+    type="text"
+    placeholder="Введите город"
+    [formControl]="innerSearchControl"
+  />
+</label>
+
+@if (citySuggestions$ | async; as cities) {
+  @if (dropDownOpened()) {
+    <div class="address-input__dropdown">
+      @for (city of cities; track city) {
+        <button
+          class="address-input__suggest-button"
+          type="button"
+          (click)="onSuggestionPick(city)"
+        >
+          {{ city }}
+        </button>
+      }
+    </div>
+  }
+}
